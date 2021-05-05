@@ -10,44 +10,55 @@
     <link rel="stylesheet" href="css/app.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>Диплом кириллов</title>
+    <title>Диплом</title>
 
     <!-- Скрипты -->
     <script defer src="js/app.min.js"></script>
 </head>
 <body>
 
-<header class="container">
-    <nav>
-        <ul class="header-nav">
+<header class="header">
+    <div class="container">
+        <div class="header__body">
+            <div class="header__logo">
+                <a href="index.html">logo</a>
+            </div>
 
-            <li style="display: flex; align-items: center; justify-content: center" class="header-nav__item logo-wrapper">
-                logo
-            </li>
+            <div id="js-hamburger-wrapper" class="hamburger-wrapper">
+                <div id="js-hamburger" class="hamburger">
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                </div>
+            </div>
 
-            <li class="header-nav__item">
-                <a class="header-nav__link" href="#!">Найти тур</a>
-            </li>
-
-            <li class="header-nav__item">
-                <a class="header-nav__link" href="#!">О нас</a>
-            </li>
-
-            <li class="header-nav__item">
-                <a class="header-nav__link" href="#!">Справка</a>
-            </li>
-
-            <li class="header-nav__item account">
-                <a class="header-nav__link" href="#!">Войти</a>
-            </li>
-        </ul>
-    </nav>
+            <nav class="header__menu">
+                <ul class="header-nav">
+                    <li class="header-nav__item active">
+                        <a class="header-nav__link" href="index.html">Главная</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="find-tour.html">Найти&nbsp;тур</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="about.html">О&nbsp;нас</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="help.html">Справка</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="login.html">Войти</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </header>
 
-<main>
+<main class="main">
     <div class="container find-tour">
         <div class="find-tour__image-wrapper"></div>
-        <h2 class="find-tour__heading">Plan tomorrow’s adventure today.</h2>
+        <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
 
         <div class="booking-bar">
             <form class="booking-bar__form" action="#!" method="POST">
@@ -184,82 +195,8 @@
         </div>
     </div>
 
-    <div class="popular-tours container">
-        <h2 class="popular-tours__heading">популярные туры.</h2>
-        <ul class="tours">
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
-                    </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
-                </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
-                    </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
-                </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
-                    </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
-                </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
-                    </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
-                </div>
-            </li>
-        </ul>
-    </div>
-
     <div class="sale-tours container">
-        <h2 class="sale-tours__heading">скидки.</h2>
+        <h2 class="sale-tours__heading">скидки<span class="dot">.</span></h2>
         <ul class="tours">
             <li class="tour">
                 <div class="tour__image-wrapper">
@@ -333,49 +270,33 @@
     </div>
 
     <div class="faq container">
-        <h2 class="faq__heading">часто задаваемые вопросы.</h2>
+        <h2 class="faq__heading">часто задаваемые вопросы<span class="dot">.</span></h2>
         <ul class="questions">
             <li class="question">
                 <button class="question__heading">Вопрос?</button>
                 <div class="question__answer">
-                    <p>ur mom gay</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
                 </div>
             </li>
             <li class="question">
                 <button class="question__heading">Вопрос?</button>
                 <div class="question__answer">
-                    <p>ur mom gay</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
                 </div>
             </li>
             <li class="question">
                 <button class="question__heading">Вопрос?</button>
                 <div class="question__answer">
-                    <p>ur mom gay</p>
-                </div>
-            </li>
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>ur mom gay</p>
-                </div>
-            </li>
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>ur mom gay</p>
-                </div>
-            </li>
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>ur mom gay</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
                 </div>
             </li>
         </ul>
     </div>
 </main>
 
-<footer></footer>
+<footer class="footer">
+    <div class="container"></div>
+</footer>
 
 </body>
 </html>

@@ -1,41 +1,48 @@
 @import "initial"
 // mix-blend-mode: difference
 
+
 // <--- Шапка --->
-header
+.header
+  --header-height: 60px
   font-weight: 700
-  .header-nav
-    height: 60px
+  .header__body
     display: flex
     align-items: center
-    .header-nav__item
-      &:nth-child(2)
-        background-color: #efefef
-      margin-left: 20px
-      padding: 6px 12px
-      border-radius: 20px
-      transition: background-color .35s
-      &:hover
-        background-color: #efefef
-    .logo-wrapper
-      &:hover
-        background-color: transparent
+    height: var(--header-height)
+    .header__logo
+      // ОТРЕДАКТИРОВАТЬ СТИЛИ ПОСЛЕ ДОБАВЛЕНИЯ КАРТИНКИ
       margin-right: auto
-      margin-left: 0
-      padding: 0
+      display: flex
+      justify-content: center
       align-self: stretch
+      align-items: center
       width: 120px
-      border-radius: 0
-      border: 1px solid deeppink
-    .account
-      background-color: black
-      &:hover
+      border: 2px dashed deeppink
+    .header-nav
+      display: flex
+      .header-nav__item
+        margin-left: 20px
+        border-radius: 20px
+        transition: background-color .35s
+        &.active
+          background-color: #efefef
+          &:hover
+            background-color: lighten(#efefef, 2%)
+        &:last-child
+          background-color: black
+          .header-nav__link
+            color: white
+          &:hover
+            background-color: var(--accent-green)
+            .header-nav__link
+              color: black
+        &:hover
+          background-color: #efefef
         .header-nav__link
+          padding: 6px 12px
+          transition: color .35s
           color: black
-        background-color: #34E0A1
-      .header-nav__link
-        transition: color .35s
-        color: white
 
 
 // <--- Основной контент --->
@@ -50,10 +57,12 @@ main
       top: 25px
       bottom: 50px
       left: 60px
-      right: 30%
     .find-tour__heading
       margin-bottom: 30px
+      width: clamp(310px, 42%, 750px)
     .booking-bar
+      width: clamp(310px, 55%, 750px)
+      max-width: 800px
       display: flex
       flex-direction: row
       background-color: white
@@ -66,7 +75,7 @@ main
         background-color: rgba(0, 0, 0, 1)
         color: white
         font-family: 'Comfortaa', sans-serif
-        width: 100%
+        width: calc(min(200px, 25%))
         cursor: pointer
         &:hover
           background-color: rgba(0, 0, 0, 0.9)
@@ -74,6 +83,8 @@ main
         display: flex
         flex-direction: row
         .booking-bar__form__section
+          &:nth-child(3), &:nth-child(4)
+            width: calc(min(150px, 25%))
           height: 120px
           width: 170px
           text-align: center
@@ -153,23 +164,20 @@ main
           > img
             height: 256px
 
-  .popular-tours, .sale-tours
+  .sale-tours
     margin-top: 80px
-    .popular-tours__heading, .sale-tours__heading
-      font-size: 27px
-      margin-bottom: 25px
-      color: lightseagreen
     .tours
-      display: flex
+      display: grid
+      grid-template-columns: repeat(auto-fill, minmax(calc(max(20%, 250px)), 1fr))
       justify-content: space-between
-      flex-wrap: wrap
+      grid-gap: 15px
       .tour
         .tour__price
-          transition: background-color .55s
+          transition-property: background-color, border
+          transition-duration: .55s
           padding: 7px 0
           opacity: .9
-          border-radius: 12px
-          border-top: 1px solid lightgray
+          border-top: 2px solid lightgray
           margin-top: 30px
           font-size: 18px
           font-weight: 700
@@ -177,24 +185,26 @@ main
           text-align: center
         .tour__desc-wrapper
           transition: border .25s
-          border: 1px solid lightgray
+          border: 2px solid lightgray
           border-top: none
-          border-bottom-left-radius: 12px
-          border-bottom-right-radius: 12px
         &:hover
           .tour__price
-            background-color: lightgray
+            border-top: 2px solid black
+            background-color: black
+            color: white
           .tour__desc-wrapper
+            border: 2px solid black
             border-top: none
+          .tour__image-wrapper:after
+            background-color: rgba(0, 0, 0, .6)
         cursor: pointer
         display: flex
         flex-direction: column
-        width: clamp(250px, 30%, 340px)
         overflow: hidden
-        border-top-left-radius: 12px
-        border-top-right-radius: 12px
         .tour__image-wrapper
           position: relative
+          > img
+            width: 100%
           &:after
             content: ''
             position: absolute
@@ -204,8 +214,6 @@ main
             left: 0
             background-color: rgba(0, 0, 0, .0)
             transition: background-color 0.5s
-          &:hover:after
-            background-color: rgba(0, 0, 0, .6)
           .tour__destination-city
             z-index: 1
             position: absolute
@@ -223,10 +231,6 @@ main
             display: block
   .faq
     margin-top: 70px
-    .faq__heading
-      font-size: 27px
-      margin-bottom: 25px
-      color: lightseagreen
 
     .questions
       .question
@@ -234,10 +238,15 @@ main
         &:last-child
           margin-bottom: 0
         .question__heading
+          position: relative
           border-radius: 12px
           font-family: 'Comfortaa', sans-serif
           font-size: 17px
-          padding: 20px 0 20px 25px
+          padding:
+            top: 20px
+            right: 0
+            bottom: 20px
+            left: clamp(10px, 3%, 25px)
           background-color: #efefef
           color: #444
           cursor: pointer
@@ -246,33 +255,250 @@ main
           border: none
           outline: none
           transition: 0.4s
-          &:active, &:hover
+          &:hover, &:active
             background-color: #ccc
+          // <-- Стрелка -->
+          &:after, &:before
+            transition: transform .5s
+            position: absolute
+            top: 50%
+            right: 20px
+            width: 3px
+            height: 12px
+            background-color: lightseagreen
+            content: ''
+          &:after
+            transform: translate(-110%, -50%) rotate(-45deg)
+          &:before
+            transform: translate(110%, -50%) rotate(45deg)
+          &[class*='active']
+            &:after
+              transform: translate(110%, -50%) rotate(-45deg)
+            &:before
+              transform: translate(-110%, -50%) rotate(45deg)
 
         .question__answer
-          padding: 20px 0 20px 45px
-          background-color: white
+          padding:
+            top: 20px
+            right: calc(max(20px, 10%))
+            bottom: 20px
+            left: calc(min(45px, 10%))
           display: none
           overflow: hidden
+
+  //  <-- about.html -->
+  .about
+    padding:
+      left: calc(min(50px, 5%))
+      right: calc(min(30px, 3%))
+    margin-top: 50px
+    .about__heading
+      font-size: 32px
+      text-align: center
+    .about__text
+      margin: 25px 0
+  //  <-- help.html -->
+  .main__heading
+    margin-top: 40px
+    margin-bottom: 40px
+    font-size: 32px
+    text-align: center
+  .article
+    margin-bottom: 30px
+    .article__heading
+      margin-bottom: 10px
+    .article__text
+      padding:
+        left: calc(min(40px, 4%))
+        right: calc(min(30px, 3%))
 
 
 
 // <--- Подвал --->
-footer
-  position: relative
-  &:before
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    color: deeppink
-    font-size: 60px
-    content: 'Подвал'
-  margin-top: 100px
-  width: 100%
-  height: 500px
-  border: 2px dashed deeppink
+.footer
+  > .container
+    position: relative
+    &:before
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      color: deeppink
+      font-size: 60px
+      content: 'Подвал'
+    margin-top: 100px
+    height: 500px
+    border: 2px dashed deeppink
 
 
+@media (max-width: 1545px)
+  main
+    .find-tour
+      .booking-bar
+        width: 500px
+        border-radius: 12px
+        display: flex
+        flex-direction: column
+        .booking-bar__submit
+          border-top-right-radius: 0
+          border-bottom-left-radius: 12px
+          width: 100%
+          height: 40px
+        .booking-bar__form
+          display: flex
+          flex-direction: row
+          .booking-bar__form__section
+            &:last-child
+              border-right: none
+
+@media (max-width: 1420px)
+  .container
+    width: 85%
+  main
+    .find-tour
+      padding:
+        right: 60px
+      .find-tour__image-wrapper
+        left: 50%
+        transform: translateX(-50%)
+        bottom: -65px
+        position: absolute
+        height: 335px
+        width: 502px
+      .booking-bar
+        // z-index won't working without position
+        z-index: 1
+        position: relative
+        margin-top: 60px
+        width: calc(150px * 4)
+        border-radius: 12px
+        display: flex
+        flex-direction: column
+        .booking-bar__submit
+          border-top-right-radius: 0
+          border-bottom-left-radius: 12px
+          width: 100%
+          height: 40px
+          .booking-bar__form__section
+            &:last-child
+              border-right: none
+
+@media (max-width: 800px)
+  .container
+    width: 95%
+  main .find-tour
+    .booking-bar
+      width: 100%
 
 
+// Disable overlay when orientation is changing
+@media (min-width: 700px)
+  body
+    &.blackout:after
+      display: none
+@media (max-width: 700px)
+  .header
+    font-weight: 700
+    .header__body
+      .hamburger-wrapper
+        display: flex
+      .header__menu
+        display: none
+        z-index: 2
+        position: fixed
+        background-color: var(--accent-green)
+        bottom: 0
+        left: 55%
+        right: 0
+        top: var(--header-height)
+        animation: burger-menu .5s
+        @keyframes burger-menu
+          0%
+            left: 100%
+          100%
+            left: 55%
+        &.active
+          display: block
+      .header-nav
+        height: 100%
+        display: flex
+        flex-direction: column
+        .header-nav__item
+          overflow: hidden
+          margin-left: 0
+          border-radius: 0
+          transition: background-color .35s
+          background-color: transparent
+          &.active
+            background-color: black
+            .header-nav__link
+              color: white
+            &:hover
+              .header-nav__link
+                color: var(--accent-green)
+          &:last-child
+            margin-top: auto
+            &:hover
+              background-color: black
+              .header-nav__link
+                color: var(--accent-green)
+          &:hover
+            background-color: black
+            .header-nav__link
+              color: white
+          .header-nav__link
+            padding:
+              top: calc(min(20px, 3.5vh))
+              left: 30px
+              bottom: calc(min(20px, 3.5vh))
+            transition: color .35s
+            color: black
+
+  main
+    .find-tour
+      padding:
+        top: 20px
+        left: 10px
+        right: 10px
+      .booking-bar
+        margin-top: 60px
+        width: 100%
+        border-radius: 12px
+        display: flex
+        flex-direction: column
+        .booking-bar__form
+          display: flex
+          flex-direction: column
+          .booking-bar__form__section
+            &:nth-child(3), &:nth-child(4)
+              width: auto
+            height: 40px
+            display: flex
+            align-items: center
+            width: 100%
+            border: none
+            .booking-bar__input
+              text-align-last: center
+              text-align: center
+              width: 150px
+              margin-left: auto
+              height: 100%
+              border-radius: 12px
+            .booking-bar__label
+              padding-left: 15px
+
+@media (max-width: 570px)
+  main
+    .advantages-wrapper
+      margin-top: 50px
+    .find-tour
+      .find-tour__heading
+        font-size: 22px
+        width: 100%
+      .find-tour__image-wrapper
+        left: 0
+        transform: translateX(0)
+        bottom: 0
+        position: absolute
+        height: 260px
+        width: 100%
