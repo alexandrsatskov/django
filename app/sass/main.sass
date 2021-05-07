@@ -4,6 +4,7 @@
 
 // <--- Шапка --->
 .header
+  grid-area: header
   --header-height: 60px
   font-weight: 700
   .header__body
@@ -45,8 +46,10 @@
           color: black
 
 
+
 // <--- Основной контент --->
 main
+  grid-area: main
   .find-tour
     height: 370px
     margin-top: 50px
@@ -89,12 +92,7 @@ main
           width: 170px
           text-align: center
           border-right: 1px solid #efefef
-          select
-            -webkit-appearance: none
           .booking-bar__input
-            &::-webkit-calendar-picker-indicator
-              display: none
-              -webkit-appearance: none
             font-size: 18px
             font-family: 'Comfortaa', sans-serif
             font-weight: 700
@@ -311,24 +309,90 @@ main
       padding:
         left: calc(min(40px, 4%))
         right: calc(min(30px, 3%))
+  //  <-- find-tour.html -->
+  .main__body
+    margin-top: 60px
+    display: grid
+    grid-column-gap: 60px
+    grid-template-columns: minmax(150px, 15%) 3fr
+    grid-template-areas: "header header" "filters sort" "filters tours" "footer footer"
+    .filters
+      grid-area: filters
+      .filters__heading
+        display: none
+      .filter
+        padding: 15px 0
+        border-bottom: 1px solid lightgrey
+        &:first-child
+          background-color: red
+          padding-top: 0
+        &:last-child
+          border-bottom: none
+        .filter__heading
+          margin-bottom: 5px
+          display: block
+          color: rgba(0, 0, 0, .8)
+          font-weight: 700
+          font-size: 15px
+        .filter__input
+          width: 100%
+          border: 1px solid var(--select-border)
+          font-size: 17px
+          cursor: pointer
+        .filter__content
+          padding-left: 5px
+          font-weight: 700
+          font-size: 17px
+          color: rgba(0, 0, 0, 1)
+      .filter__submit
+        font-weight: 700
+        cursor: pointer
+        background-color: black
+        color: white
+        font-size: 17px
+        height: 40px
+        width: 100%
+        transition-property: background-color, color
+        transition-duration: .5s
+        &:hover
+          background-color: var(--accent-green)
+          color: black
 
+      &_active
+        .filters__filter-list
+          z-index: 2
+          display: block !important
+          position: fixed
+          top: calc(var(--header-height) + 50px)
+          right: 0
+          left: 0
+          bottom: 0
+          background-color: white
+
+    .sale-tours
+      grid-area: tours
+      margin-top: 0
+    .sort
+      grid-area: sort
 
 
 // <--- Подвал --->
 .footer
-  > .container
-    position: relative
-    &:before
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
-      color: deeppink
-      font-size: 60px
-      content: 'Подвал'
-    margin-top: 100px
-    height: 500px
-    border: 2px dashed deeppink
+  grid-area: footer
+  position: relative
+  width: 90%
+  border: 2px dashed deeppink
+  margin: 0 auto
+  margin-top: 100px
+  height: 150px
+  &:before
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    color: deeppink
+    font-size: 60px
+    content: 'Подвал'
 
 
 @media (max-width: 1545px)
@@ -383,6 +447,22 @@ main
             &:last-child
               border-right: none
 
+@media (max-width: 860px)
+
+  .wrapper-button_go-top
+    display: none
+  .main
+    .main__body
+      grid-template-areas: "header header" "sort filters" "tours tours" "footer footer"
+      grid-template-columns: repeat(2, 1fr)
+      .filters
+        .filters__heading
+          display: block
+        .filters__filter-list,
+        .filters__arrow,
+        .filters__submit-btn
+          display: none
+
 @media (max-width: 800px)
   .container
     width: 95%
@@ -394,8 +474,11 @@ main
 // Disable overlay when orientation is changing
 @media (min-width: 700px)
   body
-    &.blackout:after
-      display: none
+    &.scroll-lock
+      overflow: scroll
+    .overlay
+      &.show
+        left: 100%
 @media (max-width: 700px)
   .header
     font-weight: 700
@@ -403,22 +486,16 @@ main
       .hamburger-wrapper
         display: flex
       .header__menu
-        display: none
         z-index: 2
         position: fixed
         background-color: var(--accent-green)
         bottom: 0
-        left: 55%
+        left: 100%
         right: 0
         top: var(--header-height)
-        animation: burger-menu .5s
-        @keyframes burger-menu
-          0%
-            left: 100%
-          100%
-            left: 55%
+        transition: left .45s
         &.active
-          display: block
+          left: 55%
       .header-nav
         height: 100%
         display: flex

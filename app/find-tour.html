@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/app.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Найти тур</title>
+
+    <!-- Скрипты -->
+    <script defer src="js/app.min.js"></script>
+</head>
+<body>
+<div class="overlay"></div>
+<div id="js-wrapper-button_go-top" class="wrapper-button_go-top">
+    <div id="js-button_go-top" class="button_go-top">
+        <span class="button-text">Go&nbsp;up</span>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container">
+        <div class="header__body">
+            <div class="header__logo">
+                <a href="index.html">logo</a>
+            </div>
+
+            <div id="js-hamburger-wrapper" class="hamburger-wrapper">
+                <div id="js-hamburger" class="hamburger">
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                </div>
+            </div>
+
+            <nav class="header__menu">
+                <ul class="header-nav">
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="index.html">Главная</a>
+                    </li>
+                    <li class="header-nav__item active">
+                        <a class="header-nav__link" href="find-tour.html">Найти&nbsp;тур</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="about.html">О&nbsp;нас</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="help.html">Справка</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="login.html">Войти</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="main">
+
+    <div class="container">
+        <div class="main__body">
+            <section class="filters filters_active">
+                <h2 class="filters__heading">Фильтры</h2>
+                <div class="filters__arrow">
+                    <div class="filters__arrow-line"></div>
+                </div>
+                <ul class="filters__filter-list">
+                    <li class="filters__item">
+                        <label for="country" class="filters__item-heading">Страна</label>
+                        <select name="city" id="country" class="filter__input">
+                            <option value="28" selected>Amsterdam</option>
+                            <option value="56">Andalusia</option>
+                            <option value="75">Antwerp</option>
+                            <option value="17">Athens</option>
+                            <option value="41">Bangkok</option>
+                            <option value="19">Barcelona</option>
+                        </select>
+                    </li>
+                    <li class="filters__item">
+                        <label for="city" class="filters__item-heading">Город</label>
+                        <select name="city" id="city" class="filter__input">
+                            <option value="28" selected>Пермь</option>
+                            <option value="56">Калининград</option>
+                        </select>
+                    </li>
+                    <li class="filters__item">
+                        <h3 class="filters__item-heading">Рейтинг</h3>
+                        <fieldset class="rate">
+                            <input type="radio" id="rating10" name="rating" value="10" />
+                            <label for="rating10" title="5 stars"></label>
+                            <input type="radio" id="rating9" name="rating" value="9" />
+                            <label class="half" for="rating9" title="4 1/2 stars"></label>
+                            <input type="radio" id="rating8" name="rating" value="8" />
+                            <label for="rating8" title="4 stars"></label>
+                            <input type="radio" id="rating7" name="rating" value="7" />
+                            <label class="half" for="rating7" title="3 1/2 stars"></label>
+                            <input type="radio" id="rating6" name="rating" value="6" />
+                            <label for="rating6" title="3 stars"></label>
+                            <input type="radio" id="rating5" name="rating" value="5" />
+                            <label class="half" for="rating5" title="2 1/2 stars"></label>
+                            <input type="radio" id="rating4" name="rating" value="4" />
+                            <label for="rating4" title="2 stars"></label>
+                            <input type="radio" id="rating3" name="rating" value="3" />
+                            <label class="half" for="rating3" title="1 1/2 stars"></label>
+                            <input type="radio" id="rating2" name="rating" value="2" />
+                            <label for="rating2" title="1 star"></label>
+                            <input type="radio" id="rating1" name="rating" value="1" />
+                            <label class="half" for="rating1" title="1/2 star"></label>
+
+                        </fieldset>
+                    </li>
+                    <li class="filters__item">
+                        <label for="date" class="filters__item-heading">Даты вылета</label>
+                        <input id="date" class="filter__input" type="date">
+                    </li>
+                    <li class="filters__item">
+                        <label for="nights" class="filters__item-heading">Ночей:&nbsp;<span class="filter__content">4</span></label>
+                        <input id="nights" class="filter__input" type="range" min="5" max="20" value="5">
+                    </li>
+                    <li class="filters__item">
+                        <label for="participants" class="filters__item-heading">Участников:&nbsp;<span class="filter__content">4</span></label>
+                        <input id="participants" class="filter__input" type="range" min="1" max="8" value="5">
+                    </li>
+                    <li class="filters__item">
+                        <label for="price" class="filters__item-heading">Цена:</label>
+                        <div class="filter__content">0-20000</div>
+                        <input id="price" class="filter__input" type="range" min="0" max="20000" value="4000">
+                    </li>
+                </ul>
+                <button class="filters__submit-btn" name="button" type="submit">Поиск</button>
+            </section>
+            <div class="sort">Сортировать по ...</div>
+            <div class="sale-tours">
+                <ul class="tours">
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                    <li class="tour">
+                        <div class="tour__image-wrapper">
+                            <img src="img/tour-image.jpg" alt="Картинка тура">
+                            <span class="tour__destination-city">
+                    Анталья,
+                    <span class="tour__destination-country">Россия</span>
+                </span>
+                        </div>
+                        <div class="tour__desc-wrapper">
+
+                            <div class="tour__desc">
+                                <span class="tour__nights">7&nbsp;ночей</span>
+                                <span class="tour__rating">some rating</span>
+                            </div>
+                            <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container"></div>
+</footer>
+
+</body>
+</html>

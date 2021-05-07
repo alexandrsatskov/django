@@ -4,10 +4,228 @@ html
 *, *:after, *:before
   box-sizing: inherit
 
+\:root
+  --font: 'Comfortaa', sans-serif
+  --header-height: 60px
+
+input[type="range"]
+  --range-height: 20px
+  --range-bgc: #d3d3d3
+  --thumb-bgc: #04AA6D
+  -webkit-appearance: none
+  width: 100%
+  height: var(--range-height)
+  background-color: var(--range-bgc)
+  opacity: .7
+  outline: none
+  &:focus, &:hover, &:active
+    background-color: var(--range-bgc)
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    width: var(--range-height)
+    height: var(--range-height)
+    background-color: var(--thumb-bgc)
+    cursor: pointer
+  &::-moz-range-thumb
+    width: var(--range-height)
+    height: var(--range-height)
+    background-color: var(--thumb-bgc)
+    cursor: pointer
+
+  
+button, input, optgroup, select, textarea
+  margin: 0
+  padding: 0
+  font-family: var(--font)
+  border: none
+  background-image: none
+  background-color: transparent
+  box-shadow: none
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+  -webkit-appearance: none
+  &:hover, &:active, &:focus
+    outline: none
+    border: none
+    background-image: none
+    background-color: transparent
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+    -webkit-appearance: none
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="date"]::-webkit-calendar-picker-indicator
+  display: none
+
+
+.rate
+  display: inline-block
+  border: 0
+  padding: 0
+
+/* Hide radio */
+.rate > input
+  display: none
+
+/* Order correctly by floating highest to the right */
+.rate > label
+  float: right
+
+/* The star of the show */
+.rate > label:before
+  --star-fz: 25px
+  font-size: var(--star-fz)
+  display: inline-block
+  margin: 0
+  cursor: pointer
+  font-weight: 900
+  font-family: "Font Awesome 5 Free", sans-serif
+  content: "\f005" /* full star */
+  color: lightgrey
+
+/* Half star trick */
+.rate .half:before
+  width: calc(var(--star-fz) - 9px)
+  overflow: hidden
+  position: absolute
+  content: "\f089" /* half star no outline */
+
+.filters__arrow
+  display: none
+  height: 100%
+  width: 40px
+  position: relative
+  .filters__arrow-line
+    width: 100%
+    position: absolute
+    height: 4px
+    background-color: black
+    top: 50%
+    transform: translateY(-50%)
+  .filters__arrow-line:after,
+  .filters__arrow-line:before
+    background-color: black
+    content: ''
+    position: absolute
+    left: -3px
+    width: 45%
+    height: 100%
+  .filters__arrow-line:after
+    transform: translateY(-130%) rotate(-45deg)
+  .filters__arrow-line:before
+    transform: translateY(130%) rotate(45deg)
+
+input:checked ~ label:before
+  color: #04AA6D !important
+
+label:hover:before,
+label:hover ~ label:before
+  color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
+
+/* Hover highlights */
+input:checked + label:hover:before,
+input:checked ~ label:hover:before, /* highlight current and previous stars */
+input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
+  color: #04AA6D
+
+.filter__rating-stars
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: row-reverse
+  input
+    display: none
+  label
+    font-size: 25px
+    color: #444
+    padding: 5px
+    transition: color .2s
+  input:not(:checked) ~ label:hover,
+  input:not(:checked) ~ label:hover ~ label
+    color: #fd4
+  input:checked ~ label
+    color: #fd4
+  //input#rate-5:checked ~ label
+  //  color: #fe7
+  //  text-shadow: 0 0 20px #952
+
+
+.wrapper-button_go-top
+  position: fixed
+  top: 0
+  bottom: 0
+  right: 0
+  width: 7%
+  transition: transform .5s
+  &:hover
+    cursor: pointer
+    .button_go-top
+      transform: translateX(0) !important
+      background-color: rgba(grey, .1)
+      opacity: .9
+  .button_go-top
+    transform: translateX(100%)
+    cursor: pointer
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 16px
+    opacity: .3
+    transition-property: background-color, opacity, transform
+    transition-duration: .6s
+    .fa-chevron-up
+      font-size: .8em
+      margin-right: 5px
+
+.overlay
+  position: fixed /* Sit on top of the page content */
+  width: 100% /* Full width (cover the whole page) */
+  height: 100vh /* Full height (cover the whole page) */
+  top: var(--header-height)
+  right: 0
+  bottom: 0
+  left: 100%
+  transition: left .5s
+  background-color: rgba(0, 0, 0, .8) /* Black background with opacity */
+  z-index: 2 /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer /* Add a pointer on hover */
+  &.show
+    left: 0
+    &:before, &:after
+      content: ''
+      width: 20px
+      height: 3px
+      border-radius: 12px
+      position: absolute
+      top: calc(50% - var(--header-height) / 2)
+      left: 27.5%
+      z-index: 2
+      animation: x-opacity .4s forwards
+      animation-delay: .4s
+      background-color: transparent
+      @keyframes x-opacity
+        to
+          background-color: lightseagreen
+    &:after
+      transform: translate(-50%, -50%) rotate(45deg)
+    &:before
+      transform: translate(-50%, -50%) rotate(-45deg)
+  
 body
+  display: grid
+  grid-template-areas: "header" "main" "footer"
+  min-height: 100vh
   --accent-green: #34E0A1
   margin: 0
-  font-family: 'Comfortaa', sans-serif
+  font-family: var(--font)
   line-height: 1.65
   overflow-x: hidden
   // Removes blue background on action
@@ -15,21 +233,6 @@ body
   &.scroll-lock
     overflow: hidden
 
-  &.blackout:after
-    content: ''
-    position: fixed
-    top: 60px
-    height: 100vh
-    background-color: rgba(0, 0, 0, .7)
-    left: 0
-    right: 0
-    z-index: 1
-    animation: blackout .4s
-    @keyframes blackout
-      0%
-        left: 100%
-      100%
-        left: 0
 
 .display-none
   display: none
