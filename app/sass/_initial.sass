@@ -95,30 +95,31 @@ input[type="date"]::-webkit-calendar-picker-indicator
   position: absolute
   content: "\f089" /* half star no outline */
 
-.filters__arrow
-  display: none
-  height: 100%
-  width: 40px
-  position: relative
-  .filters__arrow-line
-    width: 100%
-    position: absolute
-    height: 4px
-    background-color: black
-    top: 50%
-    transform: translateY(-50%)
-  .filters__arrow-line:after,
-  .filters__arrow-line:before
-    background-color: black
-    content: ''
-    position: absolute
-    left: -3px
-    width: 45%
-    height: 100%
-  .filters__arrow-line:after
-    transform: translateY(-130%) rotate(-45deg)
-  .filters__arrow-line:before
-    transform: translateY(130%) rotate(45deg)
+//.filters__arrow
+//  display: none
+//  height: 100%
+//  width: 40px
+//  height: 40px
+//  position: relative
+//  .filters__arrow-line
+//    width: 100%
+//    position: absolute
+//    height: 4px
+//    background-color: black
+//    top: 50%
+//    transform: translateY(-50%)
+//  .filters__arrow-line:after,
+//  .filters__arrow-line:before
+//    background-color: black
+//    content: ''
+//    position: absolute
+//    left: -3px
+//    width: 45%
+//    height: 100%
+//  .filters__arrow-line:after
+//    transform: translateY(-130%) rotate(-45deg)
+//  .filters__arrow-line:before
+//    transform: translateY(130%) rotate(45deg)
 
 input:checked ~ label:before
   color: #04AA6D !important

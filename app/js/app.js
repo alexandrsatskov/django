@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
         ranges = document.querySelectorAll("input[type='range']"),
         header_menu = document.querySelector('.header__menu'),
         scroll_top = document.getElementById('js-button_go-top'),
-        wrapper_scroll_top = document.getElementById('js-wrapper-button_go-top');
+        wrapper_scroll_top = document.getElementById('js-wrapper-button_go-top'),
+        filters_heading = document.querySelector('.filters__heading'),
+        filters = document.querySelector('.filters');
 
     // FILTERS
     for (let i = 0; i < ranges.length; i++) {
@@ -16,19 +18,37 @@ document.addEventListener("DOMContentLoaded", function() {
             content.innerHTML = this.value;
         });
     }
-
-    // HAMBURGER
-    hamburger_menu_wrapper.addEventListener('click', () => {
+    filters_heading.addEventListener('click', function() {
         hamburger_menu.classList.toggle('animate')
-        document.querySelector('.header__menu').classList.toggle('active')
+        filters.classList.toggle('filters_active')
         document.querySelector(".overlay").classList.toggle('show')
         document.body.classList.toggle('scroll-lock')
     });
-    document.querySelector(".overlay").addEventListener('click', function() {
+
+    // HAMBURGER
+    hamburger_menu_wrapper.addEventListener('click', () => {
+
+        if (hamburger_menu.classList.contains('animate')) {
+            filters.classList.remove('filters_active')
+            document.querySelector('.header__menu').classList.remove('active')
+            document.querySelector(".overlay").classList.remove('show')
+            document.body.classList.remove('scroll-lock')
+        } else {
+            filters.classList.add('filters_active')
+            document.querySelector('.header__menu').classList.add('active')
+            document.querySelector(".overlay").classList.add('show')
+            document.body.classList.add('scroll-lock')
+
+        }
+
         hamburger_menu.classList.toggle('animate')
-        document.querySelector('.header__menu').classList.toggle('active')
-        document.querySelector(".overlay").classList.toggle('show')
-        document.body.classList.toggle('scroll-lock')
+    });
+    document.querySelector(".overlay").addEventListener('click', function() {
+        hamburger_menu.classList.remove('animate')
+        document.querySelector('.header__menu').classList.remove('active')
+        document.querySelector(".overlay").classList.remove('show')
+        document.body.classList.remove('scroll-lock')
+        filters.classList.remove('filters_active')
     });
 
 

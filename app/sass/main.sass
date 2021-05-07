@@ -320,21 +320,22 @@ main
       grid-area: filters
       .filters__heading
         display: none
-      .filter
+      .filters__filter-list
+      .filters__item
+        overflow-y: scroll
         padding: 15px 0
         border-bottom: 1px solid lightgrey
         &:first-child
-          background-color: red
           padding-top: 0
         &:last-child
           border-bottom: none
-        .filter__heading
+        .filters__item-heading
           margin-bottom: 5px
           display: block
           color: rgba(0, 0, 0, .8)
           font-weight: 700
           font-size: 15px
-        .filter__input
+        .filters__item-input
           width: 100%
           border: 1px solid var(--select-border)
           font-size: 17px
@@ -357,17 +358,34 @@ main
         &:hover
           background-color: var(--accent-green)
           color: black
-
       &_active
-        .filters__filter-list
-          z-index: 2
+        z-index: 3
+        overflow-y: scroll
+        background-color: var(--accent-green)
+        .filters__filter-list,
+        .filters__submit-btn
           display: block !important
-          position: fixed
-          top: calc(var(--header-height) + 50px)
-          right: 0
-          left: 0
-          bottom: 0
-          background-color: white
+        .filters__heading
+          display: none !important
+        .filters__item
+          &:first-child
+            padding-top: 10px
+          padding-left: 10px
+          border-bottom: none
+          background-color: black
+        .filters__item-heading,
+        .filter__input
+          color: white !important
+        .filter__content
+          color: white !important
+        .filter__input
+          color: black !important
+          background-color: var(--accent-green)
+        position: fixed
+        top: var(--header-height)
+        right: 0
+        left: 35%
+        bottom: 0
 
     .sale-tours
       grid-area: tours
