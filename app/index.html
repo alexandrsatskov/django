@@ -8,18 +8,15 @@
 
     <!-- Стили -->
     <link rel="stylesheet" href="css/app.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>Главная</title>
-
-    <!-- Скрипты -->
-    <script defer src="js/app.min.js"></script>
 </head>
+
 <body>
+
 <div class="overlay"></div>
-<div id="js-wrapper-button_go-top" class="wrapper-button_go-top">
-    <div id="js-button_go-top" class="button_go-top">
-        <span class="button-text">Go&nbsp;up</span>
+<div class="go-top">
+    <div class="go-top__inner">
+        <span class="go-top__text">Go&nbsp;up</span>
     </div>
 </div>
 
@@ -30,8 +27,8 @@
                 <a href="index.html">logo</a>
             </div>
 
-            <div id="js-hamburger-wrapper" class="hamburger-wrapper">
-                <div id="js-hamburger" class="hamburger">
+            <div class="hamburger">
+                <div class="hamburger__inner">
                     <div class="hamburger__line"></div>
                     <div class="hamburger__line"></div>
                     <div class="hamburger__line"></div>
@@ -39,21 +36,21 @@
             </div>
 
             <nav class="header__menu">
-                <ul class="header-nav">
-                    <li class="header-nav__item active">
-                        <a class="header-nav__link" href="index.html">Главная</a>
+                <ul class="header__nav">
+                    <li class="header__item header__item--active">
+                        <a class="header__link" href="index.html">Главная</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="find-tour.html">Найти&nbsp;тур</a>
+                    <li class="header__item">
+                        <a class="header__link" href="find-tour.html">Найти&nbsp;тур</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="about.html">О&nbsp;нас</a>
+                    <li class="header__item">
+                        <a class="header__link" href="about.html">О&nbsp;нас</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="help.html">Справка</a>
+                    <li class="header__item">
+                        <a class="header__link" href="help.html">Справка</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="login.html">Войти</a>
+                    <li class="header__item">
+                        <a class="header__link" href="login.html">Войти</a>
                     </li>
                 </ul>
             </nav>
@@ -62,177 +59,196 @@
 </header>
 
 <main class="main">
-    <div class="container find-tour">
-        <div class="find-tour__image-wrapper"></div>
-        <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
+    <section class="find-tour">
+        <div class="container">
+            <div class="find-tour__body">
+                <div class="find-tour__image-wrapper"></div>
+                <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
 
-        <div class="booking-bar">
-            <form class="booking-bar__form" action="#!" method="POST">
-                <div class="booking-bar__form__section">
-                    <label class="booking-bar__label" for="city">Город</label>
-                    <select name="city" id="city" class="booking-bar__input">
-                        <option value="28" selected>Amsterdam</option>
-                        <option value="56">Andalusia</option>
-                        <option value="75">Antwerp</option>
-                        <option value="17">Athens</option>
-                        <option value="41">Bangkok</option>
-                        <option value="19">Barcelona</option>
-                    </select>
-                </div>
+                <div class="find-tour__booking">
+                    <form class="find-tour__form" action="#!" method="POST">
+                        <div class="find-tour__form-item">
+                            <label class="find-tour__form-label" for="city">Город</label>
+                            <select name="city" id="city" class="find-tour__form-input">
+                                <option value="28" selected>Amsterdam</option>
+                                <option value="56">Andalusia</option>
+                                <option value="75">Antwerp</option>
+                                <option value="17">Athens</option>
+                                <option value="41">Bangkok</option>
+                                <option value="19">Barcelona</option>
+                            </select>
+                        </div>
 
-                <div class="booking-bar__form__section">
-                    <label class="booking-bar__label" for="departure-date">Вылет</label>
-                    <input type="date" name="departure-date" id="departure-date" value="2021-05-02" class="booking-bar__input">
-                </div>
+                        <div class="find-tour__form-item">
+                            <label class="find-tour__form-label" for="departure-date">Вылет</label>
+                            <input type="date" name="departure-date" id="departure-date" value="2021-05-02" class="find-tour__form-input">
+                        </div>
 
-                <div class="booking-bar__form__section">
-                    <label class="booking-bar__label" for="nights">Ночей</label>
-                    <input type="text" name="nights" id="nights" value="8" class="booking-bar__input">
-                </div>
+                        <div class="find-tour__form-item">
+                            <label class="find-tour__form-label" for="nights">Ночей</label>
+                            <input type="text" name="nights" id="nights" value="8" class="find-tour__form-input">
+                        </div>
 
-                <div class="booking-bar__form__section">
-                    <label class="booking-bar__label" for="participants">Участников</label>
-                    <input type="number" name="participants" id="participants" value="4" class="booking-bar__input">
+                        <div class="find-tour__form-item">
+                            <label class="find-tour__form-label" for="participants">Участников</label>
+                            <input type="number" name="participants" id="participants" value="4" class="find-tour__form-input">
+                        </div>
+                    </form>
+                    <button class="find-tour__form-submit" name="button" type="submit">Поиск</button>
                 </div>
-            </form>
-            <button class="booking-bar__submit" name="button" type="submit">Поиск</button>
-        </div>
-    </div>
-
-    <div class="advantages-wrapper">
-        <div class="container advantages">
-            <div class="advantage">
-                <div class="advantage__image-wrapper">
-                    <img src="img/first_pillar.svg" alt="Мы крутые!">
-                </div>
-                <h4 class="advantage__heading">Вы готовы? Мы тоже</h4>
-                <p class="advantage__text">
-                    Узнайте, куда сейчас можно путешествовать и найдите авиабилеты, отели и прокат автомобилей по лучшим ценам.
-                </p>
-            </div>
-            <div class="advantage">
-                <div class="advantage__image-wrapper">
-                    <img src="img/second_pillar.svg" alt="Мы крутые!">
-                </div>
-                <h4 class="advantage__heading">Планируйте уверенно</h4>
-                <p class="advantage__text">                    Позаботьтесь о себе заранее: гибкие тарифы, бесплатная отмена отелей и автомобилей, самые чистые номера.
-                </p>
-            </div>
-            <div class="advantage">
-                <div class="advantage__image-wrapper">
-                    <img src="img/third_pillar.svg" alt="Мы крутые!">
-                </div>
-                <h4 class="advantage__heading">Легко и беззаботно</h4>
-                <p class="advantage__text">Вы всегда точно знаете, за что платите. Можно спокойно готовиться к путешествию.
-                </p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="sale-tours container">
-        <h2 class="sale-tours__heading">рекомендуем<span class="dot">.</span></h2>
-        <ul class="tours">
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
+    <section class="advantages">
+        <div class="container">
+            <div class="advantages__body">
+                
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="img/first_pillar.svg" alt="Мы крутые!">
                     </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                    <h4 class="advantages__item-heading">Вы готовы? Мы тоже</h4>
+                    <p class="advantages__item-text">
+                        Узнайте, куда сейчас можно путешествовать и найдите авиабилеты, отели и прокат автомобилей по лучшим ценам.
+                    </p>
                 </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="img/second_pillar.svg" alt="Мы крутые!">
                     </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                    <h4 class="advantages__item-heading">Планируйте уверенно</h4>
+                    <p class="advantages__item-text">                    Позаботьтесь о себе заранее: гибкие тарифы, бесплатная отмена отелей и автомобилей, самые чистые номера.
+                    </p>
                 </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
-
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="img/third_pillar.svg" alt="Мы крутые!">
                     </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
+                    <h4 class="advantages__item-heading">Легко и беззаботно</h4>
+                    <p class="advantages__item-text">Вы всегда точно знаете, за что платите. Можно спокойно готовиться к путешествию.
+                    </p>
                 </div>
-            </li>
-            <li class="tour">
-                <div class="tour__image-wrapper">
-                    <img src="img/tour-image.jpg" alt="Картинка тура">
-                    <span class="tour__destination-city">
-                    Анталья,
-                    <span class="tour__destination-country">Россия</span>
-                </span>
-                </div>
-                <div class="tour__desc-wrapper">
+                
+            </div>
+            
+        </div>
+    </section>
 
-                    <div class="tour__desc">
-                        <span class="tour__nights">7&nbsp;ночей</span>
-                        <span class="tour__rating">some rating</span>
+    <section class="popular-tours">
+        <div class="container">
+            <h2 class=" heading popular-tours__heading">рекомендуем<span class="dot">.</span></h2>
+            <ul class="tours popular-tours__list">
+                <li class="tours__item">
+                    <div class="tours__item-image-wrapper">
+                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
+
+                        <span class="tours__item-destination-city">
+                            Анталья,
+                            <span class="tours__item-destination-country">Россия</span>
+                        </span>
                     </div>
-                    <span class="tour__price">14&nbsp;891&nbsp;₽</span>
-                </div>
-            </li>
-        </ul>
-    </div>
+                    <div class="tours__item-desc">
 
-    <div class="faq container">
-        <h2 class="faq__heading">часто задаваемые вопросы<span class="dot">.</span></h2>
-        <ul class="questions">
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
-                </div>
-            </li>
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
-                </div>
-            </li>
-            <li class="question">
-                <button class="question__heading">Вопрос?</button>
-                <div class="question__answer">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?</p>
-                </div>
-            </li>
-        </ul>
-    </div>
+                        <div class="tours__item-desc-inner">
+                            <span class="tours__item-nights">7&nbsp;ночей</span>
+                            <span class="tours__tem-rating">some rating</span>
+                        </div>
+                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
+                    </div>
+                </li>
+                <li class="tours__item">
+                    <div class="tours__item-image-wrapper">
+                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
+
+                        <span class="tours__item-destination-city">
+                            Анталья,
+                            <span class="tours__item-destination-country">Россия</span>
+                        </span>
+                    </div>
+                    <div class="tours__item-desc">
+
+                        <div class="tours__item-desc-inner">
+                            <span class="tours__item-nights">7&nbsp;ночей</span>
+                            <span class="tours__tem-rating">some rating</span>
+                        </div>
+                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
+                    </div>
+                </li>
+                <li class="tours__item">
+                    <div class="tours__item-image-wrapper">
+                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
+
+                        <span class="tours__item-destination-city">
+                            Анталья,
+                            <span class="tours__item-destination-country">Россия</span>
+                        </span>
+                    </div>
+                    <div class="tours__item-desc">
+
+                        <div class="tours__item-desc-inner">
+                            <span class="tours__item-nights">7&nbsp;ночей</span>
+                            <span class="tours__tem-rating">some rating</span>
+                        </div>
+                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
+                    </div>
+                </li>
+                <li class="tours__item">
+                    <div class="tours__item-image-wrapper">
+                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
+
+                        <span class="tours__item-destination-city">
+                            Анталья,
+                            <span class="tours__item-destination-country">Россия</span>
+                        </span>
+                    </div>
+                    <div class="tours__item-desc">
+
+                        <div class="tours__item-desc-inner">
+                            <span class="tours__item-nights">7&nbsp;ночей</span>
+                            <span class="tours__tem-rating">some rating</span>
+                        </div>
+                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="heading faq__heading">часто задаваемые вопросы<span class="dot">.</span></h2>
+            <ul class="faq__questions">
+                <li class="faq__item">
+                    <button class="faq__item-heading">Вопрос?</button>
+                    <p class="faq__item-answer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?
+                    </p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Вопрос?</button>
+                    <p class="faq__item-answer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?
+                    </p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Вопрос?</button>
+                    <p class="faq__item-answer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?
+                    </p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Вопрос?</button>
+                    <p class="faq__item-answer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis libero neque non officia. Facilis fugit magnam perferendis porro, sunt suscipit tempora vitae! Dignissimos ex fugiat labore magni, quibusdam vitae?
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </section>
 </main>
 
 <footer class="footer">
     <div class="container"></div>
 </footer>
 
-
-<!--<script src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>-->
+<!-- Скрипты -->
+<script src="js/app.js"></script>
 </body>
 </html>

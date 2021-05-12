@@ -1,100 +1,4 @@
-html
-  box-sizing: border-box
-  scroll-behavior: smooth
-*, *:after, *:before
-  box-sizing: inherit
-
-\:root
-  --font: 'Comfortaa', sans-serif
-  --header-height: 60px
-
-input[type="range"]
-  --range-height: 20px
-  --range-bgc: #d3d3d3
-  --thumb-bgc: #04AA6D
-  -webkit-appearance: none
-  width: 100%
-  height: var(--range-height)
-  background-color: var(--range-bgc)
-  opacity: .7
-  outline: none
-  &:focus, &:hover, &:active
-    background-color: var(--range-bgc)
-  &::-webkit-slider-thumb
-    -webkit-appearance: none
-    appearance: none
-    width: var(--range-height)
-    height: var(--range-height)
-    background-color: var(--thumb-bgc)
-    cursor: pointer
-  &::-moz-range-thumb
-    width: var(--range-height)
-    height: var(--range-height)
-    background-color: var(--thumb-bgc)
-    cursor: pointer
-
-  
-button, input, optgroup, select, textarea
-  margin: 0
-  padding: 0
-  font-family: var(--font)
-  border: none
-  background-image: none
-  background-color: transparent
-  box-shadow: none
-  -webkit-box-shadow: none
-  -moz-box-shadow: none
-  -webkit-appearance: none
-  &:hover, &:active, &:focus
-    outline: none
-    border: none
-    background-image: none
-    background-color: transparent
-    box-shadow: none
-    -webkit-box-shadow: none
-    -moz-box-shadow: none
-    -webkit-appearance: none
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration,
-input[type="date"]::-webkit-calendar-picker-indicator
-  display: none
-
-
-.rate
-  display: inline-block
-  border: 0
-  padding: 0
-
-/* Hide radio */
-.rate > input
-  display: none
-
-/* Order correctly by floating highest to the right */
-.rate > label
-  float: right
-
-/* The star of the show */
-.rate > label:before
-  --star-fz: 25px
-  font-size: var(--star-fz)
-  display: inline-block
-  margin: 0
-  cursor: pointer
-  font-weight: 900
-  font-family: "Font Awesome 5 Free", sans-serif
-  content: "\f005" /* full star */
-  color: lightgrey
-
-/* Half star trick */
-.rate .half:before
-  width: calc(var(--star-fz) - 9px)
-  overflow: hidden
-  position: absolute
-  content: "\f089" /* half star no outline */
-
+// mix-blend-mode: difference
 //.filters__arrow
 //  display: none
 //  height: 100%
@@ -121,70 +25,235 @@ input[type="date"]::-webkit-calendar-picker-indicator
 //  .filters__arrow-line:before
 //    transform: translateY(130%) rotate(45deg)
 
-input:checked ~ label:before
-  color: #04AA6D !important
+html
+  box-sizing: border-box
+  scroll-behavior: smooth
+*, *:after, *:before
+  box-sizing: inherit
 
-label:hover:before,
-label:hover ~ label:before
-  color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
+\:root
+  --font: 'Comfortaa', sans-serif
+  --header-height: 60px
 
-/* Hover highlights */
-input:checked + label:hover:before,
-input:checked ~ label:hover:before, /* highlight current and previous stars */
-input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
-label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
-  color: #04AA6D
+.tours
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(calc(max(20%, 250px)), 1fr))
+  justify-content: space-between
+  grid-gap: 15px
+  &__item
+    cursor: pointer
+    overflow: hidden
+    &:hover
+      .tours__item-price
+        border-top: 2px solid black
+        background-color: black
+        color: white
+      .tours__item-desc
+        border: 2px solid black
+        border-top: none
+      .tours__item-image-wrapper:after
+        background-color: rgba(0, 0, 0, .6)
+  &__item-image-wrapper
+    position: relative
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-color: rgba(0, 0, 0, .0)
+      transition: background-color 0.5s
+  &__item-image
+    width: 100%
+  &__item-destination-city
+    z-index: 1
+    position: absolute
+    bottom: 5%
+    left: 5%
+    font-size: 25px
+    color: white
+  &__item-destination-country
+    font-size: 18px
+    font-weight: 700
+  &__item-desc
+    padding-top: 20px
+    border: 2px solid lightgray
+    border-top: none
+    transition: border .25s
+  &__item-desc-inner
+    padding-left: 5%
+  &__item-nights, &__item-rating
+    display: block
+  &__item-price
+    margin-top: 30px
+    display: block
+    text-align: center
+    padding: 7px 0
+    font-size: 18px
+    font-weight: 700
+    opacity: .9
+    border-top: 2px solid lightgray
+    transition-property: background-color, border
+    transition-duration: .55s
 
-.filter__rating-stars
-  display: flex
-  justify-content: center
-  align-items: center
-  flex-direction: row-reverse
+.hamburger
+  height: 100%
+  display: none
+  &__inner
+    align-self: center
+    cursor: pointer
+    position: relative
+    width: 25px
+    height: 16px
+  &__line
+    position: absolute
+    width: 100%
+    height: 2px
+    border-radius: 5px
+    background-color: black
+
+    transition-property: transform
+    transition-duration: 0.15s
+    transition-timing-function: ease
+
+    &:nth-child(1)
+      top: 0
+      transition: transform .8s, top .5s
+    &:nth-child(2)
+      top: 50%
+      transform: translateY(-50%)
+      transition: opacity .3s, transform .6s
+    &:nth-child(3)
+      bottom: 0
+      transition: transform .8s, bottom .5s
+
+  &--animate &__line
+    &:nth-child(1)
+      top: 50%
+      transform: translateY(-50%) rotate(-45deg)
+    &:nth-child(2)
+      opacity: 0
+      transform: translateX(100%)
+    &:nth-child(3)
+      bottom: 50%
+      transform: translateY(50%) rotate(45deg)
+
+input[type="range"]
+  --range-height: 20px
+  --range-bgc: #d3d3d3
+  --thumb-bgc: #04AA6D
+  -webkit-appearance: none
+  width: 100%
+  height: var(--range-height)
+  background-color: var(--range-bgc)
+  opacity: .7
+  outline: none
+  &:focus, &:hover, &:active
+    background-color: var(--range-bgc)
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    width: var(--range-height)
+    height: var(--range-height)
+    background-color: var(--thumb-bgc)
+    cursor: pointer
+  &::-moz-range-thumb
+    width: var(--range-height)
+    height: var(--range-height)
+    background-color: var(--thumb-bgc)
+    cursor: pointer
+
+
+button, input, optgroup, select, textarea
+  margin: 0
+  padding: 0
+  font-family: var(--font)
+  border: none
+  background-image: none
+  background-color: transparent
+  box-shadow: none
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+  -webkit-appearance: none
+  &:hover, &:active, &:focus
+    outline: none
+    border: none
+    background-image: none
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+    -webkit-appearance: none
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="date"]::-webkit-calendar-picker-indicator
+  display: none
+
+
+.rate
+  display: inline-block
+  border: 0
+  padding: 0
   input
     display: none
   label
-    font-size: 25px
-    color: #444
-    padding: 5px
-    transition: color .2s
-  input:not(:checked) ~ label:hover,
-  input:not(:checked) ~ label:hover ~ label
-    color: #fd4
-  input:checked ~ label
-    color: #fd4
-  //input#rate-5:checked ~ label
-  //  color: #fe7
-  //  text-shadow: 0 0 20px #952
+    float: right
+  label:before
+    --star-fz: 25px
+    font-size: var(--star-fz)
+    display: inline-block
+    margin: 0
+    cursor: pointer
+    font-weight: 900
+    font-family: "Font Awesome 5 Free", sans-serif
+    content: "\f005" /* full star */
+    color: lightgrey
+  .half:before
+    width: calc(var(--star-fz) - 9px)
+    overflow: hidden
+    position: absolute
+    content: "\f089"
+  input:checked ~ label:before
+    color: #04AA6D !important
 
+  label:hover:before,
+  label:hover ~ label:before
+    color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
 
-.wrapper-button_go-top
+  /* Hover highlights */
+  input:checked + label:hover:before,
+  input:checked ~ label:hover:before, /* highlight current and previous stars */
+  input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
+  label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
+    color: #04AA6D
+
+.go-top
+  cursor: pointer
   position: fixed
   top: 0
   bottom: 0
   right: 0
   width: 7%
   transition: transform .5s
-  &:hover
-    cursor: pointer
-    .button_go-top
-      transform: translateX(0) !important
-      background-color: rgba(grey, .1)
-      opacity: .9
-  .button_go-top
-    transform: translateX(100%)
-    cursor: pointer
+  &__inner
+    font-size: 16px
+    opacity: .3
     width: 100%
     height: 100%
     display: flex
     justify-content: center
     align-items: center
-    font-size: 16px
-    opacity: .3
+    transform: translateX(100%)
     transition-property: background-color, opacity, transform
     transition-duration: .6s
-    .fa-chevron-up
-      font-size: .8em
-      margin-right: 5px
+  &:hover
+    .go-top__inner
+      opacity: .9
+      transform: translateX(0) !important
+      background-color: rgba(grey, .1)
 
 .overlay
   position: fixed /* Sit on top of the page content */
@@ -219,7 +288,11 @@ label:hover ~ input:checked ~ label:before /* highlight previous selected stars 
       transform: translate(-50%, -50%) rotate(45deg)
     &:before
       transform: translate(-50%, -50%) rotate(-45deg)
-  
+
+.heading
+  font-size: 25px
+  margin-bottom: 25px
+
 body
   display: grid
   grid-template-areas: "header" "main" "footer"
@@ -231,26 +304,11 @@ body
   overflow-x: hidden
   // Removes blue background on action
   -webkit-tap-highlight-color: transparent
-  &.scroll-lock
+  &--scroll-lock
     overflow: hidden
-
-
-.display-none
-  display: none
-
-.popular-tours__heading,
-.sale-tours__heading,
-.faq__heading
-  font-size: 25px
-  margin-bottom: 25px
-  color: black
 
 .dot
   color: green
-
-.icon
-  width: 30px
-  transition: all .25s
 
 .container
   width: 75%
@@ -278,60 +336,44 @@ img
   object-fit: cover
   display: block
 
-
-.hamburger-wrapper
-  width: 40px
-  height: 100%
-  display: none
-  .hamburger
-    align-self: center
-    width: 25px
-    height: 16px
-    position: relative
-    cursor: pointer
-    &__line
-      position: absolute
-      width: 100%
-      height: 2px
-      border-radius: 5px
-      background-color: black
-
-      transition-property: transform
-      transition-duration: 0.15s
-      transition-timing-function: ease
-
-      &:nth-child(1)
-        top: 0
-        transition: transform .8s, top .5s
-      &:nth-child(2)
-        top: 50%
-        transform: translateY(-50%)
-        transition: opacity .3s, transform .6s
-      &:nth-child(3)
-        bottom: 0
-        transition: transform .8s, bottom .5s
-
-  .animate .hamburger__line
-    &:nth-child(1)
-      top: 50%
-      transform: translateY(-50%) rotate(-45deg)
-    &:nth-child(2)
-      opacity: 0
-      transform: translateX(100%)
-    &:nth-child(3)
-      bottom: 50%
-      transform: translateY(50%) rotate(45deg)
-
 // <-------- FONTS -------->
-// <--- Gotham Pro --->
-//@font-face
-//  font-family: "Gotham Pro"
-//  src: url("../fonts/GothamPro/Regular/GothamProRegular.eot")
-//  src: url("../fonts/GothamPro/Regular/GothamProRegular.eot?#iefix") format("embedded-opentype"),
-//  url("../fonts/GothamPro/Regular/GothamProRegular.woff") format("woff"),
-//  url("../fonts/GothamPro/Regular/GothamProRegular.ttf") format("truetype")
-//  font-style: normal
-//  font-weight: normal
+// 100	Thin (Hairline)
+// 200	Extra Light (Ultra Light)
+// 300	Light
+// 400	Normal (Regular)
+// 500	Medium
+// 600	Semi Bold (Demi Bold)
+// 700	Bold
+// 800	Extra Bold (Ultra Bold)
+// 900	Black (Heavy)
 
+ <--- Comfortaa --->
+@font-face
+  font-family: "Comfortaa"
+  src: url("../fonts/Comfortaa/Light/Comfortaa-Light.ttf") format("truetype")
+  font-style: normal
+  font-weight: 300
 
+@font-face
+  font-family: "Comfortaa"
+  src: url("../fonts/Comfortaa/Regular/Comfortaa-Regular.ttf") format("truetype")
+  font-style: normal
+  font-weight: 400
 
+@font-face
+  font-family: "Comfortaa"
+  src: url("../fonts/Comfortaa/Medium/Comfortaa-Medium.ttf") format("truetype")
+  font-style: normal
+  font-weight: 500
+
+@font-face
+  font-family: "Comfortaa"
+  src: url("../fonts/Comfortaa/SemiBold/Comfortaa-SemiBold.ttf") format("truetype")
+  font-style: normal
+  font-weight: 600
+
+@font-face
+  font-family: "Comfortaa"
+  src: url("../fonts/Comfortaa/Bold/Comfortaa-Bold.ttf") format("truetype")
+  font-style: normal
+  font-weight: 700

@@ -1,117 +1,65 @@
 @import "initial"
-// mix-blend-mode: difference
-
 
 // <--- Шапка --->
 .header
   grid-area: header
-  --header-height: 60px
   font-weight: 700
-  .header__body
+  &__body
     display: flex
     align-items: center
     height: var(--header-height)
-    .header__logo
-      // ОТРЕДАКТИРОВАТЬ СТИЛИ ПОСЛЕ ДОБАВЛЕНИЯ КАРТИНКИ
-      margin-right: auto
-      display: flex
-      justify-content: center
-      align-self: stretch
-      align-items: center
-      width: 120px
-      border: 2px dashed deeppink
-    .header-nav
-      display: flex
-      .header-nav__item
-        margin-left: 20px
-        border-radius: 20px
-        transition: background-color .35s
-        &.active
-          background-color: #efefef
-          &:hover
-            background-color: lighten(#efefef, 2%)
-        &:last-child
-          background-color: black
-          .header-nav__link
-            color: white
-          &:hover
-            background-color: var(--accent-green)
-            .header-nav__link
-              color: black
-        &:hover
-          background-color: #efefef
-        .header-nav__link
-          padding: 6px 12px
-          transition: color .35s
+  &__logo
+    // ОТРЕДАКТИРОВАТЬ СТИЛИ ПОСЛЕ ДОБАВЛЕНИЯ КАРТИНКИ
+    align-self: stretch
+    margin-right: auto
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 120px
+    border: 2px dashed deeppink
+  &__nav
+    display: flex
+  &__item
+    margin-left: 20px
+    border-radius: 20px
+    transition: background-color .35s
+    &:hover
+      background-color: #efefef
+    &:last-child
+      background-color: black
+      .header__link
+        color: white
+      &:hover
+        background-color: var(--accent-green)
+        .header__link
           color: black
+    &--active
+      background-color: #efefef
+      &:hover
+        background-color: lighten(#efefef, 2%)
+  &__link
+    padding: 6px 12px
+    transition: color .35s
+    color: black
 
 
 
 // <--- Основной контент --->
-main
+.main
   grid-area: main
+  //  <-- index.html -->
   .find-tour
-    height: 370px
     margin-top: 50px
-    position: relative
-    border-radius: 12px
-    background-color: #eafaf4
-    padding:
-      top: 25px
-      bottom: 50px
-      left: 60px
-    .find-tour__heading
-      margin-bottom: 30px
-      width: clamp(310px, 42%, 750px)
-    .booking-bar
-      width: clamp(310px, 55%, 750px)
-      max-width: 800px
-      display: flex
-      flex-direction: row
-      background-color: white
-      border-top-left-radius: 12px
-      border-bottom-left-radius: 12px
-      .booking-bar__submit
-        border-top-right-radius: 12px
-        border-bottom-right-radius: 12px
-        border: none
-        background-color: rgba(0, 0, 0, 1)
-        color: white
-        font-family: 'Comfortaa', sans-serif
-        width: calc(min(200px, 25%))
-        cursor: pointer
-        &:hover
-          background-color: rgba(0, 0, 0, 0.9)
-      .booking-bar__form
-        display: flex
-        flex-direction: row
-        .booking-bar__form__section
-          &:nth-child(3), &:nth-child(4)
-            width: calc(min(150px, 25%))
-          height: 120px
-          width: 170px
-          text-align: center
-          border-right: 1px solid #efefef
-          .booking-bar__input
-            font-size: 18px
-            font-family: 'Comfortaa', sans-serif
-            font-weight: 700
-            text-transform: uppercase
-            width: 100%
-            text-align: center
-            padding: 0 15px
-            height: 80px
-            cursor: pointer
-            border: none
-            outline: none
-          .booking-bar__label
-            height: 40px
-            line-height: 40px
-            display: block
-            font-size: 13px
-            opacity: .8
-            font-weight: 700
-    .find-tour__image-wrapper
+    &__body
+      height: 370px
+      background-color: #eafaf4
+      position: relative
+      border-radius: 12px
+      padding:
+        top: 25px
+        bottom: 50px
+        left: 60px
+    &__image-wrapper
       background-image: url("../img/home_hero_got_illustration.svg")
       background-repeat: no-repeat
       background-size: cover
@@ -120,195 +68,184 @@ main
       position: absolute
       height: 389px
       width: 585px
+    &__heading
+      margin-bottom: 30px
+      width: clamp(310px, 42%, 750px)
+    &__booking
+      width: clamp(310px, 55%, 750px)
+      max-width: 800px
+      display: flex
+      flex-direction: row
+      background-color: white
+      border-radius: 12px
+    &__form
+      display: flex
+      flex-direction: row
+    &__form-item
+      height: 120px
+      width: 170px
+      text-align: center
+      border-right: 1px solid #efefef
+      &:nth-child(3), &:nth-child(4)
+        width: calc(min(150px, 25%))
+    &__form-label
+      height: 40px
+      line-height: 40px
+      display: block
+      font-size: 13px
+      opacity: .8
+      font-weight: 700
+    &__form-input
+      font-size: 18px
+      font-family: 'Comfortaa', sans-serif
+      font-weight: 700
+      text-transform: uppercase
+      width: 100%
+      text-align: center
+      padding: 0 15px
+      height: 80px
+      cursor: pointer
+      border: none
+      outline: none
+    &__form-submit
+      border-top-right-radius: 12px
+      border-bottom-right-radius: 12px
+      border: none
+      background-color: rgba(0, 0, 0, 1)
+      color: white
+      font-family: 'Comfortaa', sans-serif
+      width: calc(min(200px, 25%))
+      cursor: pointer
+      &:hover
+        background-color: rgba(0, 0, 0, 0.9)
 
-  .advantages-wrapper
+  .advantages
     margin-top: calc(70px + 90px)
     background-color: #f1f2f8
-    .advantages
+    &__body
       position: relative
-      padding: 10px 0 50px 0
+      padding:
+        top: 50px
+        bottom: 50px
       display: flex
       flex-wrap: wrap
       justify-content: space-around
-      .advantage
-        position: relative
-        &:after
-          transition: width .45s, background-color .45s
-          position: absolute
-          content: ''
-          height: 2px
-          left: 50%
-          transform: translateX(-50%)
-          width: 20px
-          bottom: -20px
-          background-color: lightseagreen
-        &:hover:after
-          background-color: green
-          width: 50%
-        margin-top: 40px
-        width: clamp(250px, 30%, 340px)
-        text-align: center
-        .advantage__heading
-          margin-top: 25px
-          font-size: 18px
-        .advantage__text
-          margin-top: 5px
-          font-size: 14px
-          font-weight: 400
-          opacity: .7
-        .advantage__image-wrapper
-          display: flex
-          justify-content: center
-          > img
-            height: 256px
+    &__item
+      position: relative
+      width: clamp(250px, 30%, 340px)
+      text-align: center
+      &:after
+        content: ''
+        position: absolute
+        left: 50%
+        bottom: -20px
+        transform: translateX(-50%)
+        height: 2px
+        width: 20px
+        background-color: lightseagreen
+        transition-property: width, background-color
+        transition-duration: .5s
+      &:hover:after
+        background-color: green
+        width: 50%
+    &__item-heading
+      margin-top: 25px
+      font-size: 18px
+    &__item-text
+      margin-top: 5px
+      font-size: 14px
+      font-weight: 400
+      opacity: .7
+    &__item-image-wrapper
+      display: flex
+      justify-content: center
+    &__item-image
+      height: 256px
 
-  .sale-tours
+  .popular-tours
     margin-top: 80px
-    .tours
-      display: grid
-      grid-template-columns: repeat(auto-fill, minmax(calc(max(20%, 250px)), 1fr))
-      justify-content: space-between
-      grid-gap: 15px
-      .tour
-        .tour__price
-          transition-property: background-color, border
-          transition-duration: .55s
-          padding: 7px 0
-          opacity: .9
-          border-top: 2px solid lightgray
-          margin-top: 30px
-          font-size: 18px
-          font-weight: 700
-          display: block
-          text-align: center
-        .tour__desc-wrapper
-          transition: border .25s
-          border: 2px solid lightgray
-          border-top: none
-        &:hover
-          .tour__price
-            border-top: 2px solid black
-            background-color: black
-            color: white
-          .tour__desc-wrapper
-            border: 2px solid black
-            border-top: none
-          .tour__image-wrapper:after
-            background-color: rgba(0, 0, 0, .6)
-        cursor: pointer
-        display: flex
-        flex-direction: column
-        overflow: hidden
-        .tour__image-wrapper
-          position: relative
-          > img
-            width: 100%
-          &:after
-            content: ''
-            position: absolute
-            width: 100%
-            height: 100%
-            top: 0
-            left: 0
-            background-color: rgba(0, 0, 0, .0)
-            transition: background-color 0.5s
-          .tour__destination-city
-            z-index: 1
-            position: absolute
-            bottom: 5%
-            left: 5%
-            color: white
-            font-size: 25px
-            .tour__destination-country
-              font-size: 18px
-              font-weight: 700
-        .tour__desc
-          margin-top: 20px
-          padding-left: 5%
-          .tour__nights, .tour__rating
-            display: block
   .faq
     margin-top: 70px
-
-    .questions
-      .question
-        margin-bottom: 10px
-        &:last-child
-          margin-bottom: 0
-        .question__heading
-          position: relative
-          border-radius: 12px
-          font-family: 'Comfortaa', sans-serif
-          font-size: 17px
-          padding:
-            top: 20px
-            right: 0
-            bottom: 20px
-            left: clamp(10px, 3%, 25px)
-          background-color: #efefef
-          color: #444
-          cursor: pointer
-          width: 100%
-          text-align: left
-          border: none
-          outline: none
-          transition: 0.4s
-          &:hover, &:active
-            background-color: #ccc
-          // <-- Стрелка -->
-          &:after, &:before
-            transition: transform .5s
-            position: absolute
-            top: 50%
-            right: 20px
-            width: 3px
-            height: 12px
-            background-color: lightseagreen
-            content: ''
-          &:after
-            transform: translate(-110%, -50%) rotate(-45deg)
-          &:before
-            transform: translate(110%, -50%) rotate(45deg)
-          &[class*='active']
-            &:after
-              transform: translate(110%, -50%) rotate(-45deg)
-            &:before
-              transform: translate(-110%, -50%) rotate(45deg)
-
-        .question__answer
-          padding:
-            top: 20px
-            right: calc(max(20px, 10%))
-            bottom: 20px
-            left: calc(min(45px, 10%))
-          display: none
-          overflow: hidden
+    &__item
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
+    &__item-heading
+      position: relative
+      border-radius: 12px
+      font-family: 'Comfortaa', sans-serif
+      font-size: 17px
+      padding:
+        top: 20px
+        bottom: 20px
+        left: clamp(10px, 3%, 25px)
+      background-color: #efefef
+      color: #444
+      cursor: pointer
+      width: 100%
+      text-align: left
+      border: none
+      outline: none
+      transition: background-color 0.4s
+      &:hover, &:active
+        background-color: #ccc
+      // <-- Стрелка -->
+      &:after, &:before
+        transition: transform .5s
+        position: absolute
+        top: 50%
+        right: 20px
+        width: 3px
+        height: 12px
+        background-color: lightseagreen
+        content: ''
+      &:after
+        transform: translate(-110%, -50%) rotate(-45deg)
+      &:before
+        transform: translate(110%, -50%) rotate(45deg)
+      &--active
+        background-color: #efefef
+        &:after
+          transform: translate(110%, -50%) rotate(-45deg)
+        &:before
+          transform: translate(-110%, -50%) rotate(45deg)
+    &__item-answer
+      display: none
+      overflow: hidden
+      padding:
+        top: 20px
+        right: calc(max(20px, 10%))
+        bottom: 20px
+        left: calc(min(45px, 10%))
 
   //  <-- about.html -->
   .about
+    margin-top: 50px
     padding:
       left: calc(min(50px, 5%))
       right: calc(min(30px, 3%))
-    margin-top: 50px
-    .about__heading
+    &__heading
       font-size: 32px
       text-align: center
-    .about__text
+    &__text
       margin: 25px 0
+
   //  <-- help.html -->
-  .main__heading
-    margin-top: 40px
-    margin-bottom: 40px
-    font-size: 32px
-    text-align: center
-  .article
-    margin-bottom: 30px
-    .article__heading
+  .help
+    &__heading
+      margin-top: 40px
+      margin-bottom: 40px
+      font-size: 32px
+      text-align: center
+    &__article
+      margin-bottom: 30px
+    &__article-heading
       margin-bottom: 10px
-    .article__text
+    &__article-text
       padding:
         left: calc(min(40px, 4%))
         right: calc(min(30px, 3%))
+
   //  <-- find-tour.html -->
   .main__body
     margin-top: 60px
@@ -318,10 +255,10 @@ main
     grid-template-areas: "header header" "filters sort" "filters tours" "footer footer"
     .filters
       grid-area: filters
-      .filters__heading
+      &__heading
         display: none
-      .filters__filter-list
-      .filters__item
+      &__list
+      &__item
         overflow-y: scroll
         padding: 15px 0
         border-bottom: 1px solid lightgrey
@@ -329,23 +266,23 @@ main
           padding-top: 0
         &:last-child
           border-bottom: none
-        .filters__item-heading
-          margin-bottom: 5px
-          display: block
-          color: rgba(0, 0, 0, .8)
-          font-weight: 700
-          font-size: 15px
-        .filters__item-input
-          width: 100%
-          border: 1px solid var(--select-border)
-          font-size: 17px
-          cursor: pointer
-        .filter__content
-          padding-left: 5px
-          font-weight: 700
-          font-size: 17px
-          color: rgba(0, 0, 0, 1)
-      .filter__submit
+      &__item-label
+        margin-bottom: 5px
+        display: block
+        color: rgba(0, 0, 0, .8)
+        font-weight: 700
+        font-size: 15px
+      &__item-input
+        width: 100%
+        border: 1px solid var(--select-border)
+        font-size: 17px
+        cursor: pointer
+      &__item-content
+        padding-left: 5px
+        font-weight: 700
+        font-size: 17px
+        color: rgba(0, 0, 0, 1)
+      &__submit
         font-weight: 700
         cursor: pointer
         background-color: black
@@ -358,12 +295,17 @@ main
         &:hover
           background-color: var(--accent-green)
           color: black
-      &_active
+      &--active
+        position: fixed
+        top: var(--header-height)
+        right: 0
+        left: 35%
+        bottom: 0
         z-index: 3
         overflow-y: scroll
         background-color: var(--accent-green)
-        .filters__filter-list,
-        .filters__submit-btn
+        .filters__list,
+        .filters__submit
           display: block !important
         .filters__heading
           display: none !important
@@ -373,21 +315,15 @@ main
           padding-left: 10px
           border-bottom: none
           background-color: black
-        .filters__item-heading,
-        .filter__input
+        .filters__item-label,
+        .filters__item-input
           color: white !important
-        .filter__content
+        .filters__item-content
           color: white !important
-        .filter__input
+        .filters__item-input
           color: black !important
           background-color: var(--accent-green)
-        position: fixed
-        top: var(--header-height)
-        right: 0
-        left: 35%
-        bottom: 0
-
-    .sale-tours
+    .tours
       grid-area: tours
       margin-top: 0
     .sort
@@ -414,40 +350,41 @@ main
 
 
 @media (max-width: 1545px)
-  main
+  .main
     .find-tour
-      .booking-bar
+      &__booking
         width: 500px
         border-radius: 12px
         display: flex
         flex-direction: column
-        .booking-bar__submit
-          border-top-right-radius: 0
-          border-bottom-left-radius: 12px
-          width: 100%
-          height: 40px
-        .booking-bar__form
-          display: flex
-          flex-direction: row
-          .booking-bar__form__section
-            &:last-child
-              border-right: none
+      &__form
+        display: flex
+        flex-direction: row
+      &__form-item
+        &:last-child
+          border-right: none
+      &__form-submit
+        border-top-right-radius: 0
+        border-bottom-left-radius: 12px
+        width: 100%
+        height: 40px
 
 @media (max-width: 1420px)
   .container
     width: 85%
-  main
+  .main
     .find-tour
-      padding:
-        right: 60px
-      .find-tour__image-wrapper
+      &__body
+        padding-right: 60px
+      &__image-wrapper
         left: 50%
         transform: translateX(-50%)
         bottom: -65px
         position: absolute
         height: 335px
         width: 502px
-      .booking-bar
+      &__heading
+      &__booking
         // z-index won't working without position
         z-index: 1
         position: relative
@@ -456,18 +393,20 @@ main
         border-radius: 12px
         display: flex
         flex-direction: column
-        .booking-bar__submit
-          border-top-right-radius: 0
-          border-bottom-left-radius: 12px
-          width: 100%
-          height: 40px
-          .booking-bar__form__section
-            &:last-child
-              border-right: none
+      &__form
+      &__form-item
+        &:last-child
+          border-right: none
+      &__form-label
+      &__form-input
+      &__form-submit
+        border-top-right-radius: 0
+        border-bottom-left-radius: 12px
+        width: 100%
+        height: 40px
 
 @media (max-width: 860px)
-
-  .wrapper-button_go-top
+  .go-top
     display: none
   .main
     .main__body
@@ -476,121 +415,121 @@ main
       .filters
         .filters__heading
           display: block
-        .filters__filter-list,
-        .filters__arrow,
-        .filters__submit-btn
+        .filters__list,
+        .filters__submit
           display: none
 
 @media (max-width: 800px)
   .container
     width: 95%
-  main .find-tour
-    .booking-bar
+  .main .find-tour
+    &__booking
       width: 100%
 
 
 // Disable overlay when orientation is changing
 @media (min-width: 700px)
   body
-    &.scroll-lock
+    &--scroll-lock
       overflow: scroll
     .overlay
-      &.show
+      &--show
         left: 100%
 @media (max-width: 700px)
+  .hamburger
+    display: flex
   .header
     font-weight: 700
-    .header__body
-      .hamburger-wrapper
-        display: flex
-      .header__menu
-        z-index: 2
-        position: fixed
-        background-color: var(--accent-green)
-        bottom: 0
-        left: 100%
-        right: 0
-        top: var(--header-height)
-        transition: left .45s
-        &.active
-          left: 55%
-      .header-nav
-        height: 100%
-        display: flex
-        flex-direction: column
-        .header-nav__item
-          overflow: hidden
-          margin-left: 0
-          border-radius: 0
-          transition: background-color .35s
-          background-color: transparent
-          &.active
-            background-color: black
-            .header-nav__link
-              color: white
-            &:hover
-              .header-nav__link
-                color: var(--accent-green)
-          &:last-child
-            margin-top: auto
-            &:hover
-              background-color: black
-              .header-nav__link
-                color: var(--accent-green)
-          &:hover
-            background-color: black
-            .header-nav__link
-              color: white
-          .header-nav__link
-            padding:
-              top: calc(min(20px, 3.5vh))
-              left: 30px
-              bottom: calc(min(20px, 3.5vh))
-            transition: color .35s
-            color: black
+    &__body
+    &__logo
+    &__menu
+      z-index: 2
+      position: fixed
+      background-color: var(--accent-green)
+      bottom: 0
+      left: 100%
+      right: 0
+      top: var(--header-height)
+      transition: left .45s
+      &--active
+        left: 55%
+    &__nav
+      height: 100%
+      display: flex
+      flex-direction: column
+    &__item
+      overflow: hidden
+      margin-left: 0
+      border-radius: 0
+      transition: background-color .35s
+      background-color: transparent
+      &--active
+        background-color: black
+        .header__link
+          color: white
+        &:hover
+          .header__link
+            color: var(--accent-green)
+      &:last-child
+        margin-top: auto
+        &:hover
+          background-color: black
+          .header__link
+            color: var(--accent-green)
+      &:hover
+        background-color: black
+        .header__link
+          color: white
+    &__link
+      padding:
+        top: calc(min(20px, 3.5vh))
+        left: 30px
+        bottom: calc(min(20px, 3.5vh))
+      transition: color .35s
+      color: black
 
-  main
+  .main
     .find-tour
       padding:
         top: 20px
         left: 10px
         right: 10px
-      .booking-bar
+      &__booking
         margin-top: 60px
         width: 100%
         border-radius: 12px
         display: flex
         flex-direction: column
-        .booking-bar__form
-          display: flex
-          flex-direction: column
-          .booking-bar__form__section
-            &:nth-child(3), &:nth-child(4)
-              width: auto
-            height: 40px
-            display: flex
-            align-items: center
-            width: 100%
-            border: none
-            .booking-bar__input
-              text-align-last: center
-              text-align: center
-              width: 150px
-              margin-left: auto
-              height: 100%
-              border-radius: 12px
-            .booking-bar__label
-              padding-left: 15px
+      &__form
+        display: flex
+        flex-direction: column
+      &__form-item
+        &:nth-child(3), &:nth-child(4)
+          width: auto
+        height: 40px
+        display: flex
+        align-items: center
+        width: 100%
+        border: none
+      &__form-label
+        padding-left: 15px
+      &__form-input
+        text-align-last: center
+        text-align: center
+        width: 150px
+        margin-left: auto
+        height: 100%
+        border-radius: 12px
 
 @media (max-width: 570px)
-  main
-    .advantages-wrapper
+  .main
+    .advantages
       margin-top: 50px
     .find-tour
-      .find-tour__heading
+      &__heading
         font-size: 22px
         width: 100%
-      .find-tour__image-wrapper
+      &__image-wrapper
         left: 0
         transform: translateX(0)
         bottom: 0

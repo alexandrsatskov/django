@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
     const
-        acc = document.getElementsByClassName("question__heading"),
-        hamburger_menu = document.getElementById('js-hamburger'),
-        hamburger_menu_wrapper = document.getElementById('js-hamburger-wrapper'),
+        help = document.querySelectorAll(".faq__item-heading"),
+        hamburger_menu = document.querySelector('.hamburger__inner'),
+        hamburger_menu_wrapper = document.querySelector('.hamburger'),
         ranges = document.querySelectorAll("input[type='range']"),
-        header_menu = document.querySelector('.header__menu'),
-        scroll_top = document.getElementById('js-button_go-top'),
-        wrapper_scroll_top = document.getElementById('js-wrapper-button_go-top'),
+        scroll_top = document.querySelector('.go-top__inner'),
+        wrapper_scroll_top = document.querySelector('.go-top__inner'),
         filters_heading = document.querySelector('.filters__heading'),
         filters = document.querySelector('.filters');
 
     // FILTERS
-    for (let i = 0; i < ranges.length; i++) {
-        ranges[i].addEventListener("input", function () {
-            let content = this.parentElement.querySelector(".filter__content");
-            console.log(content)
-            content.innerHTML = this.value;
-        });
-    }
-    filters_heading.addEventListener('click', function() {
-        hamburger_menu.classList.toggle('animate')
-        filters.classList.toggle('filters_active')
-        document.querySelector(".overlay").classList.toggle('show')
-        document.body.classList.toggle('scroll-lock')
-    });
+    // for (let i = 0; i < ranges.length; i++) {
+    //     ranges[i].addEventListener("input", function() {
+    //         let content = this.parentElement.querySelector(".filter__content");
+    //         console.log(content)
+    //         content.innerHTML = this.value;
+    //     });
+    // }
+    // filters_heading.addEventListener('click', function() {
+    //     hamburger_menu.classList.toggle('animate')
+    //     filters.classList.toggle('filters_active')
+    //     document.querySelector(".overlay").classList.toggle('show')
+    //     document.body.classList.toggle('scroll-lock')
+    // });
 
     // HAMBURGER
     hamburger_menu_wrapper.addEventListener('click', () => {
@@ -50,15 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.remove('scroll-lock')
         filters.classList.remove('filters_active')
     });
-
-
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
+    for (let i = 0; i < help.length; i++) {
+        help[i].addEventListener("click", function() {
             /* Toggle between adding and removing the "active" class,
             to highlight the button that controls the panel */
-            this.classList.toggle("active");
+            this.classList.toggle("faq__item-heading--active");
 
-            console.log(this)
             /* Toggle between hiding and showing the active panel */
             let panel = this.nextElementSibling;
             if (panel.style.display === "block") {

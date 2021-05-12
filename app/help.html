@@ -8,14 +8,17 @@
 
     <!-- Стили -->
     <link rel="stylesheet" href="css/app.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>Справка</title>
-
-    <!-- Скрипты -->
-    <script defer src="js/app.min.js"></script>
+    <title>Главная</title>
 </head>
+
 <body>
+
+<div class="overlay"></div>
+<div class="go-top">
+    <div class="go-top__inner">
+        <span class="go-top__text">Go&nbsp;up</span>
+    </div>
+</div>
 
 <header class="header">
     <div class="container">
@@ -24,8 +27,8 @@
                 <a href="index.html">logo</a>
             </div>
 
-            <div id="js-hamburger-wrapper" class="hamburger-wrapper">
-                <div id="js-hamburger" class="hamburger">
+            <div class="hamburger">
+                <div class="hamburger__inner">
                     <div class="hamburger__line"></div>
                     <div class="hamburger__line"></div>
                     <div class="hamburger__line"></div>
@@ -33,21 +36,21 @@
             </div>
 
             <nav class="header__menu">
-                <ul class="header-nav">
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="index.html">Главная</a>
+                <ul class="header__nav">
+                    <li class="header__item">
+                        <a class="header__link" href="index.html">Главная</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="find-tour.html">Найти&nbsp;тур</a>
+                    <li class="header__item">
+                        <a class="header__link" href="find-tour.html">Найти&nbsp;тур</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="about.html">О&nbsp;нас</a>
+                    <li class="header__item">
+                        <a class="header__link" href="about.html">О&nbsp;нас</a>
                     </li>
-                    <li class="header-nav__item active">
-                        <a class="header-nav__link" href="help.html">Справка</a>
+                    <li class="header__item header__item--active">
+                        <a class="header__link" href="help.html">Справка</a>
                     </li>
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="login.html">Войти</a>
+                    <li class="header__item">
+                        <a class="header__link" href="login.html">Войти</a>
                     </li>
                 </ul>
             </nav>
@@ -57,19 +60,21 @@
 
 <main class="main">
     <div class="container">
-        <h1 class="main__heading">Справка</h1>
-        <article class="article">
-            <h1 class="article__heading">Название статьи</h1>
-            <p class="article__text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
-        </article>
-        <article class="article">
-            <h1 class="article__heading">Название статьи</h1>
-            <p class="article__text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
-        </article>
-        <article class="article">
-            <h1 class="article__heading">Название статьи</h1>
-            <p class="article__text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
-        </article>
+        <section class="help">
+            <h1 class="help__heading">Справка</h1>
+            <article class="help__article">
+                <h1 class="help__article-heading">Название статьи</h1>
+                <p class="help__article-text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
+            </article>
+            <article class="help__article">
+                <h1 class="help__article-heading">Название статьи</h1>
+                <p class="help__article-text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
+            </article>
+            <article class="help__article">
+                <h1 class="help__article-heading">Название статьи</h1>
+                <p class="help__article-text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aperiam beatae commodi consequuntur corporis distinctio eligendi, eos eum explicabo harum, ipsa molestiae praesentium quasi voluptatem voluptatum. A aliquam consectetur doloremque!</span><span>Alias atque aut autem corporis dicta eligendi est excepturi ipsum molestiae, numquam odit officiis perspiciatis placeat, quasi ratione rerum similique totam, ut veniam voluptas! Deserunt et eum iusto ullam voluptatem!</span><span>Consequatur cupiditate dicta dolorem, eius exercitationem, expedita hic iste laboriosam necessitatibus quaerat quis quos sapiente vitae. Cum cumque cupiditate dolor, enim excepturi exercitationem, natus, nesciunt nobis omnis perferendis quisquam velit?</span></p>
+            </article>
+        </section>
     </div>
 </main>
 
@@ -77,5 +82,7 @@
     <div class="container"></div>
 </footer>
 
+<!-- Скрипты -->
+<script defer src="js/app.min.js"></script>
 </body>
 </html>
