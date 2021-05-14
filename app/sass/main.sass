@@ -20,11 +20,13 @@
   &__nav
     display: flex
   &__item
-    margin-left: 20px
+    margin-left: calc(min(1.5vw, 20px))
     border-radius: 20px
     transition: background-color .35s
+    // Наведение
     &:hover
       background-color: #efefef
+    // Последний элемент
     &:last-child
       background-color: black
       .header__link
@@ -33,6 +35,7 @@
         background-color: var(--accent-green)
         .header__link
           color: black
+    // Активный элемент
     &--active
       background-color: #efefef
       &:hover
@@ -50,6 +53,10 @@
   //  <-- index.html -->
   .find-tour
     margin-top: 50px
+    &__left
+      position: relative
+      z-index: 1
+      max-width: 750px
     &__body
       height: 370px
       background-color: #eafaf4
@@ -58,26 +65,25 @@
       padding:
         top: 25px
         bottom: 50px
-        left: 60px
+        left: calc(min(60px, 4%))
+        right: calc(min(60px, 4%))
     &__image-wrapper
       background-image: url("../img/home_hero_got_illustration.svg")
       background-repeat: no-repeat
-      background-size: cover
-      right: 0
-      bottom: -50px
+      background-size: contain
       position: absolute
+      right: 0
+      bottom: -80px
       height: 389px
       width: 585px
     &__heading
       margin-bottom: 30px
-      width: clamp(310px, 42%, 750px)
     &__booking
-      width: clamp(310px, 55%, 750px)
-      max-width: 800px
       display: flex
       flex-direction: row
       background-color: white
       border-radius: 12px
+      overflow: hidden
     &__form
       display: flex
       flex-direction: row
@@ -88,60 +94,70 @@
       border-right: 1px solid #efefef
       &:nth-child(3), &:nth-child(4)
         width: calc(min(150px, 25%))
+        .find-tour__form-input
+          cursor: default
+          width: 30px
+          padding: 0
+        .fa-plus, .fa-minus
+          font-size: 11px
+          padding: 15px
+          position: relative
+          top: -3px
+          &:hover
+            cursor: pointer
+            color: lightseagreen
     &__form-label
       height: 40px
       line-height: 40px
       display: block
       font-size: 13px
-      opacity: .8
       font-weight: 700
+      color: rgba(0, 0, 0, .8)
     &__form-input
-      font-size: 18px
+      pointer-events: none
+      cursor: pointer
       font-family: 'Comfortaa', sans-serif
+      font-size: 18px
       font-weight: 700
       text-transform: uppercase
-      width: 100%
       text-align: center
       padding: 0 15px
+      width: 100%
       height: 80px
-      cursor: pointer
-      border: none
-      outline: none
     &__form-submit
-      border-top-right-radius: 12px
-      border-bottom-right-radius: 12px
-      border: none
-      background-color: rgba(0, 0, 0, 1)
-      color: white
-      font-family: 'Comfortaa', sans-serif
-      width: calc(min(200px, 25%))
       cursor: pointer
+      font-family: 'Comfortaa', sans-serif
+      color: white
+      width: calc(min(200px, 25%))
+      background-color: rgba(0, 0, 0, 1)
       &:hover
-        background-color: rgba(0, 0, 0, 0.9)
+        background-color: rgba(0, 0, 0, .9)
+
 
   .advantages
     margin-top: calc(70px + 90px)
     background-color: #f1f2f8
     &__body
       position: relative
-      padding:
-        top: 50px
-        bottom: 50px
       display: flex
       flex-wrap: wrap
       justify-content: space-around
     &__item
+      margin:
+        top: clamp(20px, 8vw, 50px)
+        bottom: clamp(20px, 10vw, 70px)
       position: relative
-      width: clamp(250px, 30%, 340px)
+      width: clamp(280px, 30%, 340px)
       text-align: center
+      // Зеленая линия
       &:after
         content: ''
         position: absolute
         left: 50%
         bottom: -20px
-        transform: translateX(-50%)
         height: 2px
         width: 20px
+        transform: translateX(-50%)
         background-color: lightseagreen
         transition-property: width, background-color
         transition-duration: .5s
@@ -155,15 +171,17 @@
       margin-top: 5px
       font-size: 14px
       font-weight: 400
-      opacity: .7
+      color: rgba(0, 0, 0, .7)
     &__item-image-wrapper
       display: flex
       justify-content: center
     &__item-image
       height: 256px
 
+
   .popular-tours
     margin-top: 80px
+
   .faq
     margin-top: 70px
     &__item
@@ -171,34 +189,32 @@
       &:last-child
         margin-bottom: 0
     &__item-heading
+      cursor: pointer
       position: relative
       border-radius: 12px
       font-family: 'Comfortaa', sans-serif
       font-size: 17px
+      color: #444
       padding:
         top: 20px
         bottom: 20px
         left: clamp(10px, 3%, 25px)
       background-color: #efefef
-      color: #444
-      cursor: pointer
       width: 100%
       text-align: left
-      border: none
-      outline: none
       transition: background-color 0.4s
       &:hover, &:active
         background-color: #ccc
       // <-- Стрелка -->
       &:after, &:before
-        transition: transform .5s
+        content: ''
         position: absolute
         top: 50%
         right: 20px
         width: 3px
         height: 12px
         background-color: lightseagreen
-        content: ''
+        transition: transform .5s
       &:after
         transform: translate(-110%, -50%) rotate(-45deg)
       &:before
@@ -230,6 +246,7 @@
     &__text
       margin: 25px 0
 
+
   //  <-- help.html -->
   .help
     &__heading
@@ -246,20 +263,23 @@
         left: calc(min(40px, 4%))
         right: calc(min(30px, 3%))
 
+
   //  <-- find-tour.html -->
-  .main__body
+  &__body
     margin-top: 60px
     display: grid
     grid-column-gap: 60px
     grid-template-columns: minmax(150px, 15%) 3fr
-    grid-template-areas: "header header" "filters sort" "filters tours" "footer footer"
+    grid-template-rows: 45px auto
+    grid-template-areas: "filters sort" "filters tours"
     .filters
       grid-area: filters
       &__heading
         display: none
-      &__list
+        font-size: 15px
+        font-weight: 600
+        text-align: right
       &__item
-        overflow-y: scroll
         padding: 15px 0
         border-bottom: 1px solid lightgrey
         &:first-child
@@ -295,39 +315,41 @@
         &:hover
           background-color: var(--accent-green)
           color: black
-      &--active
-        position: fixed
-        top: var(--header-height)
-        right: 0
-        left: 35%
-        bottom: 0
-        z-index: 3
-        overflow-y: scroll
-        background-color: var(--accent-green)
-        .filters__list,
-        .filters__submit
-          display: block !important
-        .filters__heading
-          display: none !important
-        .filters__item
-          &:first-child
-            padding-top: 10px
-          padding-left: 10px
-          border-bottom: none
-          background-color: black
-        .filters__item-label,
-        .filters__item-input
-          color: white !important
-        .filters__item-content
-          color: white !important
-        .filters__item-input
-          color: black !important
-          background-color: var(--accent-green)
     .tours
       grid-area: tours
       margin-top: 0
     .sort
       grid-area: sort
+      justify-self: start
+      position: relative
+      cursor: pointer
+      margin-bottom: 20px
+
+      &__list
+        width: 180px
+      &__heading
+        font-weight: 600
+        font-size: 15px
+
+        // <-- Стрелка -->
+        &:after, &:before
+          content: ''
+          position: absolute
+          top: 50%
+          right: -20px
+          width: 2px
+          height: 8px
+          background-color: lightseagreen
+          transition: transform .5s
+        &:after
+          transform: translate(-110%, -50%) rotate(-45deg)
+        &:before
+          transform: translate(110%, -50%) rotate(45deg)
+        &--active
+          &:after
+            transform: translate(110%, -50%) rotate(-45deg)
+          &:before
+            transform: translate(-110%, -50%) rotate(45deg)
 
 
 // <--- Подвал --->
@@ -349,99 +371,39 @@
     content: 'Подвал'
 
 
-@media (max-width: 1545px)
-  .main
-    .find-tour
-      &__booking
-        width: 500px
-        border-radius: 12px
-        display: flex
-        flex-direction: column
-      &__form
-        display: flex
-        flex-direction: row
-      &__form-item
-        &:last-child
-          border-right: none
-      &__form-submit
-        border-top-right-radius: 0
-        border-bottom-left-radius: 12px
-        width: 100%
-        height: 40px
-
-@media (max-width: 1420px)
-  .container
-    width: 85%
-  .main
-    .find-tour
-      &__body
-        padding-right: 60px
-      &__image-wrapper
-        left: 50%
-        transform: translateX(-50%)
-        bottom: -65px
-        position: absolute
-        height: 335px
-        width: 502px
-      &__heading
-      &__booking
-        // z-index won't working without position
-        z-index: 1
-        position: relative
-        margin-top: 60px
-        width: calc(150px * 4)
-        border-radius: 12px
-        display: flex
-        flex-direction: column
-      &__form
-      &__form-item
-        &:last-child
-          border-right: none
-      &__form-label
-      &__form-input
-      &__form-submit
-        border-top-right-radius: 0
-        border-bottom-left-radius: 12px
-        width: 100%
-        height: 40px
-
-@media (max-width: 860px)
-  .go-top
-    display: none
-  .main
-    .main__body
-      grid-template-areas: "header header" "sort filters" "tours tours" "footer footer"
-      grid-template-columns: repeat(2, 1fr)
-      .filters
-        .filters__heading
-          display: block
-        .filters__list,
-        .filters__submit
-          display: none
-
-@media (max-width: 800px)
-  .container
-    width: 95%
-  .main .find-tour
-    &__booking
-      width: 100%
-
 
 // Disable overlay when orientation is changing
-@media (min-width: 700px)
-  body
+@media (min-width: 860px)
+  .body
     &--scroll-lock
       overflow: scroll
-    .overlay
-      &--show
-        left: 100%
-@media (max-width: 700px)
+  .overlay
+    &--show
+      left: 100%
+
+
+@media (max-width: 860px)
   .hamburger
     display: flex
+  .go-top
+    display: none
+  input[type="range"]
+    height: calc(var(--range-height) + 20px)
+    background-color: white
+    padding: 0 5px
+    opacity: .9
+    &:active, &:focus, &:hover
+      background-color: white
+    &::-webkit-slider-thumb
+      width: calc(var(--range-height) + 4px)
+      height: calc(var(--range-height) + 4px)
+    &::-moz-range-thumb
+      width: calc(var(--range-height) + 4px)
+      height: calc(var(--range-height) + 4px)
+
+
   .header
     font-weight: 700
-    &__body
-    &__logo
     &__menu
       z-index: 2
       position: fixed
@@ -452,7 +414,7 @@
       top: var(--header-height)
       transition: left .45s
       &--active
-        left: 55%
+        left: clamp(50px, 35%, 300px)
     &__nav
       height: 100%
       display: flex
@@ -488,51 +450,114 @@
       transition: color .35s
       color: black
 
+
   .main
     .find-tour
-      padding:
-        top: 20px
-        left: 10px
-        right: 10px
+      &__heading
+        display: none
+      &__body
+        height: auto
+      &__image-wrapper
+        top: -30px
+        left: 50%
+        transform: translateX(-50%)
+        height: clamp(175px, 100%, 260px)
+        width: clamp(260px, 85%, 390px)
       &__booking
-        margin-top: 60px
-        width: 100%
-        border-radius: 12px
-        display: flex
+        margin-top: 40px
         flex-direction: column
       &__form
-        display: flex
         flex-direction: column
       &__form-item
-        &:nth-child(3), &:nth-child(4)
-          width: auto
-        height: 40px
         display: flex
         align-items: center
+        height: 50px
         width: 100%
         border: none
+        &:nth-child(3), &:nth-child(4)
+          width: auto
+          margin-left: 0
+          .find-tour__form-input
+            margin-left: 0
+          .fa-plus
+            margin-left: auto
       &__form-label
         padding-left: 15px
       &__form-input
-        text-align-last: center
-        text-align: center
+        height: auto
         width: 150px
         margin-left: auto
-        height: 100%
-        border-radius: 12px
+      &__form-submit
+        height: 50px
+        width: 100%
 
-@media (max-width: 570px)
-  .main
     .advantages
       margin-top: 50px
-    .find-tour
-      &__heading
-        font-size: 22px
-        width: 100%
-      &__image-wrapper
-        left: 0
-        transform: translateX(0)
-        bottom: 0
-        position: absolute
-        height: 260px
-        width: 100%
+
+    &__body
+      margin-top: 30px
+      grid-template-areas: "sort filters" "tours tours"
+      grid-template-columns: minmax(150px, auto) auto
+      grid-template-rows: 45px auto
+      grid-column-gap: 10px
+
+      .sort
+        align-self: center
+        margin-bottom: 0
+      .filters
+        .rate
+          width: 195px
+          // Для дизэйбла горизонтального скрола
+          label
+            &:before
+              font-size: 25px
+              margin-right: 10px
+            &:first-child:before
+              margin-left: 0
+          input:checked ~ label:before
+            color: yellow !important
+          label:hover:before,
+          label:hover ~ label:before
+            color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
+        &__heading
+          padding: 10px 0
+          display: block
+          .fa-filter
+            font-size: 12px
+            color: lightseagreen
+            padding: 5px
+        &__submit
+          height: 60px
+          &:hover, &:active, &:focus
+            background: black
+            color: white
+            opacity: .85
+        &__item
+          overflow: hidden
+          min-width: 200px
+          padding: 15px 10px
+          border-bottom: 2px solid black
+          background-color: var(--accent-green)
+          &:first-child
+            padding: 10px
+          &:last-child
+            border: none
+        &__item-input,
+        &__item-content
+          font-size: 16px
+          color: black
+          font-weight: 700
+        &__content
+          left: 100%
+          z-index: 2
+          position: fixed
+          top: var(--header-height)
+          right: 0
+          bottom: 0
+          overflow-y: scroll
+          background-color: var(--accent-green)
+          transition: left .5s
+          overflow-x: hidden
+          &--active
+            left: clamp(50px, 35%, 300px)
+

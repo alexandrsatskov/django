@@ -3,52 +3,101 @@ document.addEventListener("DOMContentLoaded", function() {
         help = document.querySelectorAll(".faq__item-heading"),
         hamburger_menu = document.querySelector('.hamburger__inner'),
         hamburger_menu_wrapper = document.querySelector('.hamburger'),
+        header_menu = document.querySelector('.header__menu'),
         ranges = document.querySelectorAll("input[type='range']"),
+        overlay = document.querySelector(".overlay"),
         scroll_top = document.querySelector('.go-top__inner'),
         wrapper_scroll_top = document.querySelector('.go-top__inner'),
+        filters = document.querySelector('.filters'),
         filters_heading = document.querySelector('.filters__heading'),
-        filters = document.querySelector('.filters');
+        filters_content = document.querySelector('.filters__content'),
+        sort = document.querySelector('.sort'),
+        increments = document.querySelectorAll('.fa-plus'),
+        decrements = document.querySelectorAll('.fa-minus');
+
+    if (increments !== null) {
+        for (let i = 0; i < increments.length; i++) {
+            increments[i].addEventListener('click', function(event) {
+                increments[i].nextElementSibling.value =
+                    (+increments[i].nextElementSibling.value + 1).toString();
+            });
+            decrements[i].addEventListener('click', function(event) {
+                decrements[i].previousElementSibling.value =
+                    (+decrements[i].previousElementSibling.value - 1).toString();
+            });
+        }
+    }
+
+    // СОРТИРОВКА
+    if (sort !== null) {
+        sort.addEventListener('click', function(event) {
+
+            if (event.target === sort.querySelector('.sort__heading')) {
+                sort.querySelector('.sort__heading').classList.toggle('sort__heading--active')
+                sort.querySelector('.sort__list').classList.toggle('dropdown--active')
+            } else if (event.target.classList.contains('dropdown__item')) {
+                sort.querySelector('.sort__heading').innerHTML =
+                    event.target.textContent
+                for (const item of document.querySelectorAll('.dropdown__item')) {
+                    item.classList.remove('dropdown__item--active')
+                }
+                event.target.classList.add('dropdown__item--active')
+                sort.querySelector('.sort__list').classList.toggle('dropdown--active')
+                sort.querySelector('.sort__heading').classList.toggle('sort__heading--active')
+            }
+        });
+    }
 
     // FILTERS
-    // for (let i = 0; i < ranges.length; i++) {
-    //     ranges[i].addEventListener("input", function() {
-    //         let content = this.parentElement.querySelector(".filter__content");
-    //         console.log(content)
-    //         content.innerHTML = this.value;
-    //     });
-    // }
-    // filters_heading.addEventListener('click', function() {
-    //     hamburger_menu.classList.toggle('animate')
-    //     filters.classList.toggle('filters_active')
-    //     document.querySelector(".overlay").classList.toggle('show')
-    //     document.body.classList.toggle('scroll-lock')
-    // });
+    if (filters !== null) {
+        for (let i = 0; i < ranges.length; i++) {
+            ranges[i].addEventListener("input", function() {
+                let content = this.parentElement.querySelector(".filters__item-content");
+                content.innerHTML = this.value;
+            });
+        }
+        filters_heading.addEventListener('click', function() {
+            window.scrollTo(0, 0)
+            overlay.classList.toggle('overlay--show')
+            document.body.classList.toggle('body--scroll-lock')
+            hamburger_menu.classList.toggle('hamburger--animate')
+            filters_content.classList.toggle('filters__content--active')
+        });
+    }
 
     // HAMBURGER
     hamburger_menu_wrapper.addEventListener('click', () => {
+        window.scrollTo(0, 0)
 
-        if (hamburger_menu.classList.contains('animate')) {
-            filters.classList.remove('filters_active')
-            document.querySelector('.header__menu').classList.remove('active')
-            document.querySelector(".overlay").classList.remove('show')
-            document.body.classList.remove('scroll-lock')
+        if (hamburger_menu.classList.contains('hamburger--animate')) {
+            header_menu.classList.remove('header__menu--active')
+            overlay.classList.remove('overlay--show')
+            document.body.classList.remove('body--scroll-lock')
+            hamburger_menu.classList.remove('hamburger--animate')
         } else {
-            filters.classList.add('filters_active')
-            document.querySelector('.header__menu').classList.add('active')
-            document.querySelector(".overlay").classList.add('show')
-            document.body.classList.add('scroll-lock')
-
+            header_menu.classList.add('header__menu--active')
+            overlay.classList.add('overlay--show')
+            document.body.classList.add('body--scroll-lock')
+            hamburger_menu.classList.add('hamburger--animate')
         }
 
-        hamburger_menu.classList.toggle('animate')
+        if (filters!== null && filters_content.classList.contains('filters__content--active')) {
+            filters_content.classList.remove('filters__content--active')
+        }
     });
+    // BODY OVERLAY
     document.querySelector(".overlay").addEventListener('click', function() {
-        hamburger_menu.classList.remove('animate')
-        document.querySelector('.header__menu').classList.remove('active')
-        document.querySelector(".overlay").classList.remove('show')
-        document.body.classList.remove('scroll-lock')
-        filters.classList.remove('filters_active')
+        header_menu.classList.remove('header__menu--active')
+        overlay.classList.remove('overlay--show')
+        document.body.classList.remove('body--scroll-lock')
+
+        hamburger_menu.classList.remove('hamburger--animate')
+
+        if (filters!== null && filters_content.classList.contains('filters__content--active')) {
+            filters_content.classList.remove('filters__content--active')
+        }
     });
+
     for (let i = 0; i < help.length; i++) {
         help[i].addEventListener("click", function() {
             /* Toggle between adding and removing the "active" class,
@@ -64,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
 
     // GO BACK TO TOP BUTTON
     wrapper_scroll_top.addEventListener('click', () => {

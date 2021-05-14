@@ -11,7 +11,7 @@
     <title>Главная</title>
 </head>
 
-<body>
+<body class="body">
 
 <div class="overlay"></div>
 <div class="go-top">
@@ -62,40 +62,34 @@
     <section class="find-tour">
         <div class="container">
             <div class="find-tour__body">
-                <div class="find-tour__image-wrapper"></div>
-                <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
+                <div class="find-tour__left">
+                    <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
+                    <div class="find-tour__booking">
+                        <form class="find-tour__form" action="#!" method="POST">
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="city">Город</label>
+                                <input type="text" name="city" id="city" value="Рассия" class="find-tour__form-input" readonly>
+                            </div>
 
-                <div class="find-tour__booking">
-                    <form class="find-tour__form" action="#!" method="POST">
-                        <div class="find-tour__form-item">
-                            <label class="find-tour__form-label" for="city">Город</label>
-                            <select name="city" id="city" class="find-tour__form-input">
-                                <option value="28" selected>Amsterdam</option>
-                                <option value="56">Andalusia</option>
-                                <option value="75">Antwerp</option>
-                                <option value="17">Athens</option>
-                                <option value="41">Bangkok</option>
-                                <option value="19">Barcelona</option>
-                            </select>
-                        </div>
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="departure-date">Вылет</label>
+                                <input type="text" name="departure-date" id="departure-date" value="2021-05-02" class="find-tour__form-input">
+                            </div>
 
-                        <div class="find-tour__form-item">
-                            <label class="find-tour__form-label" for="departure-date">Вылет</label>
-                            <input type="date" name="departure-date" id="departure-date" value="2021-05-02" class="find-tour__form-input">
-                        </div>
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="nights">Ночей</label>
+                                <i class="fas fa-plus"></i><input type="text" name="nights" id="nights" value="8" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                            </div>
 
-                        <div class="find-tour__form-item">
-                            <label class="find-tour__form-label" for="nights">Ночей</label>
-                            <input type="text" name="nights" id="nights" value="8" class="find-tour__form-input">
-                        </div>
-
-                        <div class="find-tour__form-item">
-                            <label class="find-tour__form-label" for="participants">Участников</label>
-                            <input type="number" name="participants" id="participants" value="4" class="find-tour__form-input">
-                        </div>
-                    </form>
-                    <button class="find-tour__form-submit" name="button" type="submit">Поиск</button>
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="participants">Участников</label>
+                                <i class="fas fa-plus"></i><input type="text" name="participants" id="participants" value="4" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                            </div>
+                        </form>
+                        <button class="find-tour__form-submit" name="button" type="submit">Поиск</button>
+                    </div>
                 </div>
+                <div class="find-tour__image-wrapper"></div>
             </div>
         </div>
     </section>
@@ -149,10 +143,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -167,10 +181,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -185,10 +219,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -203,10 +257,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -249,6 +323,7 @@
 </footer>
 
 <!-- Скрипты -->
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

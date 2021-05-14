@@ -11,7 +11,7 @@
     <title>Главная</title>
 </head>
 
-<body>
+<body class="body">
 
 <div class="overlay"></div>
 <div class="go-top">
@@ -62,73 +62,71 @@
     <div class="container">
         <div class="main__body">
             <div class="filters">
-                <h2 class="filters__heading">Фильтры</h2>
-                <ul class="filters__list">
-                    <li class="filters__item">
-                        <label for="country" class="filters__item-label">Страна</label>
-                        <select name="city" id="country" class="filters__item-input">
-                            <option value="28" selected>Amsterdam</option>
-                            <option value="56">Andalusia</option>
-                            <option value="75">Antwerp</option>
-                            <option value="17">Athens</option>
-                            <option value="41">Bangkok</option>
-                            <option value="19">Barcelona</option>
-                        </select>
-                    </li>
-                    <li class="filters__item">
-                        <label for="city" class="filters__item-label">Город</label>
-                        <select name="city" id="city" class="filters__item-input">
-                            <option value="28" selected>Пермь</option>
-                            <option value="56">Калининград</option>
-                        </select>
-                    </li>
-                    <li class="filters__item">
-                        <h3 class="filters__item-heading">Рейтинг</h3>
-                        <fieldset class="rate">
-                            <input type="radio" id="rating10" name="rating" value="10" />
-                            <label for="rating10" title="5 stars"></label>
-                            <input type="radio" id="rating9" name="rating" value="9" />
-                            <label class="half" for="rating9" title="4 1/2 stars"></label>
-                            <input type="radio" id="rating8" name="rating" value="8" />
-                            <label for="rating8" title="4 stars"></label>
-                            <input type="radio" id="rating7" name="rating" value="7" />
-                            <label class="half" for="rating7" title="3 1/2 stars"></label>
-                            <input type="radio" id="rating6" name="rating" value="6" />
-                            <label for="rating6" title="3 stars"></label>
-                            <input type="radio" id="rating5" name="rating" value="5" />
-                            <label class="half" for="rating5" title="2 1/2 stars"></label>
-                            <input type="radio" id="rating4" name="rating" value="4" />
-                            <label for="rating4" title="2 stars"></label>
-                            <input type="radio" id="rating3" name="rating" value="3" />
-                            <label class="half" for="rating3" title="1 1/2 stars"></label>
-                            <input type="radio" id="rating2" name="rating" value="2" />
-                            <label for="rating2" title="1 star"></label>
-                            <input type="radio" id="rating1" name="rating" value="1" />
-                            <label class="half" for="rating1" title="1/2 star"></label>
-
-                        </fieldset>
-                    </li>
-                    <li class="filters__item">
-                        <label for="date" class="filters__item-label">Даты вылета</label>
-                        <input id="date" class="filters__item-input" type="date">
-                    </li>
-                    <li class="filters__item">
-                        <label for="nights" class="filters__item-label">Ночей:&nbsp;<span class="filters__item-content">4</span></label>
-                        <input id="nights" class="filters__item-input" type="range" min="5" max="20" value="5">
-                    </li>
-                    <li class="filters__item">
-                        <label for="participants" class="filters__item-label">Участников:&nbsp;<span class="filters__item-content">4</span></label>
-                        <input id="participants" class="filters__item-input" type="range" min="1" max="8" value="5">
-                    </li>
-                    <li class="filters__item">
-                        <label for="price" class="filters__item-label">Цена:</label>
-                        <div class="filters__item-content">0-20000</div>
-                        <input id="price" class="filters__item-input" type="range" min="0" max="20000" value="4000">
-                    </li>
-                </ul>
-                <button class="filters__submit" name="button" type="submit">Поиск</button>
+                <h2 class="filters__heading">Фильтры<i class="fas fa-filter"></i></h2>
+                <div class="filters__content">
+                    <ul class="filters__list">
+                        <li class="filters__item">
+                            <label for="country" class="filters__item-label">Страна</label>
+                            <input class="filters__item-input" type="text" id="country" value="Амстердам">
+                        </li>
+                        <li class="filters__item">
+                            <label for="city" class="filters__item-label">Город</label>
+                            <input class="filters__item-input" type="text" id="city" value="Пермь">
+                        </li>
+                        <li class="filters__item">
+                            <label for="rate" class="filters__item-label">Рейтинг</label>
+                            <fieldset id="rate" class="rate">
+                                <input type="radio" id="rating10" name="rating" value="10" />
+                                <label for="rating10" title="5 stars"></label>
+                                <input type="radio" id="rating9" name="rating" value="9" />
+                                <label class="half" for="rating9" title="4 1/2 stars"></label>
+                                <input type="radio" id="rating8" name="rating" value="8" />
+                                <label for="rating8" title="4 stars"></label>
+                                <input type="radio" id="rating7" name="rating" value="7" />
+                                <label class="half" for="rating7" title="3 1/2 stars"></label>
+                                <input type="radio" id="rating6" name="rating" value="6" />
+                                <label for="rating6" title="3 stars"></label>
+                                <input type="radio" id="rating5" name="rating" value="5" />
+                                <label class="half" for="rating5" title="2 1/2 stars"></label>
+                                <input type="radio" id="rating4" name="rating" value="4" />
+                                <label for="rating4" title="2 stars"></label>
+                                <input type="radio" id="rating3" name="rating" value="3" />
+                                <label class="half" for="rating3" title="1 1/2 stars"></label>
+                                <input type="radio" id="rating2" name="rating" value="2" />
+                                <label for="rating2" title="1 star"></label>
+                                <input type="radio" id="rating1" name="rating" value="1" />
+                                <label class="half" for="rating1" title="1/2 star"></label>
+                            </fieldset>
+                        </li>
+                        <li class="filters__item">
+                            <label for="date" class="filters__item-label">Даты вылета</label>
+                            <input id="date" class="filters__item-input" type="text" value="22-01-2005">
+                        </li>
+                        <li class="filters__item">
+                            <label for="nights" class="filters__item-label">Ночей:&nbsp;<span class="filters__item-content">4</span></label>
+                            <input id="nights" class="filters__item-input" type="range" min="5" max="20" value="5">
+                        </li>
+                        <li class="filters__item">
+                            <label for="participants" class="filters__item-label">Участников:&nbsp;<span class="filters__item-content">4</span></label>
+                            <input id="participants" class="filters__item-input" type="range" min="1" max="8" value="5">
+                        </li>
+                        <li class="filters__item">
+                            <label for="price" class="filters__item-label">Цена:</label>
+                            <div class="filters__item-content">0-20000</div>
+                            <input id="price" class="filters__item-input" type="range" min="0" max="20000" value="4000">
+                        </li>
+                    </ul>
+                    <button class="filters__submit" name="button" type="submit">Поиск</button>
+                </div>
             </div>
-            <div class="sort">Сортировать по ...</div>
+            <div class="sort">
+                <div class="sort__heading">Сортировать</div>
+                <ul class="sort__list dropdown">
+                    <li class="dropdown__item">Дешевле</li>
+                    <li class="dropdown__item">Дороже</li>
+                    <li class="dropdown__item">Высокий рейтинг</li>
+                </ul>
+            </div>
             <ul class="tours">
                 <li class="tours__item">
                     <div class="tours__item-image-wrapper">
@@ -140,10 +138,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -158,10 +176,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -176,10 +214,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>
@@ -194,10 +252,30 @@
                         </span>
                     </div>
                     <div class="tours__item-desc">
-
                         <div class="tours__item-desc-inner">
                             <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <span class="tours__tem-rating">some rating</span>
+                            <fieldset class="rate">
+                                <input type="radio" value="10" />
+                                <label title="5 stars"></label>
+                                <input type="radio" value="9" />
+                                <label class="half" title="4 1/2 stars"></label>
+                                <input type="radio" value="8" />
+                                <label title="4 stars"></label>
+                                <input type="radio" value="7" checked/>
+                                <label class="half" title="3 1/2 stars"></label>
+                                <input type="radio" value="6" />
+                                <label title="3 stars"></label>
+                                <input type="radio" value="5" />
+                                <label class="half" title="2 1/2 stars"></label>
+                                <input type="radio" value="4" />
+                                <label title="2 stars"></label>
+                                <input type="radio" value="3" />
+                                <label class="half" title="1 1/2 stars"></label>
+                                <input type="radio" value="2" />
+                                <label title="1 star"></label>
+                                <input type="radio" value="1" />
+                                <label class="half" title="1/2 star"></label>
+                            </fieldset>
                         </div>
                         <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                     </div>

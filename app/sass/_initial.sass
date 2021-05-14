@@ -67,6 +67,7 @@ html
   &__item-image
     width: 100%
   &__item-destination-city
+    // z-index при затемнении картинки
     z-index: 1
     position: absolute
     bottom: 5%
@@ -86,16 +87,23 @@ html
   &__item-nights, &__item-rating
     display: block
   &__item-price
-    margin-top: 30px
     display: block
     text-align: center
     padding: 7px 0
     font-size: 18px
     font-weight: 700
-    opacity: .9
+    color: rgba(0, 0, 0, .9)
     border-top: 2px solid lightgray
     transition-property: background-color, border
     transition-duration: .55s
+  .rate
+    label:before
+      --star-fz: 17px
+    label:hover:before,
+    label:hover ~ label:before
+      color: lightgrey
+    input:checked ~ label:before
+      color: orange
 
 .hamburger
   height: 100%
@@ -185,13 +193,25 @@ button, input, optgroup, select, textarea
     -moz-box-shadow: none
     -webkit-appearance: none
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration,
-input[type="date"]::-webkit-calendar-picker-indicator
-  display: none
 
+.dropdown
+  display: none
+  box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.3)
+  &--active
+    z-index: 2
+    display: block
+    position: absolute
+    background-color: white
+  &__item
+    font-size: 14px
+    padding: 15px 20px
+    font-weight: 600
+    border-bottom: 1px solid lightgrey
+    &:hover
+      background-color: #efefef
+    &--active
+      background-color: #efefef
+      font-weight: 700
 
 .rate
   display: inline-block
@@ -212,23 +232,24 @@ input[type="date"]::-webkit-calendar-picker-indicator
     content: "\f005" /* full star */
     color: lightgrey
   .half:before
-    width: calc(var(--star-fz) - 9px)
+    width: calc(var(--star-fz) - 7px)
     overflow: hidden
     position: absolute
     content: "\f089"
-  input:checked ~ label:before
-    color: #04AA6D !important
 
   label:hover:before,
   label:hover ~ label:before
     color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
-
-  /* Hover highlights */
-  input:checked + label:hover:before,
-  input:checked ~ label:hover:before, /* highlight current and previous stars */
-  input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
-  label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
+  input:checked ~ label:before
     color: #04AA6D
+
+  ///* Hover highlights */
+  //input:checked + label:hover:before,
+  //input:checked ~ label:hover:before, /* highlight current and previous stars */
+  //input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
+  //label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
+  //  color: red
+
 
 .go-top
   cursor: pointer
@@ -258,7 +279,6 @@ input[type="date"]::-webkit-calendar-picker-indicator
 .overlay
   position: fixed /* Sit on top of the page content */
   width: 100% /* Full width (cover the whole page) */
-  height: 100vh /* Full height (cover the whole page) */
   top: var(--header-height)
   right: 0
   bottom: 0
@@ -267,17 +287,17 @@ input[type="date"]::-webkit-calendar-picker-indicator
   background-color: rgba(0, 0, 0, .8) /* Black background with opacity */
   z-index: 2 /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer /* Add a pointer on hover */
-  &.show
+  &--show
     left: 0
     &:before, &:after
+      z-index: 2
       content: ''
       width: 20px
       height: 3px
       border-radius: 12px
       position: absolute
-      top: calc(50% - var(--header-height) / 2)
-      left: 27.5%
-      z-index: 2
+      top: 50%
+      left: 17.5%
       animation: x-opacity .4s forwards
       animation-delay: .4s
       background-color: transparent
@@ -293,7 +313,7 @@ input[type="date"]::-webkit-calendar-picker-indicator
   font-size: 25px
   margin-bottom: 25px
 
-body
+.body
   display: grid
   grid-template-areas: "header" "main" "footer"
   min-height: 100vh
@@ -302,6 +322,7 @@ body
   font-family: var(--font)
   line-height: 1.65
   overflow-x: hidden
+  overflow-y: scroll
   // Removes blue background on action
   -webkit-tap-highlight-color: transparent
   &--scroll-lock
@@ -311,8 +332,7 @@ body
   color: green
 
 .container
-  width: 75%
-  min-width: 300px
+  width: clamp(300px, 95%, 1400px)
   margin: 0 auto
 
 ul, li
