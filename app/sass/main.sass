@@ -274,6 +274,8 @@
     grid-template-areas: "filters sort" "filters tours"
     .filters
       grid-area: filters
+      &__list
+        margin-bottom: 30px
       &__heading
         display: none
         font-size: 15px
@@ -391,7 +393,6 @@
     height: calc(var(--range-height) + 20px)
     background-color: white
     padding: 0 5px
-    opacity: .9
     &:active, &:focus, &:hover
       background-color: white
     &::-webkit-slider-thumb
@@ -518,7 +519,31 @@
             color: yellow !important
           label:hover:before,
           label:hover ~ label:before
-            color: lighten(#04AA6D, 10%)  /* color previous stars on hover */
+            color: lighten(#04AA6D, 10%)
+        .wrap
+          grid-template: repeat(2, max-content) calc(var(--range-height) + 4px)/ 1fr 1fr
+          &:before, &:after
+            z-index: 0
+            background-color: white
+          output
+            margin-bottom: 10px
+
+          input[type='range']
+            height: 100%
+            padding: 0
+            pointer-events: none
+            background: none
+
+            &::-webkit-slider-thumb
+              width: calc(var(--range-height) + 12px)
+              height: calc(var(--range-height) + 12px)
+              position: relative
+              z-index: 1
+            &::-moz-range-thumb
+              width: calc(var(--range-height) + 12px)
+              height: calc(var(--range-height) + 12px)
+              position: relative
+              z-index: 1
         &__heading
           padding: 10px 0
           display: block

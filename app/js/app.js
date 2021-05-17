@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
         hamburger_menu_wrapper = document.querySelector('.hamburger'),
         header_menu = document.querySelector('.header__menu'),
         ranges = document.querySelectorAll("input[type='range']"),
+        nights_range = document.getElementById('nights'),
+        participants_range = document.getElementById('participants'),
         overlay = document.querySelector(".overlay"),
         scroll_top = document.querySelector('.go-top__inner'),
         wrapper_scroll_top = document.querySelector('.go-top__inner'),
@@ -50,12 +52,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // FILTERS
     if (filters !== null) {
-        for (let i = 0; i < ranges.length; i++) {
-            ranges[i].addEventListener("input", function() {
-                let content = this.parentElement.querySelector(".filters__item-content");
-                content.innerHTML = this.value;
-            });
-        }
+        // for (let i = 0; i < ranges.length; i++) {
+        //     ranges[i].addEventListener("input", function() {
+        //         let content = this.parentElement.querySelector(".filters__item-content");
+        //         content.innerHTML = this.value;
+        //     });
+        // }
+        nights_range.addEventListener("input", function() {
+                    let content = this.parentElement.querySelector(".filters__item-content");
+                    content.innerHTML = this.value;
+        });
+        participants_range.addEventListener("input", function() {
+            let content = this.parentElement.querySelector(".filters__item-content");
+            content.innerHTML = this.value;
+        });
         filters_heading.addEventListener('click', function() {
             window.scrollTo(0, 0)
             overlay.classList.toggle('overlay--show')
@@ -63,6 +73,15 @@ document.addEventListener("DOMContentLoaded", function() {
             hamburger_menu.classList.toggle('hamburger--animate')
             filters_content.classList.toggle('filters__content--active')
         });
+        addEventListener(
+            "input",
+            (e) => {
+                let _t = e.target;
+                _t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);
+            },
+            false
+        );
+
     }
 
     // HAMBURGER
@@ -115,27 +134,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // GO BACK TO TOP BUTTON
-    wrapper_scroll_top.addEventListener('click', () => {
-        window.scrollTo(0, 0);
-    });
-    let previous_scroll = 0, transform_clear;
-    window.addEventListener('scroll', () => {
-        let current_scroll = window.pageYOffset
-        if (window.pageYOffset > 155) {
-            wrapper_scroll_top.style.transform = 'translateX(0)'
-            if ((current_scroll - previous_scroll) <= -100) {
-
-                scroll_top.style.transform = 'translateX(0)';
-                clearTimeout(transform_clear)
-                transform_clear = setTimeout(() => {
-                    scroll_top.style.transform = 'translateX(100%)'
-                }, 3000)
-            }
-        }
-        else {
-            wrapper_scroll_top.style.transform = 'translateX(100%)'
-            scroll_top.style.transform = 'translateX(100%)';
-        }
-        previous_scroll = current_scroll;
-    });
+    // wrapper_scroll_top.addEventListener('click', () => {
+    //     window.scrollTo(0, 0);
+    // });
+    // let previous_scroll = 0, transform_clear;
+    // window.addEventListener('scroll', () => {
+    //     let current_scroll = window.pageYOffset
+    //     if (window.pageYOffset > 155) {
+    //         wrapper_scroll_top.style.transform = 'translateX(0)'
+    //         if ((current_scroll - previous_scroll) <= -100) {
+    //
+    //             scroll_top.style.transform = 'translateX(0)';
+    //             clearTimeout(transform_clear)
+    //             transform_clear = setTimeout(() => {
+    //                 scroll_top.style.transform = 'translateX(100%)'
+    //             }, 3000)
+    //         }
+    //     }
+    //     else {
+    //         wrapper_scroll_top.style.transform = 'translateX(100%)'
+    //         scroll_top.style.transform = 'translateX(100%)';
+    //     }
+    //     previous_scroll = current_scroll;
+    // });
 });

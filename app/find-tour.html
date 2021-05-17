@@ -14,11 +14,11 @@
 <body class="body">
 
 <div class="overlay"></div>
-<div class="go-top">
-    <div class="go-top__inner">
-        <span class="go-top__text">Go&nbsp;up</span>
-    </div>
-</div>
+<!--<div class="go-top">-->
+<!--    <div class="go-top__inner">-->
+<!--        <span class="go-top__text">Go&nbsp;up</span>-->
+<!--    </div>-->
+<!--</div>-->
 
 <header class="header">
     <div class="container">
@@ -111,9 +111,18 @@
                             <input id="participants" class="filters__item-input" type="range" min="1" max="8" value="5">
                         </li>
                         <li class="filters__item">
-                            <label for="price" class="filters__item-label">Цена:</label>
-                            <div class="filters__item-content">0-20000</div>
-                            <input id="price" class="filters__item-input" type="range" min="0" max="20000" value="4000">
+                            <div class="wrap" role="group" aria-labelledby="multi-lbl" style="--a: 0; --b: 2000; --min: 0; --max: 5000">
+                                <div class="filters__item-label" id="multi-lbl">Цена:</div>
+                                <label class="sr-only" for="a">Value A:</label>
+                                <input id="a" type="range" min="0" value="0" max="5000"/>
+                                <output for="a" style="--c: var(--a)"><span class="dash">-</span></output>
+                                <label class="sr-only" for="b">Value B:</label>
+                                <input id="b" type="range" min="0" value="2000" max="5000"/>
+                                <output for="b" style="--c: var(--b)"></output>
+                            </div>
+<!--                            <label for="price" class="filters__item-label">Цена:</label>-->
+<!--                            <div class="filters__item-content">0-20000</div>-->
+<!--                            <input id="price" class="filters__item-input" type="range" min="0" max="20000" value="4000">-->
                         </li>
                     </ul>
                     <button class="filters__submit" name="button" type="submit">Поиск</button>
@@ -291,6 +300,6 @@
 
 <!-- Скрипты -->
 <script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
-<script src="js/app.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

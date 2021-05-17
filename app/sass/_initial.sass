@@ -34,8 +34,12 @@ html
 \:root
   --font: 'Comfortaa', sans-serif
   --header-height: 60px
+  --range-height: 20px
+  --range-bgc: #d3d3d3
+  --thumb-bgc: #04AA6D
 
 .tours
+  align-self: start
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(calc(max(20%, 250px)), 1fr))
   justify-content: space-between
@@ -148,14 +152,10 @@ html
       transform: translateY(50%) rotate(45deg)
 
 input[type="range"]
-  --range-height: 20px
-  --range-bgc: #d3d3d3
-  --thumb-bgc: #04AA6D
   -webkit-appearance: none
   width: 100%
   height: var(--range-height)
   background-color: var(--range-bgc)
-  opacity: .7
   outline: none
   &:focus, &:hover, &:active
     background-color: var(--range-bgc)
@@ -249,8 +249,6 @@ button, input, optgroup, select, textarea
   //input:checked ~ label:hover ~ label:before, /* highlight previous selected stars for new rating */
   //label:hover ~ input:checked ~ label:before /* highlight previous selected stars */
   //  color: red
-
-
 .go-top
   cursor: pointer
   position: fixed
@@ -397,3 +395,99 @@ img
   src: url("../fonts/Comfortaa/Bold/Comfortaa-Bold.ttf") format("truetype")
   font-style: normal
   font-weight: 700
+
+
+
+  //--range-height: 20px
+  //--range-bgc: #d3d3d3
+  //--thumb-bgc: #04AA6D
+  //-webkit-appearance: none
+  //width: 100%
+  //height: var(--range-height)
+  //background-color: var(--range-bgc)
+  //opacity: .7
+  //outline: none
+  //&:focus, &:hover, &:active
+  //  background-color: var(--range-bgc)
+  //&::-webkit-slider-thumb
+  //  -webkit-appearance: none
+  //  appearance: none
+  //  width: var(--range-height)
+  //  height: var(--range-height)
+  //  background-color: var(--thumb-bgc)
+  //  cursor: pointer
+  //&::-moz-range-thumb
+  //  width: var(--range-height)
+  //  height: var(--range-height)
+  //  background-color: var(--thumb-bgc)
+  //  cursor: pointer
+@mixin track()
+  width: 100%
+  height: 100%
+  background-color: var(--range-bgc) /* get rid of Firefox track background */
+
+@mixin thumb()
+  border: none /* get rid of Firefox thumb border */
+  width: var(--range-height)
+  height: var(--range-height)
+  border-radius: 0 /* get rid of Firefox corner rounding */
+  background-color: var(--thumb-bgc)
+  pointer-events: auto
+
+.wrap
+  --dif: calc(var(--max) - var(--min))
+  display: grid
+  grid-template: repeat(2, max-content) 20px/ 1fr 1fr
+  position: relative
+
+  &:before, &:after
+    content: ''
+    z-index: -1
+    grid-column: 1/ span 2
+    grid-row: 3
+    height: 100%
+    background-color: var(--range-bgc)
+
+  &:before
+    margin-left: calc((var(--a) - var(--min)) / var(--dif)*100%)
+    width: calc((var(--b) - var(--a)) / var(--dif)*100%)
+
+  &:after
+    margin-left: calc((var(--b) - var(--min)) / var(--dif)*100%)
+    width: calc((var(--a) - var(--b)) / var(--dif)*100%)
+
+
+  [id='multi-lbl']
+    grid-column: 1/ span 2
+
+  .sr-only
+    position: absolute
+    clip-path: inset(50%)
+
+  input[type='range']
+    grid-column: 1/ span 2
+    grid-row: 3
+    pointer-events: none
+    background: none
+
+    //&::-webkit-slider-runnable-track
+    //  @include track
+    &::-moz-range-track
+      @include track
+
+    &::-webkit-slider-thumb
+      @include thumb
+    &::-moz-range-thumb
+      @include thumb
+
+  output
+    grid-row: 2
+    position: relative
+    font-weight: 700
+    .dash
+      position: absolute
+      left: 70%
+    &:before
+      counter-reset: c var(--c)
+      content: counter(c)
+
