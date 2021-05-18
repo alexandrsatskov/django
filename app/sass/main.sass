@@ -83,11 +83,11 @@
       flex-direction: row
       background-color: white
       border-radius: 12px
-      overflow: hidden
     &__form
       display: flex
       flex-direction: row
     &__form-item
+      position: relative
       height: 120px
       width: 170px
       text-align: center
@@ -114,7 +114,6 @@
       font-weight: 700
       color: rgba(0, 0, 0, .8)
     &__form-input
-      pointer-events: none
       cursor: pointer
       font-family: 'Comfortaa', sans-serif
       font-size: 18px
@@ -125,13 +124,39 @@
       width: 100%
       height: 80px
     &__form-submit
+      border-bottom-right-radius: 12px
+      border-top-right-radius: 12px
       cursor: pointer
       font-family: 'Comfortaa', sans-serif
       color: white
-      width: calc(min(200px, 25%))
+      width: calc(min(200px, 26%))
       background-color: rgba(0, 0, 0, 1)
       &:hover
         background-color: rgba(0, 0, 0, .9)
+    &__autocomplete-list
+      z-index: 1
+      position: absolute
+      top: 90%
+      left: 0
+      right: -65%
+      border-radius: 0.6rem
+      background-color: white
+      box-shadow: 0 3px 6px rgba(149, 157, 165, 0.15)
+      border: 1px solid rgba(33, 33, 33, 0.07)
+      overflow: hidden
+    &__autocomplete-item
+      font-weight: 600
+      padding: 10px
+      color: rgba(0, 0, 0, .7)
+      background-color: rgba(255, 255, 255, 1)
+      white-space: nowrap
+      /* Overflow beginning of string */
+      overflow: hidden
+      text-overflow: ellipsis
+      direction: rtl
+      &--selected
+        color: rgba(0, 0, 0, 1)
+        background-color: var(--accent-green)
 
 
   .advantages
@@ -282,6 +307,7 @@
         font-weight: 600
         text-align: right
       &__item
+        position: relative
         padding: 15px 0
         border-bottom: 1px solid lightgrey
         &:first-child
@@ -299,6 +325,33 @@
         border: 1px solid var(--select-border)
         font-size: 17px
         cursor: pointer
+      &__autocomplete-list
+        z-index: 1
+        position: absolute
+        top: 90%
+        left: 0
+        right: 0
+        border-radius: 0.6rem
+        background-color: white
+        box-shadow: 0 3px 6px rgba(149, 157, 165, 0.15)
+        border: 1px solid rgba(33, 33, 33, 0.07)
+        overflow: hidden
+      &__autocomplete-item
+        font-weight: 600
+        padding: 10px
+        color: rgba(0, 0, 0, .7)
+        background-color: rgba(255, 255, 255, 1)
+        white-space: nowrap
+        /* Overflow beginning of string */
+        overflow: hidden
+        text-overflow: ellipsis
+        direction: rtl
+        &--selected
+          color: rgba(0, 0, 0, 1)
+          background-color: var(--accent-green)
+
+
+
       &__item-content
         padding-left: 5px
         font-weight: 700
@@ -491,6 +544,8 @@
       &__form-submit
         height: 50px
         width: 100%
+      &__autocomplete-list
+        right: 0
 
     .advantages
       margin-top: 50px
@@ -558,8 +613,7 @@
             color: white
             opacity: .85
         &__item
-          overflow: hidden
-          min-width: 200px
+          overflow: visible
           padding: 15px 10px
           border-bottom: 2px solid black
           background-color: var(--accent-green)
@@ -585,4 +639,14 @@
           overflow-x: hidden
           &--active
             left: clamp(50px, 35%, 300px)
+        &__autocomplete-list
+          left: 1.5%
+          right: 1.5%
+          border: none
+          box-shadow: none
+        &__autocomplete-item
+          padding: 15px
+          &--selected
+            color: rgba(255, 255, 255, 1)
+            background-color: black
 
