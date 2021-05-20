@@ -567,6 +567,9 @@
         align-self: center
         margin-bottom: 0
       .filters
+        &__content
+          display: flex
+          flex-direction: column
         .rate
           width: 195px
           // Для дизэйбла горизонтального скрола
@@ -580,7 +583,7 @@
             color: yellow !important
           label:hover:before,
           label:hover ~ label:before
-            color: lighten(#04AA6D, 10%)
+            color: darken(yellow, 5%)
         .wrap
           grid-template: repeat(2, max-content) calc(var(--range-height) + 4px)/ 1fr 1fr
           &:before, &:after
@@ -606,6 +609,7 @@
               position: relative
               z-index: 1
         &__heading
+          cursor: pointer
           padding: 10px 0
           display: block
           .fa-filter
@@ -613,7 +617,8 @@
             color: lightseagreen
             padding: 5px
         &__submit
-          height: 60px
+          margin-top: auto
+          min-height: 60px
           &:hover, &:active, &:focus
             background: black
             color: white
