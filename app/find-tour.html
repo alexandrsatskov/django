@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Стили -->
+    <link rel="stylesheet" href="css/hotel-datepicker.css" >
     <link rel="stylesheet" href="css/app.min.css">
 
-    <title>Главная</title>
+    <title>Найти тур</title>
 </head>
 
 <body class="body">
@@ -100,8 +101,8 @@
                             </fieldset>
                         </li>
                         <li class="filters__item">
-                            <label for="date" class="filters__item-label">Даты вылета</label>
-                            <input id="date" class="filters__item-input" type="text" value="22-01-2005">
+                            <label for="departure-date" class="filters__item-label">Даты вылета</label>
+                            <input id="departure-date" class="filters__item-input" type="text" value="Today">
                         </li>
                         <li class="filters__item">
                             <label for="nights" class="filters__item-label">Ночей:&nbsp;<span class="filters__item-content">4</span></label>
@@ -1671,7 +1672,7 @@
                 const message = document.createElement("li");
                 message.setAttribute("class", "no_result");
                 // Add message text content
-                message.innerHTML = `<span>Found No Results for "${query}"</span>`;
+                message.innerHTML = `No Results <span class="bold">${query}</span>`;
                 // Add message list element to the list
                 list.appendChild(message);
             },
@@ -1714,6 +1715,8 @@
         base_config("#city", cities, 'city-list', 'city')
     );
 </script>
+<script src="js/fecha.min.js"></script>
+<script src="js/hotel-datepicker.min.js"></script>
 <script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
 </body>

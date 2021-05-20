@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Стили -->
+    <link rel="stylesheet" href="css/hotel-datepicker.css" >
     <link rel="stylesheet" href="css/app.min.css">
     <title>Главная</title>
 </head>
@@ -73,7 +74,7 @@
 
                             <div class="find-tour__form-item">
                                 <label class="find-tour__form-label" for="departure-date">Вылет</label>
-                                <input type="text" name="departure-date" id="departure-date" value="2021-05-02" class="find-tour__form-input">
+                                <input class="find-tour__form-input" id="departure-date" type="text" name="departure-date" id="departure-date" value="today">
                             </div>
 
                             <div class="find-tour__form-item">
@@ -323,8 +324,12 @@
 </footer>
 
 <!-- Скрипты -->
+<script src="js/fecha.min.js"></script>
+<script src="js/hotel-datepicker.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.js"></script>
 <script>
+
     const cities = [
         "Абаза",
         "Абакан",
@@ -1456,7 +1461,7 @@
                 const message = document.createElement("li");
                 message.setAttribute("class", "no_result");
                 // Add message text content
-                message.innerHTML = `<span>Found No Results for "${query}"</span>`;
+                message.innerHTML = `No Results <span class="bold">${query}</span>`;
                 // Add message list element to the list
                 list.appendChild(message);
             },

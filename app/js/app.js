@@ -49,7 +49,32 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
+    if (document.getElementById('departure-date') !== null) {
+        const hdpkr = new HotelDatepicker(document.getElementById('departure-date'), {
+            format: 'D MMM',
+            autoClose: false,
+            i18n: {
+                selected: 'Вы выбрали:',
+                night: 'Ночь',
+                nights: 'Ночей',
+                button: 'Закрыть',
+                'checkin-disabled': 'Check-in disabled',
+                'checkout-disabled': 'Check-out disabled',
+                'day-names-short': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                'day-names': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'month-names-short': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                'month-names': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                'error-more': 'Date range should not be more than 1 night',
+                'error-more-plural': 'Date range should not be more than %d nights',
+                'error-less': 'Date range should not be less than 1 night',
+                'error-less-plural': 'Date range should not be less than %d nights',
+                'info-more': 'Выберите даты желаемого вылета',
+                'info-more-plural': 'Выберите даты желаемого вылета',
+                'info-range': 'Выберите даты желаемого вылета',
+                'info-default': 'Выберите даты желаемого вылета'
+            }
+        });
+    }
     // FILTERS
     if (filters !== null) {
         // for (let i = 0; i < ranges.length; i++) {
