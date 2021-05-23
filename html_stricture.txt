@@ -72,3 +72,42 @@ https://docs.google.com/forms/d/18rGsPACF1iHH-l719n5fKFkKN898t6N2Ixo7F8mrPuw/vie
 	&__item-input
 	&__item-content
 	&__submit
+
+
+<--- tour.html --->
+.tour-info
+	&__image-wrapper
+	&__image
+	&__desc
+	&__name
+	&__text
+	&__rate
+	&__rate-link
+	&__table
+	&__table-tbody
+	&__table-tr
+	&__table-tr
+
+.country
+	&__name
+	&__desc
+
+.city
+	&__name
+	&__desc
+
+.hotel
+	&__name
+	&__desc
+
+.review
+	&__heading
+	&__list
+	&__item
+	&__username
+	&__rate
+	&__text
+
+
+
+

@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
         filters_content = document.querySelector('.filters__content'),
         sort = document.querySelector('.sort'),
         increments = document.querySelectorAll('.fa-plus'),
-        decrements = document.querySelectorAll('.fa-minus');
+        decrements = document.querySelectorAll('.fa-minus'),
+        filters_submit = document.querySelector('.filters__submit'),
+        find_tour_submit = document.querySelector('.find-tour__form-submit');
 
     if (increments !== null) {
         for (let i = 0; i < increments.length; i++) {
@@ -49,8 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-    if (document.getElementById('departure-date') !== null) {
-        const hdpkr = new HotelDatepicker(document.getElementById('departure-date'), {
+    const date_input = document.getElementById('departure-date');
+    if (date_input !== null) {
+        const hdpkr = new HotelDatepicker(date_input, {
             format: 'D MMM',
             autoClose: false,
             i18n: {
@@ -74,18 +77,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 'info-default': 'Выберите даты желаемого вылета'
             }
         });
+
+        date_input.addEventListener('click', function () {
+            date_input.value = "";
+            hdpkr.open();
+        });
     }
     // FILTERS
     if (filters !== null) {
-        // for (let i = 0; i < ranges.length; i++) {
-        //     ranges[i].addEventListener("input", function() {
-        //         let content = this.parentElement.querySelector(".filters__item-content");
-        //         content.innerHTML = this.value;
-        //     });
-        // }
+
         nights_range.addEventListener("input", function() {
-                    let content = this.parentElement.querySelector(".filters__item-content");
-                    content.innerHTML = this.value;
+            let content = this.parentElement.querySelector(".filters__item-content");
+            content.innerHTML = this.value;
         });
         participants_range.addEventListener("input", function() {
             let content = this.parentElement.querySelector(".filters__item-content");
@@ -98,15 +101,67 @@ document.addEventListener("DOMContentLoaded", function() {
             hamburger_menu.classList.toggle('hamburger--animate')
             filters_content.classList.toggle('filters__content--active')
         });
-        addEventListener(
-            "input",
-            (e) => {
+        const wrap = document.querySelector('.wrap');
+        wrap.addEventListener("input",(e) => {
                 let _t = e.target;
                 _t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);
             },
             false
         );
+        filters_submit.addEventListener('click', function (event) {
+            event.preventDefault();
+            const
+               country = document.getElementById('country'),
+               city = document.getElementById('city'),
+               rate = document.getElementById('rate').querySelector('input:checked'),
+               price = getComputedStyle(document.querySelector('.wrap'));
+            let href_current_page = filters_submit.getAttribute('href');
 
+            // Если открыта страница без аргументов в URI
+            if (href_current_page.indexOf('?') !== -1) {
+               href_current_page = href_current_page.substring(0, href_current_page.indexOf('?'));
+            }
+            let query_attributes = `country=${country.value}&city=${city.value}&rate=${rate.value}&date=${date_input.value}&nights=${nights_range.value}&participants=${participants_range.value}&price_from=${price.getPropertyValue('--a').trim()}&price_to=${price.getPropertyValue('--b').trim()}`;
+
+            // Simulate a mouse click:
+            // window.location.href = `${href_current_page}?${query_attributes}`;
+
+            // Simulate an HTTP redirect:
+            window.location.replace(`${href_current_page}?${query_attributes}`);
+        });
+    }
+    if (find_tour_submit !== null) {
+
+        find_tour_submit.addEventListener('click', function (event) {
+            event.preventDefault();
+            const
+                city = document.getElementById('city'),
+                date = document.getElementById('departure-date'),
+                nights = document.getElementById('nights'),
+                participants = document.getElementById('participants');
+
+            let href_current_page = find_tour_submit.getAttribute('href');
+
+            console.log(href_current_page)
+            // Если открыта страница без аргументов в URI
+            if (href_current_page.indexOf('?') !== -1) {
+                href_current_page = href_current_page.substring(0, href_current_page.indexOf('?'));
+            }
+            let query_attributes = `city=${city.value}&date=${date.value}&nights=${nights.value}&participants=${participants.value}`;
+
+            // Simulate a mouse click:
+            // window.location.href = `${href_current_page}?${query_attributes}`;
+
+            // Simulate an HTTP redirect:
+            window.location.replace(`${href_current_page}/find-tour.html?${query_attributes}`);
+        });
+    }
+    const textarea = document.querySelector('.add-review__text');
+    if (textarea !== null) {
+        textarea.addEventListener('input', () => {
+            textarea.style.height = "5px";
+            textarea.style.height = (textarea.scrollHeight)+"px";
+        });
     }
 
     // HAMBURGER

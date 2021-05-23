@@ -69,40 +69,40 @@
                     <ul class="filters__list">
                         <li class="filters__item">
                             <label for="country" class="filters__item-label">Страна</label>
-                            <input class="filters__item-input filters__item-input--autocomplete" id="country" value="Россия" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
+                            <input class="filters__item-input filters__item-input--autocomplete" id="country" value="Любая" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
                         </li>
                         <li class="filters__item">
                             <label for="city" class="filters__item-label">Город</label>
-                            <input class="filters__item-input filters__item-input--autocomplete" id="city" value="Пермь" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
+                            <input class="filters__item-input filters__item-input--autocomplete" id="city" value="Любой" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
                         </li>
                         <li class="filters__item">
                             <label for="rate" class="filters__item-label">Рейтинг</label>
                             <fieldset id="rate" class="rate">
-                                <input type="radio" id="rating10" name="rating" value="10" />
+                                <input type="radio" id="rating10" name="rating" value="10"/>
                                 <label for="rating10" title="5 stars"></label>
-                                <input type="radio" id="rating9" name="rating" value="9" />
+                                <input type="radio" id="rating9" name="rating" value="9"/>
                                 <label class="half" for="rating9" title="4 1/2 stars"></label>
-                                <input type="radio" id="rating8" name="rating" value="8" />
+                                <input type="radio" id="rating8" name="rating" value="8"/>
                                 <label for="rating8" title="4 stars"></label>
-                                <input type="radio" id="rating7" name="rating" value="7" />
+                                <input type="radio" id="rating7" name="rating" value="7" checked/>
                                 <label class="half" for="rating7" title="3 1/2 stars"></label>
-                                <input type="radio" id="rating6" name="rating" value="6" />
+                                <input type="radio" id="rating6" name="rating" value="6"/>
                                 <label for="rating6" title="3 stars"></label>
-                                <input type="radio" id="rating5" name="rating" value="5" />
+                                <input type="radio" id="rating5" name="rating" value="5"/>
                                 <label class="half" for="rating5" title="2 1/2 stars"></label>
-                                <input type="radio" id="rating4" name="rating" value="4" />
+                                <input type="radio" id="rating4" name="rating" value="4"/>
                                 <label for="rating4" title="2 stars"></label>
-                                <input type="radio" id="rating3" name="rating" value="3" />
+                                <input type="radio" id="rating3" name="rating" value="3"/>
                                 <label class="half" for="rating3" title="1 1/2 stars"></label>
-                                <input type="radio" id="rating2" name="rating" value="2" />
+                                <input type="radio" id="rating2" name="rating" value="2"/>
                                 <label for="rating2" title="1 star"></label>
-                                <input type="radio" id="rating1" name="rating" value="1" />
+                                <input type="radio" id="rating1" name="rating" value="1"/>
                                 <label class="half" for="rating1" title="1/2 star"></label>
                             </fieldset>
                         </li>
                         <li class="filters__item">
                             <label for="departure-date" class="filters__item-label">Даты вылета</label>
-                            <input id="departure-date" class="filters__item-input" type="text" value="Today">
+                            <input id="departure-date" class="filters__item-input" type="text" value="Today" readonly>
                         </li>
                         <li class="filters__item">
                             <label for="nights" class="filters__item-label">Ночей:&nbsp;<span class="filters__item-content">4</span></label>
@@ -127,7 +127,7 @@
 <!--                            <input id="price" class="filters__item-input" type="range" min="0" max="20000" value="4000">-->
                         </li>
                     </ul>
-                    <button class="filters__submit" name="button" type="submit">Поиск</button>
+                    <a href="" class="filters__submit">Поиск</a>
                 </div>
             </div>
             <div class="sort">
@@ -139,157 +139,45 @@
                 </ul>
             </div>
             <ul class="tours">
-                <li class="tours__item">
-                    <div class="tours__item-image-wrapper">
-                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
+                <li class="tours__item" id="tour1">
+                    <a href="tour.html">
+                        <div class="tours__item-image-wrapper">
+                            <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
 
-                        <span class="tours__item-destination-city">
+                            <span class="tours__item-destination-city">
                             Анталья,
                             <span class="tours__item-destination-country">Россия</span>
                         </span>
-                    </div>
-                    <div class="tours__item-desc">
-                        <div class="tours__item-desc-inner">
-                            <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <fieldset class="rate">
-                                <input type="radio" value="10" />
-                                <label title="5 stars"></label>
-                                <input type="radio" value="9" />
-                                <label class="half" title="4 1/2 stars"></label>
-                                <input type="radio" value="8" />
-                                <label title="4 stars"></label>
-                                <input type="radio" value="7" checked/>
-                                <label class="half" title="3 1/2 stars"></label>
-                                <input type="radio" value="6" />
-                                <label title="3 stars"></label>
-                                <input type="radio" value="5" />
-                                <label class="half" title="2 1/2 stars"></label>
-                                <input type="radio" value="4" />
-                                <label title="2 stars"></label>
-                                <input type="radio" value="3" />
-                                <label class="half" title="1 1/2 stars"></label>
-                                <input type="radio" value="2" />
-                                <label title="1 star"></label>
-                                <input type="radio" value="1" />
-                                <label class="half" title="1/2 star"></label>
-                            </fieldset>
                         </div>
-                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
-                    </div>
-                </li>
-                <li class="tours__item">
-                    <div class="tours__item-image-wrapper">
-                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
-
-                        <span class="tours__item-destination-city">
-                            Анталья,
-                            <span class="tours__item-destination-country">Россия</span>
-                        </span>
-                    </div>
-                    <div class="tours__item-desc">
-                        <div class="tours__item-desc-inner">
-                            <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <fieldset class="rate">
-                                <input type="radio" value="10" />
-                                <label title="5 stars"></label>
-                                <input type="radio" value="9" />
-                                <label class="half" title="4 1/2 stars"></label>
-                                <input type="radio" value="8" />
-                                <label title="4 stars"></label>
-                                <input type="radio" value="7" checked/>
-                                <label class="half" title="3 1/2 stars"></label>
-                                <input type="radio" value="6" />
-                                <label title="3 stars"></label>
-                                <input type="radio" value="5" />
-                                <label class="half" title="2 1/2 stars"></label>
-                                <input type="radio" value="4" />
-                                <label title="2 stars"></label>
-                                <input type="radio" value="3" />
-                                <label class="half" title="1 1/2 stars"></label>
-                                <input type="radio" value="2" />
-                                <label title="1 star"></label>
-                                <input type="radio" value="1" />
-                                <label class="half" title="1/2 star"></label>
-                            </fieldset>
+                        <div class="tours__item-desc">
+                            <div class="tours__item-desc-inner">
+                                <span class="tours__item-nights">7&nbsp;ночей</span>
+                                <fieldset class="rate">
+                                    <input type="radio" value="10" />
+                                    <label title="5 stars"></label>
+                                    <input type="radio" value="9" />
+                                    <label class="half" title="4 1/2 stars"></label>
+                                    <input type="radio" value="8" />
+                                    <label title="4 stars"></label>
+                                    <input type="radio" value="7" checked/>
+                                    <label class="half" title="3 1/2 stars"></label>
+                                    <input type="radio" value="6" />
+                                    <label title="3 stars"></label>
+                                    <input type="radio" value="5" />
+                                    <label class="half" title="2 1/2 stars"></label>
+                                    <input type="radio" value="4" />
+                                    <label title="2 stars"></label>
+                                    <input type="radio" value="3" />
+                                    <label class="half" title="1 1/2 stars"></label>
+                                    <input type="radio" value="2" />
+                                    <label title="1 star"></label>
+                                    <input type="radio" value="1" />
+                                    <label class="half" title="1/2 star"></label>
+                                </fieldset>
+                            </div>
+                            <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
                         </div>
-                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
-                    </div>
-                </li>
-                <li class="tours__item">
-                    <div class="tours__item-image-wrapper">
-                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
-
-                        <span class="tours__item-destination-city">
-                            Анталья,
-                            <span class="tours__item-destination-country">Россия</span>
-                        </span>
-                    </div>
-                    <div class="tours__item-desc">
-                        <div class="tours__item-desc-inner">
-                            <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <fieldset class="rate">
-                                <input type="radio" value="10" />
-                                <label title="5 stars"></label>
-                                <input type="radio" value="9" />
-                                <label class="half" title="4 1/2 stars"></label>
-                                <input type="radio" value="8" />
-                                <label title="4 stars"></label>
-                                <input type="radio" value="7" checked/>
-                                <label class="half" title="3 1/2 stars"></label>
-                                <input type="radio" value="6" />
-                                <label title="3 stars"></label>
-                                <input type="radio" value="5" />
-                                <label class="half" title="2 1/2 stars"></label>
-                                <input type="radio" value="4" />
-                                <label title="2 stars"></label>
-                                <input type="radio" value="3" />
-                                <label class="half" title="1 1/2 stars"></label>
-                                <input type="radio" value="2" />
-                                <label title="1 star"></label>
-                                <input type="radio" value="1" />
-                                <label class="half" title="1/2 star"></label>
-                            </fieldset>
-                        </div>
-                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
-                    </div>
-                </li>
-                <li class="tours__item">
-                    <div class="tours__item-image-wrapper">
-                        <img class="tours__item-image" src="img/tour-image.jpg" alt="Картинка тура">
-
-                        <span class="tours__item-destination-city">
-                            Анталья,
-                            <span class="tours__item-destination-country">Россия</span>
-                        </span>
-                    </div>
-                    <div class="tours__item-desc">
-                        <div class="tours__item-desc-inner">
-                            <span class="tours__item-nights">7&nbsp;ночей</span>
-                            <fieldset class="rate">
-                                <input type="radio" value="10" />
-                                <label title="5 stars"></label>
-                                <input type="radio" value="9" />
-                                <label class="half" title="4 1/2 stars"></label>
-                                <input type="radio" value="8" />
-                                <label title="4 stars"></label>
-                                <input type="radio" value="7" checked/>
-                                <label class="half" title="3 1/2 stars"></label>
-                                <input type="radio" value="6" />
-                                <label title="3 stars"></label>
-                                <input type="radio" value="5" />
-                                <label class="half" title="2 1/2 stars"></label>
-                                <input type="radio" value="4" />
-                                <label title="2 stars"></label>
-                                <input type="radio" value="3" />
-                                <label class="half" title="1 1/2 stars"></label>
-                                <input type="radio" value="2" />
-                                <label title="1 star"></label>
-                                <input type="radio" value="1" />
-                                <label class="half" title="1/2 star"></label>
-                            </fieldset>
-                        </div>
-                        <span class="tours__item-price">14&nbsp;891&nbsp;₽</span>
-                    </div>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -297,13 +185,29 @@
 </main>
 
 <footer class="footer">
-    <div class="container"></div>
+    <div class="container">
+        <div class="footer__inner">
+            <div class="footer__column">
+                <p class="footer__address">Пермь, Чердынская улица, 42</p>
+                <p class="footer__schedule">Будни с 08:00 по 18:00</p>
+            </div>
+            <div class="footer__column">
+                <p class="footer__phone">+7 982 481-88-02</p>
+                <p class="footer__email">three_d.perm@mail.ru</p>
+            </div>
+            <div class="footer__column">
+                <p class="footer__privacy-policy">Предоставленная на сайте информация носит справочный характер и не является публичной офертой.</p>
+                <p class="footer__copyright">© ООО "Три Д" 2018-2021</p>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <!-- Скрипты -->
 <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.js"></script>
 <script>
     const countries = [
+        "Любая",
         "Афганистан",
         "Албания",
         "Алжир",
@@ -542,6 +446,7 @@
         "Науру"
     ]
     const cities = [
+        "Любой",
         "Абаза",
         "Абакан",
         "Абдулино",

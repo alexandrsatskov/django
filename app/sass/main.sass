@@ -4,6 +4,7 @@
 .header
   grid-area: header
   font-weight: 700
+  margin-bottom: 50px
   &__body
     display: flex
     align-items: center
@@ -52,7 +53,6 @@
   grid-area: main
   //  <-- index.html -->
   .find-tour
-    margin-top: 50px
     &__left
       position: relative
       z-index: 1
@@ -124,15 +124,19 @@
       width: 100%
       height: 80px
     &__form-submit
+      cursor: pointer
       border-bottom-right-radius: 12px
       border-top-right-radius: 12px
-      cursor: pointer
       font-family: 'Comfortaa', sans-serif
       color: white
       width: calc(min(200px, 26%))
-      background-color: rgba(0, 0, 0, 1)
+      background-color: black
+      transition: color .25s
+      display: flex
+      justify-content: center
+      align-items: center
       &:hover
-        background-color: rgba(0, 0, 0, .9)
+        color: var(--accent-green)
     &__autocomplete-list
       z-index: 1
       position: absolute
@@ -161,7 +165,7 @@
 
 
   .advantages
-    margin-top: calc(70px + 90px)
+    margin-top: 110px
     background-color: #f1f2f8
     &__body
       position: relative
@@ -206,10 +210,10 @@
 
 
   .popular-tours
-    margin-top: 80px
+    margin-top: 30px
 
   .faq
-    margin-top: 70px
+    margin-top: 20px
     &__item
       margin-bottom: 10px
       &:last-child
@@ -260,9 +264,9 @@
         bottom: 20px
         left: calc(min(45px, 10%))
 
+
   //  <-- about.html -->
   .about
-    margin-top: 50px
     padding:
       left: calc(min(50px, 5%))
       right: calc(min(30px, 3%))
@@ -285,14 +289,30 @@
     &__article-heading
       margin-bottom: 10px
     &__article-text
+      margin: 8px 0
       padding:
         left: calc(min(40px, 4%))
         right: calc(min(30px, 3%))
+      &--indent
+        position: relative
+        padding-left: calc(4% + 15px)
+        &:before
+          position: absolute
+          left: calc(4%)
+          content: '-'
+
+    &__article-link
+      display: inline-block
+      color: blue
+      text-decoration: underline
+      text-underline-position: under
+      &:hover
+        text-decoration: none
 
 
   //  <-- find-tour.html -->
   &__body
-    margin-top: 60px
+    margin-top: 10px
     display: grid
     grid-column-gap: 60px
     grid-template-columns: minmax(150px, 15%) 3fr
@@ -326,6 +346,7 @@
         border: 1px solid var(--select-border)
         font-size: 17px
         cursor: pointer
+        font-weight: 700
       &__autocomplete-list
         z-index: 1
         position: absolute
@@ -358,11 +379,12 @@
         color: rgba(0, 0, 0, 1)
       &__submit
         font-weight: 700
-        cursor: pointer
         background-color: black
         color: white
         font-size: 17px
         height: 40px
+        line-height: 40px
+        text-align: center
         width: 100%
         transition-property: background-color, color
         transition-duration: .5s
@@ -384,13 +406,14 @@
       &__heading
         font-weight: 600
         font-size: 15px
+        padding-right: 20px
 
         // <-- Стрелка -->
         &:after, &:before
           content: ''
           position: absolute
           top: 50%
-          right: -20px
+          right: 0
           width: 2px
           height: 8px
           background-color: lightseagreen
@@ -406,24 +429,170 @@
             transform: translate(-110%, -50%) rotate(45deg)
 
 
+  //  <-- tour.html -->
+  .tour-info
+    display: flex
+    margin-bottom: 100px
+    &__image-wrapper
+      min-width: 400px
+      max-width: 500px
+    &__image
+      width: 100%
+    &__desc
+      padding:
+        left: 5%
+    &__name
+      margin-bottom: 10px
+    &__text
+    &__rate
+      display: flex
+      align-items: center
+      margin: 10px 0
+      label:before
+        cursor: default
+      label:hover:before,
+      label:hover ~ label:before
+        color: lightgrey  /* color previous stars on hover */
+      input:checked ~ label:before
+        color: #04AA6D
+    &__rate-link
+      text-decoration: underline black
+      &:hover
+        text-decoration: none
+    &__rate-link-span
+      color: blue
+    &__table
+      width: clamp(300px, 100%, 500px)
+      font-size: 14px
+      border-collapse: collapse
+    &__table-tbody
+    &__table-tr
+      .tour-info__table-td:last-child
+        width: 70%
+        font-size: 16px
+        font-weight: bold
+        text-align: center
+    &__table-td
+      padding: 8px 15px
+
+
+  .article
+    margin: 75px auto
+    &__name
+      margin-bottom: 20px
+      text-align: center
+    &__desc
+      color: rgba(0, 0, 0, .8)
+      &:first-letter
+        padding-left: clamp(10px, 5%, 55px)
+
+
+  .review
+    margin-top: 100px
+    &__heading
+      text-align: center
+    &__username
+      font-size: 17px
+      font-weight: bold
+    &__list
+    &__item
+      margin: 40px 0
+    &__headline
+      margin-bottom: 15px
+      display: flex
+      align-items: center
+    &__rate
+      margin-left: 15px
+      label:before
+        cursor: default
+      label:hover:before,
+      label:hover ~ label:before
+        color: lightgrey  /* color previous stars on hover */
+      input:checked ~ label:before
+        color: #04AA6D
+    &__text
+      color: rgba(0, 0, 0, .8)
+
+
+  .add-review
+    margin-top: 100px
+    &__heading
+      margin: 15px 0
+    &__form
+    &__rate
+      label:before
+        --star-fz: 30px
+    &__submit
+      margin-left: auto
+      cursor: pointer
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 17px
+      font-weight: 700
+      padding: 15px 25px
+      background-color: black
+      color: white
+      transition: background-color .35s
+      &:hover
+        background-color: var(--accent-green)
+        color: black
+    &__text
+      border: 1px solid lightgrey
+      width: 100%
+      min-height: 200px
+      resize: none
+      overflow: hidden
+      font-size: 17px
+      padding: 20px
+      font-weight: 600
+    &__plug
+      text-align: center
+      color: rgba(0, 0, 0, .55)
+    &__bottom
+      margin-top: 10px
+      display: flex
+
+
 // <--- Подвал --->
 .footer
   grid-area: footer
-  position: relative
-  width: 90%
-  border: 2px dashed deeppink
-  margin: 0 auto
   margin-top: 100px
-  height: 150px
-  &:before
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    color: deeppink
-    font-size: 60px
-    content: 'Подвал'
-
+  width: 100%
+  padding: 40px 0
+  color: white
+  font-size: 17px
+  background-color: black
+  &__inner
+    display: grid
+    grid-template-columns: minmax(210px, 1fr) 1fr minmax(350px, 2fr)
+    grid-column-gap: 30px
+    grid-row-gap: 10px
+    align-items: center
+    grid-template-areas: "address phone privacy-policy" "schedule email copyright"
+  &__address,
+  &__email,
+  &__schedule,
+  &__phone,
+  &__privacy-policy,
+  &__copyright
+    margin: 8px 0
+    cursor: pointer
+    transition: color .35s
+    &:hover
+      color: var(--accent-green)
+  &__address
+    grid-area: address
+  &__email
+    grid-area: email
+  &__schedule
+    grid-area: schedule
+  &__phone
+    grid-area: phone
+  &__privacy-policy
+    grid-area: privacy-policy
+  &__copyright
+    grid-area: copyright
 
 
 // Disable overlay when orientation is changing
@@ -532,6 +701,10 @@
         height: 50px
         width: 100%
         border: none
+        &:nth-child(1), &:nth-child(2)
+          .find-tour__form-input
+            padding-right: 25px
+            text-align: right
         &:nth-child(3), &:nth-child(4)
           width: auto
           margin-left: 0
@@ -556,6 +729,9 @@
     .advantages
       margin-top: 50px
 
+    .help
+      &__heading
+        margin-top: 0
     &__body
       margin-top: 30px
       grid-template-areas: "sort filters" "tours tours"
@@ -619,10 +795,10 @@
         &__submit
           margin-top: auto
           min-height: 60px
-          &:hover, &:active, &:focus
-            background: black
-            color: white
-            opacity: .85
+          line-height: 60px
+          &:hover
+            background-color: black
+            color: var(--accent-green)
         &__item
           overflow: visible
           padding: 15px 10px
@@ -636,7 +812,6 @@
         &__item-content
           font-size: 16px
           color: black
-          font-weight: 700
         &__content
           left: 100%
           z-index: 2
@@ -661,3 +836,64 @@
             color: rgba(255, 255, 255, 1)
             background-color: black
 
+    .tour-info
+      display: grid
+      margin-bottom: 0
+      &__image-wrapper
+        justify-self: center
+        margin-bottom: 30px
+        min-width: auto
+      &__desc
+        padding:
+          left: 0
+
+
+    .article
+      margin: 40px auto
+      &__desc
+        &:first-letter
+          padding-left: 0
+
+
+    .review
+      margin-top: 40px
+      &__item
+        margin: 30px 0
+      &__headline
+        margin-bottom: 10px
+
+
+    .add-review
+      &__submit
+        padding: 0 calc(max(2%, 5px))
+      &__text
+        min-height: 140px
+
+  .footer
+    margin-top: 60px
+    padding: 25px 0
+    &__column
+      &:nth-child(2)
+        text-align: right
+      &:last-child
+        text-align: center
+    &__inner
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+
+
+@media (max-width: 520px)
+  .footer
+    &__column
+      border-bottom: 2px solid var(--accent-green)
+      &:first-child
+        text-align: center
+      &:nth-child(2)
+        text-align: center
+      &:last-child
+        border-bottom: none
+    &__inner
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
