@@ -462,6 +462,7 @@
     &__rate-link-span
       color: blue
     &__table
+      border-collapse: collapse
       width: clamp(300px, 100%, 500px)
       font-size: 14px
       border-collapse: collapse
@@ -473,6 +474,7 @@
         font-weight: bold
         text-align: center
     &__table-td
+      border: 1px solid black
       padding: 8px 15px
 
 
@@ -569,7 +571,6 @@
     grid-column-gap: 30px
     grid-row-gap: 10px
     align-items: center
-    grid-template-areas: "address phone privacy-policy" "schedule email copyright"
   &__address,
   &__email,
   &__schedule,
@@ -581,18 +582,6 @@
     transition: color .35s
     &:hover
       color: var(--accent-green)
-  &__address
-    grid-area: address
-  &__email
-    grid-area: email
-  &__schedule
-    grid-area: schedule
-  &__phone
-    grid-area: phone
-  &__privacy-policy
-    grid-area: privacy-policy
-  &__copyright
-    grid-area: copyright
 
 
 // Disable overlay when orientation is changing
