@@ -70,7 +70,7 @@ html
       transition: background-color 0.5s
   &__item-image
     width: 100%
-    max-height: 250px
+    max-height: 215px
   &__item-destination-city
     // z-index при затемнении картинки
     z-index: 1
@@ -315,6 +315,7 @@ button, input, optgroup, select, textarea
   margin-bottom: 25px
 
 .body
+  font-family: var(--font)
   position: static
   display: grid
   grid-template-areas: "header" "main" "footer"
@@ -379,6 +380,10 @@ img
   border-radius: 0 /* get rid of Firefox corner rounding */
   background-color: var(--thumb-bgc)
   pointer-events: auto
+
+.plug
+  text-align: center
+  color: rgba(0, 0, 0, .55)
 
 .wrap
   --dif: calc(var(--max) - var(--min))

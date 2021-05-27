@@ -23,9 +23,9 @@
 <header class="header">
     <div class="container">
         <div class="header__body">
-            <div class="header__logo">
-                <a href="index.html">logo</a>
-            </div>
+            <a class="header__logo" href="index.html">
+                <img class="header__logo-image" src="img/threeD_logo.svg" alt="Логотип компании">
+            </a>
 
             <div class="hamburger">
                 <div class="hamburger__inner">
@@ -64,12 +64,151 @@
             <h1 class="about__heading">О нашей компании</h1>
             <p class="about__text">Общество с ограниченной ответственностью «Три Д» - это независимое туристическое агентство, занимающееся пакетными турами. Предприятие основано в 2018 году. Девиз организации «Дешево, доступно и далеко» и в нём заключаются фундаментальные принципы организации. У нас Вы сможете приобрести неограниченные в своём направлении туры. Мы работаем с самым надёжными туроператорами. На нашем сайте вы сможете просмотреть актуальную базу туров, предоставляемых организацией, а так же справочную и контактную информацию. Звоните по горячей линии, пишите нам на почту и приходите в наш офис.</p>
             <h2 class="about__subtitle">Реквизиты:</h2>
-            <p class="about__text">Телефон: +7 982 481-88-02</p>
-            <p class="about__text">Электронная почта: three_d.perm@mail.ru</p>
-            <p class="about__text">Адрес: 614088, Пермский край, город Пермь, Чердынская улица, дом 42</p>
-            <p class="about__text">График работы: будние дни с 08:00 по 18:00</p>
-            <p class="about__text">ОГРН: 1185958000766</p>
-            <p class="about__text">ИНН/КПП: 5905055968/590501001</p>
+            <p class="about__text">Телефон: <span class="bold">+7 982 481-88-02</span></p>
+            <p class="about__text">Электронная почта: <span class="bold">three_d.perm@mail.ru</span></p>
+            <p class="about__text">Адрес: <span class="bold">614088, Пермский край, город Пермь, Чердынская улица, дом 42</span></p>
+            <p class="about__text">График работы: <span class="bold">будние дни с 08:00 по 18:00</span></p>
+            <p class="about__text">ОГРН: <span class="bold">1185958000766</span></p>
+            <p class="about__text">ИНН/КПП: <span class="bold">5905055968/590501001</span></p>
+        </section>
+
+        <section id="review" class="review">
+            <h2 class="review__heading">Отзывы</h2>
+            <h2 class="review__plug plug">/* Вы будете первым кто оставит отзыв! */</h2>
+            <ul class="review__list">
+                <li class="review__item">
+                    <div class="review__headline">
+                        <span class="review__username">Юзернейм</span>
+                        <fieldset class="review__rate rate">
+                            <input type="radio" value="10" />
+                            <label title="5 stars"></label>
+                            <input type="radio" value="9" />
+                            <label class="half" title="4 1/2 stars"></label>
+                            <input type="radio" value="8" />
+                            <label title="4 stars"></label>
+                            <input type="radio" value="7" checked/>
+                            <label class="half" title="3 1/2 stars"></label>
+                            <input type="radio" value="6" />
+                            <label title="3 stars"></label>
+                            <input type="radio" value="5" />
+                            <label class="half" title="2 1/2 stars"></label>
+                            <input type="radio" value="4" />
+                            <label title="2 stars"></label>
+                            <input type="radio" value="3" />
+                            <label class="half" title="1 1/2 stars"></label>
+                            <input type="radio" value="2" />
+                            <label title="1 star"></label>
+                            <input type="radio" value="1" />
+                            <label class="half" title="1/2 star"></label>
+                        </fieldset>
+                    </div>
+                    <p class="review__text">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque magnam nam! Amet animi aut deserunt est et facilis fugiat impedit molestias natus non pariatur quod sit, voluptatum. Eveniet, suscipit.</span>
+                        <span>Dicta dolore doloremque exercitationem harum iure magni modi, nam nesciunt odit officia praesentium ratione soluta, temporibus veritatis vero! Architecto asperiores, commodi eaque ipsam labore magnam neque voluptas voluptate voluptatem voluptates.
+          </span>
+                    </p>
+                </li>
+                <li class="review__item">
+                    <div class="review__headline">
+                        <span class="review__username">Юзернейм</span>
+                        <fieldset class="review__rate rate">
+                            <input type="radio" value="10" />
+                            <label title="5 stars"></label>
+                            <input type="radio" value="9" />
+                            <label class="half" title="4 1/2 stars"></label>
+                            <input type="radio" value="8" />
+                            <label title="4 stars"></label>
+                            <input type="radio" value="7" checked/>
+                            <label class="half" title="3 1/2 stars"></label>
+                            <input type="radio" value="6" />
+                            <label title="3 stars"></label>
+                            <input type="radio" value="5" />
+                            <label class="half" title="2 1/2 stars"></label>
+                            <input type="radio" value="4" />
+                            <label title="2 stars"></label>
+                            <input type="radio" value="3" />
+                            <label class="half" title="1 1/2 stars"></label>
+                            <input type="radio" value="2" />
+                            <label title="1 star"></label>
+                            <input type="radio" value="1" />
+                            <label class="half" title="1/2 star"></label>
+                        </fieldset>
+                    </div>
+                    <p class="review__text">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque magnam nam! Amet animi aut deserunt est et facilis fugiat impedit molestias natus non pariatur quod sit, voluptatum. Eveniet, suscipit.</span>
+                        <span>Dicta dolore doloremque exercitationem harum iure magni modi, nam nesciunt odit officia praesentium ratione soluta, temporibus veritatis vero! Architecto asperiores, commodi eaque ipsam labore magnam neque voluptas voluptate voluptatem voluptates.
+          </span>
+                    </p>
+                </li>
+                <li class="review__item">
+                    <div class="review__headline">
+                        <span class="review__username">Юзернейм</span>
+                        <fieldset class="review__rate rate">
+                            <input type="radio" value="10" />
+                            <label title="5 stars"></label>
+                            <input type="radio" value="9" />
+                            <label class="half" title="4 1/2 stars"></label>
+                            <input type="radio" value="8" />
+                            <label title="4 stars"></label>
+                            <input type="radio" value="7" checked/>
+                            <label class="half" title="3 1/2 stars"></label>
+                            <input type="radio" value="6" />
+                            <label title="3 stars"></label>
+                            <input type="radio" value="5" />
+                            <label class="half" title="2 1/2 stars"></label>
+                            <input type="radio" value="4" />
+                            <label title="2 stars"></label>
+                            <input type="radio" value="3" />
+                            <label class="half" title="1 1/2 stars"></label>
+                            <input type="radio" value="2" />
+                            <label title="1 star"></label>
+                            <input type="radio" value="1" />
+                            <label class="half" title="1/2 star"></label>
+                        </fieldset>
+                    </div>
+                    <p class="review__text">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque magnam nam! Amet animi aut deserunt est et facilis fugiat impedit molestias natus non pariatur quod sit, voluptatum. Eveniet, suscipit.</span>
+                        <span>Dicta dolore doloremque exercitationem harum iure magni modi, nam nesciunt odit officia praesentium ratione soluta, temporibus veritatis vero! Architecto asperiores, commodi eaque ipsam labore magnam neque voluptas voluptate voluptatem voluptates.
+          </span>
+                    </p>
+                </li>
+            </ul>
+
+        </section>
+
+        <section class="add-review">
+            <h2 class="add-review__plug plug">/* Добавлять отзыв могут только авторизированные пользователи */</h2>
+
+            <form class="add-review__form" method="POST">
+                <h2 class="add-review__heading">Оставить отзыв</h2>
+                <textarea class="add-review__text"></textarea>
+                <div class="add-review__bottom">
+                    <fieldset id="rate" class="add-review__rate rate">
+                        <input type="radio" id="rating10" name="rating" value="10"/>
+                        <label for="rating10" title="5 stars"></label>
+                        <input type="radio" id="rating9" name="rating" value="9"/>
+                        <label class="half" for="rating9" title="4 1/2 stars"></label>
+                        <input type="radio" id="rating8" name="rating" value="8"/>
+                        <label for="rating8" title="4 stars"></label>
+                        <input type="radio" id="rating7" name="rating" value="7" checked/>
+                        <label class="half" for="rating7" title="3 1/2 stars"></label>
+                        <input type="radio" id="rating6" name="rating" value="6"/>
+                        <label for="rating6" title="3 stars"></label>
+                        <input type="radio" id="rating5" name="rating" value="5"/>
+                        <label class="half" for="rating5" title="2 1/2 stars"></label>
+                        <input type="radio" id="rating4" name="rating" value="4"/>
+                        <label for="rating4" title="2 stars"></label>
+                        <input type="radio" id="rating3" name="rating" value="3"/>
+                        <label class="half" for="rating3" title="1 1/2 stars"></label>
+                        <input type="radio" id="rating2" name="rating" value="2"/>
+                        <label for="rating2" title="1 star"></label>
+                        <input type="radio" id="rating1" name="rating" value="1"/>
+                        <label class="half" for="rating1" title="1/2 star"></label>
+                    </fieldset>
+                    <button class="add-review__submit" type="submit">Отправить</button>
+                </div>
+            </form>
+
         </section>
     </div>
 </main>
@@ -95,6 +234,7 @@
 
 
 <!-- Скрипты -->
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

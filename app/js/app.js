@@ -1,4 +1,32 @@
 document.addEventListener("DOMContentLoaded", function() {
+    function monthToNumber(month) {
+        switch (month) {
+            case 'Jan':
+                return '01'
+            case 'Feb':
+                return '02'
+            case 'Mar':
+                return '03'
+            case 'Apr':
+                return '04'
+            case 'May':
+                return '05'
+            case 'Jun':
+                return '06'
+            case 'Jul':
+                return '07'
+            case 'Aug':
+                return '08'
+            case 'Sep':
+                return '09'
+            case 'Oct':
+                return '10'
+            case 'Nov':
+                return '11'
+            case 'Dec':
+                return '12'
+        }
+    }
     const
         help = document.querySelectorAll(".faq__item-heading"),
         hamburger_menu = document.querySelector('.hamburger__inner'),
@@ -49,6 +77,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 sort.querySelector('.sort__list').classList.toggle('dropdown--active')
                 sort.querySelector('.sort__heading').classList.toggle('sort__heading--active')
             }
+
+            if (event.target.tagName === 'LI') {
+                let href_current_page = window.location.href;
+                console.log(href_current_page)
+                if (href_current_page.includes('&sort')) {
+                    console.log(123)
+                    href_current_page = href_current_page.replaceAll(/&sort=[^&]+/g, '')
+                }
+                console.log(`${href_current_page}&sort=${event.target.dataset.sort}`)
+                // Simulate an HTTP redirect:
+                window.location.replace(`${href_current_page}&sort=${event.target.dataset.sort}`);
+            }
+
         });
     }
     const date_input = document.getElementById('departure-date');
@@ -113,15 +154,23 @@ document.addEventListener("DOMContentLoaded", function() {
             const
                country = document.getElementById('country'),
                city = document.getElementById('city'),
-               rate = document.getElementById('rate').querySelector('input:checked'),
                price = getComputedStyle(document.querySelector('.wrap'));
-            let href_current_page = filters_submit.getAttribute('href');
+            let href_current_page = filters_submit.getAttribute('href'),
+                rate = document.getElementById('rate').querySelector('input:checked');
+
+            if (rate === null) {
+                rate = 0
+            }
+            console.log(date_input.value)
+            let [dateFrom, dateTo] =  date_input.value.split(' - ');
+            let [dateFromDay, dateFromMonth] = dateFrom.split(' ');
+            let [dateToDay, dateToMonth] = dateTo.split(' ');
 
             // Если открыта страница без аргументов в URI
             if (href_current_page.indexOf('?') !== -1) {
                href_current_page = href_current_page.substring(0, href_current_page.indexOf('?'));
             }
-            let query_attributes = `country=${country.value}&city=${city.value}&rate=${rate.value}&date=${date_input.value}&nights=${nights_range.value}&participants=${participants_range.value}&price_from=${price.getPropertyValue('--a').trim()}&price_to=${price.getPropertyValue('--b').trim()}`;
+            let query_attributes = `country=${country.value}&city=${city.value}&rate=${rate.value}&date=${dateFromDay+monthToNumber(dateFromMonth)}-${dateToDay+monthToNumber(dateToMonth)}&nights=${nights_range.value}&participants=${participants_range.value}&price_from=${price.getPropertyValue('--a').trim()}&price_to=${price.getPropertyValue('--b').trim()}`;
 
             // Simulate a mouse click:
             // window.location.href = `${href_current_page}?${query_attributes}`;

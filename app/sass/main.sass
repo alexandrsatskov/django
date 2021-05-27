@@ -10,14 +10,11 @@
     align-items: center
     height: var(--header-height)
   &__logo
-    // ОТРЕДАКТИРОВАТЬ СТИЛИ ПОСЛЕ ДОБАВЛЕНИЯ КАРТИНКИ
-    align-self: stretch
     margin-right: auto
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 120px
-    border: 2px dashed deeppink
+    height: var(--header-height)
+    padding: 5px 0
+  &__logo-image
+    max-height: 100%
   &__nav
     display: flex
   &__item
@@ -267,9 +264,6 @@
 
   //  <-- about.html -->
   .about
-    padding:
-      left: calc(min(50px, 5%))
-      right: calc(min(30px, 3%))
     &__heading
       font-size: 32px
       text-align: center
@@ -280,7 +274,6 @@
   //  <-- help.html -->
   .help
     &__heading
-      margin-top: 40px
       margin-bottom: 40px
       font-size: 32px
       text-align: center
@@ -460,12 +453,12 @@
       &:hover
         text-decoration: none
     &__rate-link-span
+      padding: 0 5px
       color: blue
     &__table
       border-collapse: collapse
       width: clamp(300px, 100%, 500px)
       font-size: 14px
-      border-collapse: collapse
     &__table-tbody
     &__table-tr
       .tour-info__table-td:last-child
@@ -548,13 +541,29 @@
       font-size: 17px
       padding: 20px
       font-weight: 600
-    &__plug
-      text-align: center
-      color: rgba(0, 0, 0, .55)
     &__bottom
       margin-top: 10px
       display: flex
 
+  .login
+    padding: 20px 40px
+    width: 400px
+    margin: 200px auto
+    border-radius: 20px
+    background-color: #eafaf4
+
+    &__heading
+      text-align: center
+
+    &__form
+    &__input
+    &__label
+      display: block
+    &__submit
+    &__link
+    &__register
+    &__errors
+    &__error
 
 // <--- Подвал --->
 .footer
