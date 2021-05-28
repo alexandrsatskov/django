@@ -28,38 +28,51 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     const
+        // <-- index.html --->
         help = document.querySelectorAll(".faq__item-heading"),
+        increments = document.querySelectorAll('.fa-plus'),
+        decrements = document.querySelectorAll('.fa-minus'),
+        find_tour_submit = document.querySelector('.find-tour__form-submit'),
+
+        // <-- index.html --->
         hamburger_menu = document.querySelector('.hamburger__inner'),
         hamburger_menu_wrapper = document.querySelector('.hamburger'),
         header_menu = document.querySelector('.header__menu'),
-        ranges = document.querySelectorAll("input[type='range']"),
-        nights_range = document.getElementById('nights'),
-        participants_range = document.getElementById('participants'),
-        overlay = document.querySelector(".overlay"),
-        scroll_top = document.querySelector('.go-top__inner'),
-        wrapper_scroll_top = document.querySelector('.go-top__inner'),
+
+        // <-- find-tour.html --->
         filters = document.querySelector('.filters'),
         filters_heading = document.querySelector('.filters__heading'),
         filters_content = document.querySelector('.filters__content'),
-        sort = document.querySelector('.sort'),
-        increments = document.querySelectorAll('.fa-plus'),
-        decrements = document.querySelectorAll('.fa-minus'),
+        nights_range = document.getElementById('nights'),
+        participants_range = document.getElementById('participants'),
         filters_submit = document.querySelector('.filters__submit'),
-        find_tour_submit = document.querySelector('.find-tour__form-submit');
+        sort = document.querySelector('.sort'),
 
-    if (increments !== null) {
+        // <-- all pages --->
+        overlay = document.querySelector(".overlay"),
+        scroll_top = document.querySelector('.go-top__inner'),
+        wrapper_scroll_top = document.querySelector('.go-top__inner');
+
+    // <-- index.html --->
+    if (increments !== null && decrements !== null) {
         for (let i = 0; i < increments.length; i++) {
             increments[i].addEventListener('click', function(event) {
-                increments[i].nextElementSibling.value =
-                    (+increments[i].nextElementSibling.value + 1).toString();
+                if (+increments[i].nextElementSibling.value < +increments[i].nextElementSibling.dataset.max) {
+                    increments[i].nextElementSibling.value =
+                        (+increments[i].nextElementSibling.value + 1).toString();
+                }
             });
             decrements[i].addEventListener('click', function(event) {
-                decrements[i].previousElementSibling.value =
-                    (+decrements[i].previousElementSibling.value - 1).toString();
+                if (+decrements[i].previousElementSibling.value > +decrements[i].previousElementSibling.dataset.min) {
+                    decrements[i].previousElementSibling.value =
+                        (+decrements[i].previousElementSibling.value - 1).toString();
+                }
             });
         }
     }
 
+
+    // <-- find-tour.html --->
     // СОРТИРОВКА
     if (sort !== null) {
         sort.addEventListener('click', function(event) {
@@ -80,22 +93,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (event.target.tagName === 'LI') {
                 let href_current_page = window.location.href;
-                console.log(href_current_page)
-                if (href_current_page.includes('&sort')) {
-                    console.log(123)
-                    href_current_page = href_current_page.replaceAll(/&sort=[^&]+/g, '')
+                if (href_current_page.includes('?sort')) {
+                    href_current_page = href_current_page.replaceAll(/\?sort=[^&]+/g, '');
+                    window.location.replace(`${href_current_page}?sort=${event.target.dataset.sort}`);
+                } else if (href_current_page.indexOf('?') === -1) {
+                    window.location.replace(`${href_current_page}?sort=${event.target.dataset.sort}`);
+                } else {
+                    href_current_page = href_current_page.replaceAll(/&sort=[^&]+/g, '');
+                    window.location.replace(`${href_current_page}&sort=${event.target.dataset.sort}`);
                 }
-                console.log(`${href_current_page}&sort=${event.target.dataset.sort}`)
-                // Simulate an HTTP redirect:
-                window.location.replace(`${href_current_page}&sort=${event.target.dataset.sort}`);
             }
-
         });
     }
     const date_input = document.getElementById('departure-date');
     if (date_input !== null) {
         const hdpkr = new HotelDatepicker(date_input, {
-            format: 'D MMM',
+            format: 'DD MMM',
             autoClose: false,
             i18n: {
                 selected: 'Вы выбрали:',
@@ -158,24 +171,23 @@ document.addEventListener("DOMContentLoaded", function() {
             let href_current_page = filters_submit.getAttribute('href'),
                 rate = document.getElementById('rate').querySelector('input:checked');
 
+            let var_rate;
             if (rate === null) {
-                rate = 0
+                var_rate = 0
+            } else {
+                var_rate = rate.value
             }
-            console.log(date_input.value)
-            let [dateFrom, dateTo] =  date_input.value.split(' - ');
-            let [dateFromDay, dateFromMonth] = dateFrom.split(' ');
-            let [dateToDay, dateToMonth] = dateTo.split(' ');
 
             // Если открыта страница без аргументов в URI
             if (href_current_page.indexOf('?') !== -1) {
                href_current_page = href_current_page.substring(0, href_current_page.indexOf('?'));
             }
-            let query_attributes = `country=${country.value}&city=${city.value}&rate=${rate.value}&date=${dateFromDay+monthToNumber(dateFromMonth)}-${dateToDay+monthToNumber(dateToMonth)}&nights=${nights_range.value}&participants=${participants_range.value}&price_from=${price.getPropertyValue('--a').trim()}&price_to=${price.getPropertyValue('--b').trim()}`;
+            let query_attributes = `country=${country.value}&city=${city.value}&rate=${var_rate}&date=${date_input.value.replaceAll(' ', '')}&nights=${nights_range.value}&participants=${participants_range.value}&price_from=${price.getPropertyValue('--a').trim()}&price_to=${price.getPropertyValue('--b').trim()}`;
 
             // Simulate a mouse click:
             // window.location.href = `${href_current_page}?${query_attributes}`;
 
-            // Simulate an HTTP redirect:
+            // // Simulate an HTTP redirect:
             window.location.replace(`${href_current_page}?${query_attributes}`);
         });
     }
@@ -202,9 +214,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // window.location.href = `${href_current_page}?${query_attributes}`;
 
             // Simulate an HTTP redirect:
-            window.location.replace(`${href_current_page}/find-tour.html?${query_attributes}`);
+            window.location.replace(`${href_current_page}/find-tour?${query_attributes}`);
         });
     }
+
+    // <-- about.html, tour.html --->
     const textarea = document.querySelector('.add-review__text');
     if (textarea !== null) {
         textarea.addEventListener('input', () => {
@@ -213,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // <-- all pages, except login.html, register.html --->
     // HAMBURGER
     hamburger_menu_wrapper.addEventListener('click', () => {
         window.scrollTo(0, 0)
@@ -246,6 +261,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+
+    // <-- index.html --->
     for (let i = 0; i < help.length; i++) {
         help[i].addEventListener("click", function() {
             /* Toggle between adding and removing the "active" class,

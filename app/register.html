@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Стили -->
+  <link rel="stylesheet" href="css/app.min.css">
+
+  <title>Регистрация</title>
+
+</head>
+<body class="body">
+
+<main class="main">
+
+  <div class="register">
+    <h2 class="register__heading">Регистрация</h2>
+
+    <form class="register__form" method="POST">
+      <!--      {% csrf_token %}-->
+      <label class="register__label">Логин
+        <input class="register__input" type="text" name="username">
+      </label>
+
+      <label class="register__label">Почта
+        <input class="register__input" type="email" name="username">
+      </label>
+
+      <label class="register__label">Пароль
+        <input class="register__input" type="password" name="password">
+      </label>
+
+      <label class="register__label">Повторите пароль
+        <input class="register__input" type="password" name="password">
+      </label>
+
+      <button class="register__submit" type="submit">Зарегистрироваться</button>
+    </form>
+
+    <div class="register__errors">
+<!--      {% for error in form.errors %}-->
+<!--      <p class="register__error">*{{ error }}</p>-->
+      <p class="register__error">*Пользователь с данной почтой уже существует</p>
+<!--      {% endfor %}-->
+    </div>
+
+    <div class="register__register">Уже есть аккаунт?
+      <a class="register__link" href="login.html">Войти</a>
+    </div>
+  </div>
+</main>
+
+
+<!-- Скрипты -->
+<script src="js/app.js"></script>
+
+</body>
+</html>
+
+<!--    {% csrf_token %}-->
+<!--    {{ form.username.label }}-->
+<!--    {{ form.username }}-->
+
+<!--    {{ form.email.label }}-->
+<!--    {{ form.email }}-->
+
+<!--    {{ form.password1.label }}-->
+<!--    {{ form.password1 }}-->
+
+<!--    {{ form.password2.label }}-->
+<!--    {{ form.password2 }}-->
+
+<!--    {% for field in form %}-->
+<!--        {{ field.label }}-->
+<!--        {{ field }}-->
+<!--    {% endfor %}-->

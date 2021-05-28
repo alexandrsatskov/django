@@ -79,12 +79,12 @@
 
                             <div class="find-tour__form-item">
                                 <label class="find-tour__form-label" for="nights">Ночей</label>
-                                <i class="fas fa-plus"></i><input type="text" name="nights" id="nights" value="8" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                                <i class="fas fa-plus"></i><input data-min="5" data-max="20" type="text" name="nights" id="nights" value="6" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
                             </div>
 
                             <div class="find-tour__form-item">
                                 <label class="find-tour__form-label" for="participants">Участников</label>
-                                <i class="fas fa-plus"></i><input type="text" name="participants" id="participants" value="4" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                                <i class="fas fa-plus"></i><input data-min="1" data-max="8" type="text" name="participants" id="participants" value="2" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
                             </div>
                         </form>
                         <a class="find-tour__form-submit" href="">Поиск</a>
@@ -228,7 +228,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.js"></script>
 <script>
-
     const cities = [
         "Абаза",
         "Абакан",

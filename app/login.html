@@ -16,7 +16,7 @@
     <h2 class="login__heading">Войти</h2>
 
     <form class="login__form" method="POST">
-      <!--      {% csrf_token %}-->
+<!--      {% csrf_token %}-->
       <label class="login__label">Логин
         <input class="login__input" type="text" name="username">
       </label>
@@ -29,13 +29,14 @@
     </form>
 
     <div class="login__errors">
-      {% for message in messages %}
-      <p class="login__error">{{ message }}</p>
-      {% endfor %}
+<!--      {% for message in messages %}-->
+<!--      <p class="login__error">*{{ message }}</p>-->
+      <p class="login__error">*Неправильный пароль</p>
+<!--      {% endfor %}-->
     </div>
 
-    <div class="login__register">Don't have an account?
-      <a class="login__link" href="{% url 'register' %}">Sign Up</a>
+    <div class="login__register">Еще нет аккаунта?
+      <a class="login__link" href="register.html">Зарегистрироваться</a>
     </div>
   </div>
 </main>
