@@ -208,13 +208,13 @@ document.addEventListener("DOMContentLoaded", function() {
             if (href_current_page.indexOf('?') !== -1) {
                 href_current_page = href_current_page.substring(0, href_current_page.indexOf('?'));
             }
-            let query_attributes = `city=${city.value}&date=${date.value}&nights=${nights.value}&participants=${participants.value}`;
+            let query_attributes = `city=${city.value}&date=${date_input.value.replaceAll(' ', '')}&nights=${nights.value}&participants=${participants.value}`;
 
             // Simulate a mouse click:
-            // window.location.href = `${href_current_page}?${query_attributes}`;
+            window.location.href = `${href_current_page}/find-tour?${query_attributes}`;
 
             // Simulate an HTTP redirect:
-            window.location.replace(`${href_current_page}/find-tour?${query_attributes}`);
+            // window.location.replace(`${href_current_page}/find-tour?${query_attributes}`);
         });
     }
 
