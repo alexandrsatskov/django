@@ -1,0 +1,99 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+О нас
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="container container--mini">
+        <section class="about">
+            <h1 class="about__heading">О нашей компании</h1>
+            <p class="about__text">Общество с ограниченной ответственностью «Три Д» - это независимое туристическое агентство, занимающееся пакетными турами. Предприятие основано в 2018 году. Девиз организации «Дешево, доступно и далеко» и в нём заключаются фундаментальные принципы организации. У нас Вы сможете приобрести неограниченные в своём направлении туры. Мы работаем с самым надёжными туроператорами. На нашем сайте вы сможете просмотреть актуальную базу туров, предоставляемых организацией, а так же справочную и контактную информацию. Звоните по горячей линии, пишите нам на почту и приходите в наш офис.</p>
+            <h2 class="about__subtitle">Реквизиты:</h2>
+            <p class="about__text">Телефон: <span class="bold">+7 982 481-88-02</span></p>
+            <p class="about__text">Электронная почта: <span class="bold">three_d.perm@mail.ru</span></p>
+            <p class="about__text">Адрес: <span class="bold">614088, Пермский край, город Пермь, Чердынская улица, дом 42</span></p>
+            <p class="about__text">График работы: <span class="bold">будние дни с 08:00 по 18:00</span></p>
+            <p class="about__text">ОГРН: <span class="bold">1185958000766</span></p>
+            <p class="about__text">ИНН/КПП: <span class="bold">5905055968/590501001</span></p>
+        </section>
+
+        <section id="review" class="review">
+          <h2 class="review__heading">Отзывы</h2>
+
+          {% if reviews %}
+          <ul class="review__list">
+          {% for review in reviews %}
+            <li class="review__item">
+              <div class="review__headline">
+                <span class="review__username">{{ review.user.username }}</span>
+                <fieldset class="review__rate rate">
+                {% for i in rate_quantity %}
+
+                  {% if review.rate == i %}
+                      <input type="radio" value="{{ i }}" checked/>
+                  {% else %}
+                      <input type="radio" value="{{ i }}"/>
+                  {% endif %}
+
+                  {% if i|divisibleby:2 %}
+                      <label></label>
+                  {% else %}
+                      <label class="half"></label>
+                  {% endif %}
+
+                {% endfor %}
+                </fieldset>
+              </div>
+              <p class="review__text">{{ review.desc }}</p>
+            </li>
+          {% endfor%}
+          </ul>
+          {% else %}
+          <h2 class="review__plug plug">/* Вы будете первым кто оставит отзыв! */</h2>
+          {% endif %}
+
+        </section>
+
+        <section class="add-review">
+        {% if request.user.is_authenticated %}
+            {% if can_review %}
+            <form class="add-review__form" method="POST">
+
+                <h2 class="add-review__heading">Оставить отзыв</h2>
+
+                {% csrf_token %}
+                <textarea class="add-review__text" name="desc"></textarea>
+
+                <div class="add-review__bottom">
+                  <fieldset id="rate" class="add-review__rate rate">
+                  {% for i in rate_quantity %}
+                      <input type="radio" id="rating{{ i }}" name="rate"  value="{{ i }}"/>
+
+                      {% if i|divisibleby:2 %}
+                          <label for="rating{{ i }}"></label>
+                      {% else %}
+                          <label for="rating{{ i }}" class="half"></label>
+                      {% endif %}
+
+                  {% endfor %}
+                  </fieldset>
+                  <button class="add-review__submit" type="submit">Отправить</button>
+                </div>
+
+              </form>
+            {% endif %}
+        {% else %}
+            <h2 class="add-review__plug plug">/* Добавлять отзыв могут только авторизированные пользователи */</h2>
+        {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn --chdir travel_agency travel_agency.wsgi --log-file -

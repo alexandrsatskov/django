@@ -1,0 +1,161 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Название тура
+{% endblock %}
+
+{% block main %}
+<main class="main">
+  <div class="container container--mini">
+    <section class="tour-info">
+      <div class="tour-info__image-wrapper">
+        <img class="tour-info__image" src="{{ tour.img.url }}" alt="Картинка тура">
+      </div>
+      <div class="tour-info__desc">
+        <h2 class="tour-info__name">{{ tour.name }}</h2>
+        <p class="tour-info__text">{{ tour.desc }}</p>
+        <div class="tour-info__rate">
+          <fieldset class="rate">
+          {% for i in rate_quantity %}
+
+            {% if tour.rate == i %}
+                <input type="radio" value="{{ i }}" checked/>
+            {% else %}
+                <input type="radio" value="{{ i }}"/>
+            {% endif %}
+
+            {% if i|divisibleby:2 %}
+                <label></label>
+            {% else %}
+                <label class="half"></label>
+            {% endif %}
+
+          {% endfor %}
+          </fieldset>
+          <a class="tour-info__rate-link" href="#review">(<span class="tour-info__rate-link-span">{{ reviews_length }}</span>)</a>
+        </div>
+        <table class="tour-info__table">
+          <tbody class="tour-info__table-tbody">
+          <tr class="tour-info__table-tr">
+            <td class="tour-info__table-td">Даты вылета</td>
+            <td class="tour-info__table-td">{{ tour.date }}</td>
+          </tr>
+          <tr class="tour-info__table-tr">
+            <td class="tour-info__table-td">Участников</td>
+            <td class="tour-info__table-td">{{ tour.participants }}</td>
+          </tr>
+          <tr class="tour-info__table-tr">
+            <td class="tour-info__table-td">Ночей</td>
+            <td class="tour-info__table-td">{{ tour.days }}</td>
+          </tr>
+          <tr class="tour-info__table-tr">
+            <td class="tour-info__table-td">Стоимость</td>
+            <td class="tour-info__table-td"><span class="bold">{{ tour.price }}&nbsp;₽</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <article class="article">
+      <h2 class="article__name">Страна</h2>
+      <p class="article__desc">
+        <span class="bold">{{ tour.country }}.</span>
+        {{ tour.country.desc }}</p>
+    </article>
+
+    <article class="article">
+      <h2 class="article__name">Город</h2>
+      <p class="article__desc">
+        <span class="bold">{{ tour.city }}.</span>
+        {{ tour.city.desc }}</p>
+    </article>
+
+    <article class="article">
+      <h2 class="article__name">Отель</h2>
+      <p class="article__desc">
+        <span class="bold">{{ tour.hotel }}.</span>
+        {{ tour.hotel.desc }}</p>
+    </article>
+
+    <section id="review" class="review">
+      <h2 class="review__heading">Отзывы</h2>
+
+      {% if reviews %}
+      <ul class="review__list">
+      {% for review in reviews %}
+        <li class="review__item">
+          <div class="review__headline">
+            <span class="review__username">{{ review.user.username }}</span>
+            <fieldset class="review__rate rate">
+            {% for i in rate_quantity %}
+
+              {% if review.rate == i %}
+                  <input type="radio" value="{{ i }}" checked/>
+              {% else %}
+                  <input type="radio" value="{{ i }}"/>
+              {% endif %}
+
+              {% if i|divisibleby:2 %}
+                  <label></label>
+              {% else %}
+                  <label class="half"></label>
+              {% endif %}
+
+            {% endfor %}
+            </fieldset>
+          </div>
+          <p class="review__text">{{ review.desc }}</p>
+        </li>
+      {% endfor%}
+      </ul>
+      {% else %}
+      <h2 class="review__plug plug">/* Вы будете первым кто оставит отзыв! */</h2>
+      {% endif %}
+
+    </section>
+
+    <section class="add-review">
+
+      {% if request.user.is_authenticated %}
+        {% if can_review %}
+          <form class="add-review__form" method="POST">
+
+            <h2 class="add-review__heading">Оставить отзыв</h2>
+
+            {% csrf_token %}
+            <textarea class="add-review__text" name="desc"></textarea>
+
+            <div class="add-review__bottom">
+              <fieldset id="rate" class="add-review__rate rate">
+              {% for i in rate_quantity %}
+                  <input type="radio" id="rating{{ i }}" name="rate"  value="{{ i }}"/>
+
+                  {% if i|divisibleby:2 %}
+                      <label for="rating{{ i }}"></label>
+                  {% else %}
+                      <label for="rating{{ i }}" class="half"></label>
+                  {% endif %}
+
+              {% endfor %}
+              </fieldset>
+              <button class="add-review__submit" type="submit">Отправить</button>
+            </div>
+
+          </form>
+        {% endif %}
+      {% else %}
+      <h2 class="add-review__plug plug">/* Добавлять отзыв могут только авторизированные пользователи */</h2>
+      {% endif %}
+
+
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
+{% endblock %}

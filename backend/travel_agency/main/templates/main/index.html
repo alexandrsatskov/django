@@ -1,0 +1,220 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/hotel-datepicker.css' %}">
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <section class="find-tour">
+        <div class="container">
+            <div class="find-tour__body">
+                <div class="find-tour__left">
+                    <h2 class="find-tour__heading">Планируй завтра, путешествуй сегодня.</h2>
+                    <div class="find-tour__booking">
+                        <form class="find-tour__form" method="POST">
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="city">Город</label>
+                                <input class="find-tour__form-input" id="city" value="Пермь" type="text" dir="ltr" spellcheck=false autocomplete="off" autocapitalize="off" maxlength="2048" tabindex="1">
+                            </div>
+
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="departure-date">Дата</label>
+                                <input class="find-tour__form-input" id="departure-date" type="text" name="departure-date" value="Любая" readonly>
+                            </div>
+
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="nights">Ночей</label>
+                                <i class="fas fa-plus"></i><input data-min="{{ MIN_NIGHTS }}" data-max="{{ MAX_NIGHTS }}" type="text" name="nights" id="nights" value="{{ DEFAULT_NIGHTS }}" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                            </div>
+
+                            <div class="find-tour__form-item">
+                                <label class="find-tour__form-label" for="participants">Участников</label>
+                                <i class="fas fa-plus"></i><input data-min="{{ MIN_PARTICIPANTS }}" data-max="{{ MAX_PARTICIPANTS }}" type="text" name="participants" id="participants" value="{{ DEFAULT_PARTICIPANTS }}" class="find-tour__form-input" readonly><i class="fas fa-minus"></i>
+                            </div>
+                        </form>
+                        <a class="find-tour__form-submit" href="">Поиск</a>
+                    </div>
+                </div>
+                <div class="find-tour__image-wrapper"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+            <div class="advantages__body">
+
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="{% static 'img/first_pillar.svg' %}" alt="Мы крутые!">
+                    </div>
+                    <h4 class="advantages__item-heading">Вы готовы? Мы тоже</h4>
+                    <p class="advantages__item-text">
+                        Узнайте, куда сейчас можно путешествовать и найдите авиабилеты, отели и прокат автомобилей по лучшим ценам.
+                    </p>
+                </div>
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="{% static 'img/second_pillar.svg' %}" alt="Мы крутые!">
+                    </div>
+                    <h4 class="advantages__item-heading">Планируйте уверенно</h4>
+                    <p class="advantages__item-text">Позаботьтесь о себе заранее: гибкие тарифы, бесплатная отмена отелей и автомобилей, самые чистые номера.
+                    </p>
+                </div>
+                <div class="advantages__item">
+                    <div class="advantages__item-image-wrapper">
+                        <img class="advantages__item-image" src="{% static 'img/third_pillar.svg' %}" alt="Мы крутые!">
+                    </div>
+                    <h4 class="advantages__item-heading">Легко и беззаботно</h4>
+                    <p class="advantages__item-text">Вы всегда точно знаете, за что платите. Можно спокойно готовиться к путешествию.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="popular-tours">
+        <div class="container">
+            <h2 class=" heading popular-tours__heading">рекомендуем<span class="dot">.</span></h2>
+            <ul class="tours popular-tours__list">
+            {% for tour in tours %}
+                <li class="tours__item">
+                    <a href="{% url 'tour' tour.id %}">
+                        <div class="tours__item-image-wrapper">
+                            <img class="tours__item-image" src="{{ tour.img.url }}" alt="Картинка тура">
+
+                            <span class="tours__item-destination-city">
+                                {{ tour.city }},
+                                <span class="tours__item-destination-country">{{ tour.country }}</span>
+                            </span>
+                        </div>
+                        <div class="tours__item-desc">
+                            <div class="tours__item-desc-inner">
+                                <span class="tours__item-nights">{{ tour.days }}&nbsp;ночей</span>
+                                <fieldset class="rate">
+                                {% for i in rate_quantity %}
+
+                                    {% if tour.rate == i %}
+                                        <input type="radio" value="{{ i }}" checked/>
+                                    {% else %}
+                                        <input type="radio" value="{{ i }}"/>
+                                    {% endif %}
+
+                                    {% if i|divisibleby:2 %}
+                                        <label></label>
+                                    {% else %}
+                                        <label class="half"></label>
+                                    {% endif %}
+
+                                {% endfor %}
+                                </fieldset>
+                            </div>
+                            <span class="tours__item-price">{{ tour.price }}&nbsp;₽</span>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="heading faq__heading">часто задаваемые вопросы<span class="dot">.</span></h2>
+            <ul class="faq__questions">
+                <li class="faq__item">
+                    <button class="faq__item-heading">Что входит в состав тура?</button>
+                    <p class="faq__item-answer">В состав тура входит авиаперелёт, а так же проживание и питание в отеле.</p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Как осуществить бронь и покупку тура?</button>
+                    <p class="faq__item-answer">Оплата производится в офисе организации, который расположен в городе Пермь, на Чердынской улице, в доме 42. Обсудить оплату можно по телефону, почте или в личной беседе с менеджером. Вы можете подобрать тур лично, или прийти к в офис организации, где опытные менеджеры ответят на все ваши вопросы и помогут подобрать оптимальный вариант отдыха.</p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Какие документы нужны для выезда за границу?</button>
+                    <p class="faq__item-answer">Вы можете ознакомится со справкой на сайте, которая предоставляет полную информацию о необходимых для путешествия документах. За более подробной информацией приходите в наш офис.</p>
+                </li>
+                <li class="faq__item">
+                    <button class="faq__item-heading">Туры, указанные на сайте, актуальны?</button>
+                    <p class="faq__item-answer">Да. Сайт регулярно администрируется и обновляется.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/fecha.min.js' %}"></script>
+<script src="{% static 'js/hotel-datepicker.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.js"></script>
+<script>
+    const cities = [
+        "Любой",
+        {% for city in CITIES %}
+        "{{ city }}",
+        {% endfor %}
+    ]
+
+    const base_config = function (id, data, resultsList_idName, resultItem_idName) {
+        this.selector = id;
+        this.data = data;
+        this.resultsList = {
+            idName: resultsList_idName,
+            className: "find-tour__autocomplete-list",
+            maxResults: 5,
+            noResults: (list, query) => {
+                // Create "No Results" message list element
+                const message = document.createElement("li");
+                message.setAttribute("class", "no_result");
+                // Add message text content
+                message.innerHTML = `No Results <span class="bold">${query}</span>`;
+                // Add message list element to the list
+                list.appendChild(message);
+            },
+        };
+        this.resultItem = {
+            className: "find-tour__autocomplete-item",
+            idName: resultItem_idName,
+            selected: {
+                className: "find-tour__autocomplete-item--selected"
+            }
+        };
+        this.trigger = {
+            event: ["input", "focus"],
+            condition: (event, queryValue) => {
+                if (event.type === "focus")
+                    document.querySelector(id).value = "";
+                return queryValue.replace(/ /g, "").length; // Returns "Boolean"
+            }
+        };
+        this.onSelection = (feedback) => {
+            document.querySelector(id).blur();
+            document.querySelector(id).value = feedback.selection.value;
+        };
+        return {
+            selector: this.selector,
+            data: {
+                src: this.data
+            },
+            resultsList: this.resultsList,
+            resultItem: this.resultItem,
+            trigger: this.trigger,
+            onSelection: this.onSelection
+        }
+    };
+    const cities_autoComplete = new autoComplete(
+        base_config("#city", cities, 'city-list', 'city')
+    );
+</script>
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
+{% endblock %}

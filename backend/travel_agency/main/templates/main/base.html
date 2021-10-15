@@ -1,0 +1,98 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Иконка -->
+	<link rel="icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Стили -->
+    {% block styles %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body class="body">
+<div class="overlay"></div>
+<!--<div class="go-top">-->
+<!--    <div class="go-top__inner">-->
+<!--        <span class="go-top__text">Go&nbsp;up</span>-->
+<!--    </div>-->
+<!--</div>-->
+
+<header class="header">
+    <div class="container">
+        <div class="header__body">
+            <a class="header__logo" href="{% url 'index' %}">
+                <img class="header__logo-image" src="{% static 'img/threeD_logo.svg' %}" alt="Логотип компании">
+            </a>
+
+            <div class="hamburger">
+                <div class="hamburger__inner">
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                    <div class="hamburger__line"></div>
+                </div>
+            </div>
+
+            <nav class="header__menu">
+                <ul class="header__nav">
+                    <li class="header__item {% if request.resolver_match.url_name == 'index' %}header__item--active{% endif %}">
+                        <a class="header__link" href="{% url 'index' %}">Главная</a>
+                    </li>
+                    <li class="header__item {% if request.resolver_match.url_name == 'find-tour' %}header__item--active{% endif %}">
+                        <a class="header__link" href="{% url 'find-tour' %}">Найти&nbsp;тур</a>
+                    </li>
+                    <li class="header__item {% if request.resolver_match.url_name == 'about' %}header__item--active{% endif %}">
+                        <a class="header__link" href="{% url 'about' %}">О&nbsp;нас</a>
+                    </li>
+                    <li class="header__item {% if request.resolver_match.url_name == 'help' %}header__item--active{% endif %}">
+                        <a class="header__link" href="{% url 'help' %}">Справка</a>
+                    </li>
+                    <li class="header__item">
+                    {% if request.user.is_authenticated %}
+                        <a class="header__link" href="{% url 'logout' %}">Выйти</a>
+                    {% else %}
+                        <a class="header__link" href="{% url 'login' %}">Войти</a>
+                    {% endif %}
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+{% block main %}{% endblock %}
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__inner">
+            <div class="footer__column">
+                <p class="footer__address">Пермь, Чердынская улица, 42</p>
+                <p class="footer__schedule">Будни с 08:00 по 18:00</p>
+            </div>
+            <div class="footer__column">
+                <p class="footer__phone">+7 982 481-88-02</p>
+                <p class="footer__email">three_d.perm@mail.ru</p>
+            </div>
+            <div class="footer__column">
+                <p class="footer__privacy-policy">Предоставленная на сайте информация носит справочный характер и не является публичной офертой.</p>
+                <p class="footer__copyright">© ООО "Три Д" 2018-2021</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Скрипты -->
+{% block scripts %}{% endblock %}
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

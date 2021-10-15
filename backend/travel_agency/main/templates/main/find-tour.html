@@ -1,0 +1,202 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Найти тур
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/hotel-datepicker.css' %}">
+<link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div class="container">
+        <div class="main__body">
+            <div class="filters">
+                <h2 class="filters__heading">Фильтры<i class="fas fa-filter"></i></h2>
+                <div class="filters__content">
+                    <ul class="filters__list">
+                        <li class="filters__item">
+                            <label for="country" class="filters__item-label">Страна</label>
+                            <input class="filters__item-input filters__item-input--autocomplete" id="country" value="{{ country }}" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
+                        </li>
+                        <li class="filters__item">
+                            <label for="city" class="filters__item-label">Город</label>
+                            <input class="filters__item-input filters__item-input--autocomplete" id="city" value="{{ city }}" type="text" dir="ltr" spellcheck=false autocomplete="none" autocapitalize="off" maxlength="2048" tabindex="1">
+                        </li>
+                        <li class="filters__item">
+                            <label for="rate" class="filters__item-label">Рейтинг</label>
+                            <fieldset id="rate" class="rate">
+                            {% for i in rate_quantity %}
+
+                                {% if rate == i|slugify %}
+                                    <input type="radio" id="rating{{ i }}" name="rating" value="{{ i }}" checked/>
+                                {% else %}
+                                    <input type="radio" id="rating{{ i }}" name="rating"  value="{{ i }}"/>
+                                {% endif %}
+
+                                {% if i|divisibleby:2 %}
+                                    <label for="rating{{ i }}"></label>
+                                {% else %}
+                                    <label for="rating{{ i }}" class="half"></label>
+                                {% endif %}
+
+                            {% endfor %}
+                            </fieldset>
+                        </li>
+                        <li class="filters__item">
+                            <label for="departure-date" class="filters__item-label">Даты вылета</label>
+                            <input id="departure-date" class="filters__item-input" type="text" value="{{ date }}" readonly>
+                        </li>
+                        <li class="filters__item">
+                            <label for="nights" class="filters__item-label">Ночей:&nbsp;<span class="filters__item-content">{{ nights }}</span></label>
+                            <input id="nights" class="filters__item-input" type="range" min="5" max="20" value="{{ nights }}">
+                        </li>
+                        <li class="filters__item">
+                            <label for="participants" class="filters__item-label">Участников:&nbsp;<span class="filters__item-content">{{ participants }}</span></label>
+                            <input id="participants" class="filters__item-input" type="range" min="1" max="8" value="{{ participants }}">
+                        </li>
+                        <li class="filters__item">
+                            <div class="wrap" role="group" aria-labelledby="multi-lbl" style="--a: {{ price_from }}; --b: {{ price_to }}; --min: {{ MIN_PRICE }}; --max: {{ MAX_PRICE }}">
+                                <div class="filters__item-label" id="multi-lbl">Цена:</div>
+                                <label class="sr-only" for="a">Value A:</label>
+                                <input id="a" type="range" min="{{ MIN_PRICE  }}" value="{{ price_from }}" max="{{ MAX_PRICE  }}"/>
+                                <output for="a" style="--c: var(--a)"><span class="dash">-</span></output>
+                                <label class="sr-only" for="b">Value B:</label>
+                                <input id="b" type="range" min="{{ MIN_PRICE  }}" value="{{ price_to }}" max="{{ MAX_PRICE  }}"/>
+                                <output for="b" style="--c: var(--b)"></output>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="" class="filters__submit">Поиск</a>
+                </div>
+            </div>
+            <div class="sort">
+                <div class="sort__heading">Сортировать</div>
+                <ul class="sort__list dropdown">
+                    <li class="dropdown__item" data-sort="price">Дешевле</li>
+                    <li class="dropdown__item" data-sort="price-desc">Дороже</li>
+                    <li class="dropdown__item" data-sort="rate">Высокий рейтинг</li>
+                </ul>
+            </div>
+            <ul class="tours">
+            {% for tour in tours %}
+                <li class="tours__item">
+                    <a href="{% url 'tour' tour.id %}">
+                        <div class="tours__item-image-wrapper">
+                            <img class="tours__item-image" src="{{ tour.img.url }}" alt="Картинка тура">
+
+                            <span class="tours__item-destination-city">
+                                {{ tour.city }},
+                                <span class="tours__item-destination-country">{{ tour.country }}</span>
+                            </span>
+                        </div>
+                        <div class="tours__item-desc">
+                            <div class="tours__item-desc-inner">
+                                <span class="tours__item-nights">{{ tour.days }}&nbsp;ночей</span>
+                                <fieldset class="rate">
+                                {% for i in rate_quantity %}
+
+                                    {% if tour.rate == i %}
+                                        <input type="radio" value="{{ i }}" checked/>
+                                    {% else %}
+                                        <input type="radio" value="{{ i }}"/>
+                                    {% endif %}
+
+                                    {% if i|divisibleby:2 %}
+                                        <label></label>
+                                    {% else %}
+                                        <label class="half"></label>
+                                    {% endif %}
+
+                                {% endfor %}
+                                </fieldset>
+                            </div>
+                            <span class="tours__item-price">{{ tour.price }}&nbsp;₽</span>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/fecha.min.js' %}"></script>
+<script src="{% static 'js/hotel-datepicker.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.js"></script>
+<script>
+    const countries = [
+        "Любая",
+        {% for country in COUNTRIES %}
+        "{{ country }}",
+        {% endfor %}
+    ]
+    const cities = [
+        "Любой",
+        {% for city in CITIES %}
+        "{{ city }}",
+        {% endfor %}
+    ]
+    const base_config = function (id, data, resultsList_idName, resultItem_idName) {
+        this.selector = id;
+        this.data = data;
+        this.resultsList = {
+            idName: resultsList_idName,
+            className: "filters__autocomplete-list",
+            maxResults: 5,
+            noResults: (list, query) => {
+                // Create "No Results" message list element
+                const message = document.createElement("li");
+                message.setAttribute("class", "no_result");
+                // Add message text content
+                message.innerHTML = `No Results <span class="bold">${query}</span>`;
+                // Add message list element to the list
+                list.appendChild(message);
+            },
+        };
+        this.resultItem = {
+            className: "filters__autocomplete-item",
+            idName: resultItem_idName,
+            selected: {
+                className: "filters__autocomplete-item--selected"
+            }
+        };
+        this.trigger = {
+            event: ["input", "focus"],
+            condition: (event, queryValue) => {
+                if (event.type === "focus")
+                    document.querySelector(id).value = "";
+                return queryValue.replace(/ /g, "").length; // Returns "Boolean"
+            }
+        };
+        this.onSelection = (feedback) => {
+            document.querySelector(id).blur();
+            document.querySelector(id).value = feedback.selection.value;
+        };
+        return {
+            selector: this.selector,
+            data: {
+                src: this.data
+            },
+            resultsList: this.resultsList,
+            resultItem: this.resultItem,
+            trigger: this.trigger,
+            onSelection: this.onSelection
+        }
+    };
+
+    const countries_autoComplete = new autoComplete(
+        base_config("#country", countries, 'country-list', 'country')
+    );
+    const cities_autoComplete = new autoComplete(
+        base_config("#city", cities, 'city-list', 'city')
+    );
+</script>
+<script async src="https://kit.fontawesome.com/ea32d8aa66.js" crossorigin="anonymous"></script>
+{% endblock %}
